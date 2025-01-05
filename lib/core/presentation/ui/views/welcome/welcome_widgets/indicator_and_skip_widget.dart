@@ -24,7 +24,7 @@ class IndicatorAndSkip extends StatelessWidget {
             onTap: onTap,
             child: Icon(
               CupertinoIcons.search,
-              color: AppColor.primaryColor,
+              color: AppColors.primaryColor,
               size: 26.sp,
             ),
           )

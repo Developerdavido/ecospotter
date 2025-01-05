@@ -33,14 +33,14 @@ class DefaultText extends StatelessWidget {
           ? TextStyle(
           fontFamily: "Geist",
           fontWeight: fontWeight ?? FontWeight.w800,
-          color: textColor ?? AppColor.white,
+          color: textColor ?? AppColors.white,
           fontSize: fontSize ?? 16,
           letterSpacing: letterSpacing ?? -0.48,
           height: lineHeight ?? 1.2)
           : TextStyle(
           fontFamily: fontFamily,
           fontWeight: fontWeight ?? FontWeight.w800,
-          color: textColor ?? AppColor.white,
+          color: textColor ?? AppColors.white,
           fontSize: fontSize ?? 16,
           letterSpacing: letterSpacing ?? -0.48,
           height: lineHeight ?? 1.2),

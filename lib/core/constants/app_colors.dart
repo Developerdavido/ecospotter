@@ -1,7 +1,7 @@
 
 import 'dart:ui';
 
-abstract class AppColor {
+abstract class AppColors {
   static const primaryColor = Color(0xff070707);
   static const ashColor = Color(0xff1E1E1E);
   static const shimmerBaseColor = Color(0xff181818);

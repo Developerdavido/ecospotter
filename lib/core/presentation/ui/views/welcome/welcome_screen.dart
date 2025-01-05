@@ -26,7 +26,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.white,
+      backgroundColor: AppColors.white,
       body: Column(
         children: [
           Gap(48.h),
@@ -45,22 +45,22 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               },
               children: const [
                 OnBoardingPage(
-                    title: 'Discover a wide array of events',
-                    subtitle: 'List of music event show ideas that you might find interesting',
+                    title: AppStrings.page1Header,
+                    subtitle: AppStrings.page1Message,
                     imagePath: 'assets/images/onboarding_one.png'),
                 OnBoardingPage(
-                    title: 'More than just an event finder',
-                    subtitle: 'List of music event show ideas that you might find interesting',
+                    title: AppStrings.page2Header,
+                    subtitle: AppStrings.page2Message,
                     imagePath: 'assets/images/onboarding_two.png'),
                 OnBoardingPage(
-                    title: "It's your gateway to the world's events",
-                    subtitle: 'List of music event show ideas that you might find interesting',
+                    title: AppStrings.page3Header,
+                    subtitle: AppStrings.page3Message,
                     imagePath: 'assets/images/onboarding_three.png')
               ],
             ),
           ),
           const Gap(16),
-          DefaultButton(onBtnTap: (){}, btnText: AppString.continueBtn)
+          DefaultButton(onBtnTap: (){}, btnText: AppStrings.continueBtn)
         ],
       ),
     );

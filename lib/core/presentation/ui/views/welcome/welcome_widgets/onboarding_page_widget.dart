@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../../../../constants/app_colors.dart';
+import '../../../shared_widgets/default_text.dart';
 
 
 class OnBoardingPage extends StatelessWidget {
@@ -29,29 +30,29 @@ class OnBoardingPage extends StatelessWidget {
         Gap(10.h),
         SizedBox(
           width: 290.w,
-          child: Text(
-            title,
+          child: DefaultText(
+            data: title,
+            fontFamily: "Geist",
+            fontWeight: FontWeight.w900,
+            textColor: AppColors.white,
+            fontSize: 32.sp,
+            letterSpacing: -0.41,
+            lineHeight: 1.33,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: AppColor.blackOA,
-              fontSize: 32.sp,
-              fontFamily: 'Urbanist',
-              fontWeight: FontWeight.bold,
-            ),
           ),
         ).animate().fadeIn().slideY(begin: 4, delay: 1000.ms, duration: 1000.ms),
         Gap(26.h),
         SizedBox(
           width: 267.w,
-          child: Text(
-            subtitle,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: AppColor.blackOA,
-              fontSize: 14.sp,
-              fontFamily: 'Urbanist',
-              fontWeight: FontWeight.w500,
-            ),
+          child: DefaultText(
+            data: subtitle,
+            fontFamily: "Geist",
+            fontWeight: FontWeight.w400,
+            textColor: AppColors.white,
+            fontSize: 16.sp,
+            letterSpacing: -0.41,
+            lineHeight: 1.33,
+            textAlign: TextAlign.left,
           ),
         ).animate().fadeIn().slideY(begin: 4, delay: 1200.ms, duration: 1000.ms)
       ],
