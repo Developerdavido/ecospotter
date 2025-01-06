@@ -26,4 +26,16 @@ abstract class AppColors {
 
   //bottom nav
   static const bottomNavColor = Color(0xff111111);
+
+
+  //new primary colors for the application
+  // static const primaryColor = Color(0xffFFD700);
+  // static const black = Color(0xff070707);
+  // static const secondaryColor = Color(0xff2F3641);
+  // static const pinkAccent = Color(0xffFFC0CB);
+  //
+  // //light variations
+  // static const lightBlack = Color(0xff454B56);
+  // static const darkBlack = Color(0xff1A1E24);
+
 }

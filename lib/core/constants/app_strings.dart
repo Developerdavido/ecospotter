@@ -1,6 +1,7 @@
 abstract class AppStrings {
   //btn titles
   static const String continueBtn = "Continue";
+  static const String googleLogin = "Sign in with Google";
 
   //splash screen tagline
   static const String tagline = "Be a Wildlife Hero! Every Snap Counts";
@@ -48,4 +49,5 @@ abstract class AppStrings {
   static const String conservationCampaignTitle = "Support a Cause";
   static const String conservationCampaignMessage =
       "Connect your observation to an active conservation campaign and make an even bigger impact";
+
 }

@@ -1,4 +1,5 @@
 import 'package:citizen_app/core/constants/app_strings.dart';
+import 'package:citizen_app/core/constants/media.dart';
 import 'package:citizen_app/core/presentation/ui/shared_widgets/custom_button.dart';
 import 'package:citizen_app/core/presentation/ui/views/welcome/welcome_widgets/indicator_and_skip_widget.dart';
 import 'package:citizen_app/core/presentation/ui/views/welcome/welcome_widgets/onboarding_page_widget.dart';
@@ -47,15 +48,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 OnBoardingPage(
                     title: AppStrings.page1Header,
                     subtitle: AppStrings.page1Message,
-                    imagePath: 'assets/images/onboarding_one.png'),
+                    imagePath: Media.onboardingImageOne),
                 OnBoardingPage(
                     title: AppStrings.page2Header,
                     subtitle: AppStrings.page2Message,
-                    imagePath: 'assets/images/onboarding_two.png'),
+                    imagePath: Media.onboardingImageTwo),
                 OnBoardingPage(
                     title: AppStrings.page3Header,
                     subtitle: AppStrings.page3Message,
-                    imagePath: 'assets/images/onboarding_three.png')
+                    imagePath: Media.onboardingImageThree)
               ],
             ),
           ),

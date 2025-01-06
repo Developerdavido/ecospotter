@@ -1,7 +1,14 @@
+import 'package:citizen_app/core/presentation/ui/views/auth/views/add_profession_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import '../../../../../constants/app_colors.dart';
+import '../../../../../constants/app_strings.dart';
+import '../../../../../constants/media.dart';
+import '../../../shared_widgets/custom_app_bar.dart';
+import '../../../shared_widgets/custom_button.dart';
 import '../../../shared_widgets/default_text.dart';
-
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -14,6 +21,8 @@ class LoginScreen extends StatelessWidget {
         body: Stack(
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const CustomLoginAppBar(),
                 Expanded(
@@ -46,91 +55,17 @@ class LoginScreen extends StatelessWidget {
                             textAlign: TextAlign.left,
                           ),
                           Gap(40.h),
-                          SignInForm(
-                            formKey: _formKey,
-                            passwordController: passwordCtrl,
-                            emailController: emailCtrl,
-                            phoneController: phoneCtrl,
-                            onPasswordReset: (){},
-                            countryController: countryCtrl,
-                            countryNotifier: _countryNotifier,
-                          ),
-                          Gap(30.h),
                           DefaultButton(
                             onBtnTap: () async {
-                              // if(_formKey.currentState!.validate()){
-                              //   FocusManager.instance.primaryFocus?.unfocus();
-                              //   final phoneNumber = phoneCtrl.text.trim();
-                              //   Country? country = _countryNotifier.value;
-                              //   authVm.phoneNumber =
-                              //       '+${country?.phoneCode}${toNumericString(phoneNumber)}';
-                              //   authVm.email = emailCtrl.text.trim();
-                              //   authVm.password = passwordCtrl.text.trim();
-                              //   authVm.country = country?.countryCode;
-                              //   final success  = await authVm.loginUser(AuthMethod.password);
-                              //   if(success){
-                              //     Get.offAll(()=> const AppNavigation(), transition: Transition.cupertino);
-                              //   }
+                              // var success  = await authVm.loginUser(AuthMethod.google);
+                              // if(success){
+                              Get.offAll(() => const AddProfessionScreen(),
+                                  transition: Transition.cupertino);
                               // }
-                              Get.offAll(()=> const AppNavigation(), transition: Transition.cupertino);
-                            },
-                            btnText: AppStrings.signIn,
-                            btnColor: AppColors.white,
-                            btnTextColor: AppColors.blackOA,
-                          ),
-                          Gap(10.h),
-                          Center(
-                            child: DefaultTextSpan(
-                              title: AppStrings.noAccount,
-                              actionTitle: "Sign in",
-                              textAlign: TextAlign.center,
-                              onPressed: (){
-                                Get.off(()=> const SignUpScreen(), transition: Transition.cupertino);
-                              },
-                            ),
-                          ),
-                          Gap(20.h),
-                          //add the or widget
-                          const OrText(),
-                          Gap(20.h),
-                          DefaultButton(
-                            onBtnTap: () async {
-                              var success  = await authVm.loginUser(AuthMethod.google);
-                              if(success){
-                                Get.offAll(()=> const AppNavigation(), transition: Transition.cupertino);
-                              }
                             },
                             btnText: AppStrings.googleLogin,
                             isIconPresent: true,
                             iconData: Media.google,
-                            btnColor: AppColors.primaryColor,
-                            btnTextColor: AppColors.white,
-                          ),
-                          Gap(10.h),
-                          DefaultButton(
-                            onBtnTap: ()async {
-                              var success  = await authVm.registerUser(AuthMethod.facebook);
-                              if(success){
-                                Get.offAll(()=> const AppNavigation(), transition: Transition.cupertino);
-                              }
-                            },
-                            btnText: AppStrings.facebookLogin,
-                            isIconPresent: true,
-                            iconData: Media.facebook,
-                            btnColor: AppColors.primaryColor,
-                            btnTextColor: AppColors.white,
-                          ),
-                          Gap(10.h),
-                          DefaultButton(
-                            onBtnTap: (){
-                              // var success  = await authVm.registerUser(AuthMethod.google);
-                              // if(success){
-                              //   Get.offAll(()=> const AppNavigation(), transition: Transition.cupertino);
-                              // }
-                            },
-                            btnText: AppStrings.appleLogin,
-                            isIconPresent: true,
-                            iconData: Media.apple,
                             btnColor: AppColors.primaryColor,
                             btnTextColor: AppColors.white,
                           ),
@@ -141,10 +76,10 @@ class LoginScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Visibility(
-              visible: authVm.isLoading,
-              child: const Loader(),
-            )
+            // Visibility(
+            //   visible: authVm.isLoading,
+            //   child: const Loader(),
+            // )
           ],
         ),
       ),
