@@ -1,4 +1,5 @@
 
+import 'package:citizen_app/core/config/locator.dart';
 import 'package:citizen_app/core/presentation/ui/views/splash_page/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,6 +16,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  setupLocator();
   // final prefs = await SharedPreferences.getInstance();
   // CacheHelper.instance.init(prefs);
 

@@ -24,8 +24,8 @@ class CustomLoginAppBar extends StatelessWidget {
         children: [
           const DefaultBackButton(icon: CupertinoIcons.left_chevron,),
           Gap(0.3.sw),
-          Image.asset(Media.appIcon, height: 60.h, width: 60.h, fit: BoxFit.cover,),
-          const Spacer(),
+          //Image.asset(Media.appIcon, height: 60.h, width: 60.h, fit: BoxFit.cover,),
+          //const Spacer(),
         ],
       ),
     );

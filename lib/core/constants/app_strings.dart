@@ -2,6 +2,8 @@ abstract class AppStrings {
   //btn titles
   static const String continueBtn = "Continue";
   static const String googleLogin = "Sign in with Google";
+  static const String next = "Next";
+  static const String submit = "Submit";
 
   //splash screen tagline
   static const String tagline = "Be a Wildlife Hero! Every Snap Counts";
@@ -21,6 +23,7 @@ abstract class AppStrings {
   static const String loginTitle = "Welcome Wildlife Explorer!";
   static const String loginMessage =
       "Jump right in with your Google account and start your wildlife adventure";
+  static const trademark = "\u00a9 Identif.co. All Rights Reserved";
 
   //animal preference screen
   static const String preferenceTitle = "Pick Your Favorite Animals";
@@ -49,5 +52,9 @@ abstract class AppStrings {
   static const String conservationCampaignTitle = "Support a Cause";
   static const String conservationCampaignMessage =
       "Connect your observation to an active conservation campaign and make an even bigger impact";
+
+
+  //dropdown btn text
+  static const String select = "Select Item";
 
 }

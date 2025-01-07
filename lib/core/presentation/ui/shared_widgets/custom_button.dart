@@ -41,7 +41,7 @@ class DefaultButton extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(32.r),
             color: isNull ? AppColors.grey97 : btnColor ?? AppColors.white,
-            border: Border.all(color: borderColor ?? AppColors.buttonBorder, width: 0.5)),
+        ),
         child: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
