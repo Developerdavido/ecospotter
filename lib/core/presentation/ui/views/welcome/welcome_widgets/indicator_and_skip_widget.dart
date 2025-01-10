@@ -16,20 +16,7 @@ class IndicatorAndSkip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 16.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          DotIndicatorWidget(page: page, dotCount: 3),
-          GestureDetector(
-            onTap: onTap,
-            child: Icon(
-              CupertinoIcons.search,
-              color: AppColor.primaryColor,
-              size: 26.sp,
-            ),
-          )
-        ],
-      ),
+      child: DotIndicatorWidget(page: page, dotCount: 3),
     );
   }
 }

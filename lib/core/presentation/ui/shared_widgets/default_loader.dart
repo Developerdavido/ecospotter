@@ -20,13 +20,13 @@ class Loader extends StatelessWidget {
               height: 99.h,
               padding: EdgeInsets.symmetric(horizontal: 12.w),
               decoration: BoxDecoration(
-                  color: AppColor.ashColor.withOpacity(0.32)),
+                  color: AppColors.ashColor.withOpacity(0.32)),
               child: SizedBox(
                 height: 0.2.sh,
                 width: 0.2.sh,
                 child: const Center(
                   child: CircularProgressIndicator(
-                    color: AppColor.white,
+                    color: AppColors.white,
                     strokeWidth: 1.0,
                   ),
                 ),

@@ -8,7 +8,10 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../config/services/local_storage_service.dart';
 import '../../../../constants/app_colors.dart';
+import '../../../../constants/app_strings.dart';
 import '../../../../constants/media.dart';
+import '../../shared_widgets/default_text.dart';
+import '../auth/views/login_screen.dart';
 
 
 
@@ -33,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
     //bool userPresent = await locator<AuthService>().doesUserExist();
     _timer = Timer(const Duration(seconds: 2), () {
       if (!CacheHelper.instance.isFirstTimer) {
-        Get.offAll(()=> const AppNavigation());
+        Get.offAll(()=> const LoginScreen());
       } else {
         Get.offAll(()=> const WelcomeScreen());
       }
@@ -49,11 +52,28 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.primaryColor,
+        backgroundColor: AppColors.white,
         body: Center(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 30.w),
-            child: Image.asset(Media.appIcon, height: 50.h,),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(Media.appIcon, height: 50.h,),
+                DefaultText(
+                  data: AppStrings.tagline,
+                  fontFamily: "Geist",
+                  fontWeight: FontWeight.w400,
+                  textColor: AppColors.blackOA,
+                  fontSize: 16.sp,
+                  letterSpacing: -0.41,
+                  lineHeight: 1.33,
+                  textAlign: TextAlign.left,
+                ),
+              ],
+            ),
           ),
         )
     );

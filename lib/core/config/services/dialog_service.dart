@@ -17,7 +17,7 @@ class DialogService {
           return Container();
         },
         barrierDismissible: barrierDismissible!,
-        barrierColor: AppColor.primaryColor.withOpacity(0.3),
+        barrierColor: AppColors.primaryColor.withOpacity(0.3),
         barrierLabel: "dialog barrier",
         transitionDuration: const Duration(milliseconds: 400),
         transitionBuilder: (context, a1, a2, child) {
@@ -61,16 +61,16 @@ class DialogService {
       title,
       message,
       snackPosition: SnackPosition.TOP,
-      backgroundColor: AppColor.ashColor,
+      backgroundColor: AppColors.ashColor,
       margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.w),
       snackStyle: SnackStyle.FLOATING,
       overlayBlur: 10.h,
-      overlayColor: AppColor.ashColor.withOpacity(0.2),
+      overlayColor: AppColors.ashColor.withOpacity(0.2),
       titleText: Text(
         title,
         style: TextStyle(
-          color: AppColor.greyE3,
+          color: AppColors.greyE3,
           fontWeight: FontWeight.w700,
           fontFamily: "Geist",
           fontSize: 16.sp,
@@ -79,7 +79,7 @@ class DialogService {
       messageText: Text(
         message,
         style: TextStyle(
-          color: AppColor.greyE3,
+          color: AppColors.greyE3,
           fontWeight: FontWeight.w700,
           fontFamily: "Geist",
           fontSize: 14.sp,

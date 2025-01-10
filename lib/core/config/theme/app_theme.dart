@@ -15,22 +15,22 @@ class AppThemes {
     //create the light theme
     AppTheme.darkTheme: ThemeData(
       colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: AppColor.primaryColor,
-          secondary: AppColor.primaryColor
+          primary: AppColors.primaryColor,
+          secondary: AppColors.primaryColor
       ),
       appBarTheme: const AppBarTheme(
-        backgroundColor: AppColor.primaryColor,
-        foregroundColor: AppColor.white,
+        backgroundColor: AppColors.primaryColor,
+        foregroundColor: AppColors.white,
         elevation: 0,
         systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: AppColor.primaryColor,
+            statusBarColor: AppColors.primaryColor,
             statusBarIconBrightness: Brightness.dark,
             statusBarBrightness: Brightness.light
         ),
       ),
       useMaterial3: true,
       brightness: Brightness.light,
-      dividerColor: AppColor.borderColor,
+      dividerColor: AppColors.borderColor,
       fontFamily: 'Geist',
     )
   };

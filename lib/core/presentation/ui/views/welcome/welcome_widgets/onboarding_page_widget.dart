@@ -1,12 +1,19 @@
+import 'dart:async';
+import 'dart:typed_data';
+
+import 'package:citizen_app/core/presentation/ui/shared_widgets/custom_shape_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../../../../constants/app_colors.dart';
+import '../../../shared_widgets/default_text.dart';
+import 'dart:ui' as ui;
 
-
-class OnBoardingPage extends StatelessWidget {
+class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({super.key, required this.title, required this.imagePath, required this.subtitle});
 
   final String imagePath;
@@ -14,44 +21,67 @@ class OnBoardingPage extends StatelessWidget {
   final String subtitle;
 
   @override
+  State<OnBoardingPage> createState() => _OnBoardingPageState();
+}
+
+class _OnBoardingPageState extends State<OnBoardingPage> {
+
+  Future<ui.Image>_loadUiImage(String assetPath) async{
+    final ByteData data = await rootBundle.load(assetPath);
+    final Completer<ui.Image> completer = Completer();
+    ui.decodeImageFromList(Uint8List.view(data.buffer), (ui.Image img) {
+      completer.complete(img);
+    });
+    return completer.future;
+  }
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(
-          width: 1.sw,
-          height: 340.h,
-          child: Image.asset(
-            imagePath,
-            fit: BoxFit.contain,
-          ),
-        ).animate().scale(duration: 1000.ms,),
+        FutureBuilder<ui.Image>(
+          future: _loadUiImage(widget.imagePath),
+          builder: (context, snapshot) {
+            if(snapshot.connectionState == ConnectionState.done && snapshot.hasData){
+              return SizedBox(
+                  width: 1.sw,
+                  height: 280.h,
+                  child: CustomShapeImage(
+                image: snapshot.data!,
+              )
+            ).animate().scale(duration: 1000.ms,);
+            }else {
+              return const CircularProgressIndicator();
+            }
+          }
+        ),
         Gap(10.h),
         SizedBox(
           width: 290.w,
-          child: Text(
-            title,
+          child: DefaultText(
+            data: widget.title,
+            fontFamily: "Geist",
+            fontWeight: FontWeight.w900,
+            textColor: AppColors.blackOA,
+            fontSize: 32.sp,
+            letterSpacing: -0.41,
+            lineHeight: 1.33,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: AppColor.blackOA,
-              fontSize: 32.sp,
-              fontFamily: 'Urbanist',
-              fontWeight: FontWeight.bold,
-            ),
           ),
         ).animate().fadeIn().slideY(begin: 4, delay: 1000.ms, duration: 1000.ms),
         Gap(26.h),
         SizedBox(
           width: 267.w,
-          child: Text(
-            subtitle,
+          child: DefaultText(
+            data: widget.subtitle,
+            fontFamily: "Geist",
+            fontWeight: FontWeight.w400,
+            textColor: AppColors.blackOA,
+            fontSize: 16.sp,
+            letterSpacing: -0.41,
+            lineHeight: 1.33,
+            maxLines: 4,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: AppColor.blackOA,
-              fontSize: 14.sp,
-              fontFamily: 'Urbanist',
-              fontWeight: FontWeight.w500,
-            ),
           ),
         ).animate().fadeIn().slideY(begin: 4, delay: 1200.ms, duration: 1000.ms)
       ],
