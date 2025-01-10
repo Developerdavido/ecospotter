@@ -57,4 +57,13 @@ abstract class AppStrings {
   //dropdown btn text
   static const String select = "Select Item";
 
+  static const viewAll = "View All";
+  static const campaigns = "Campaigns";
+
+  static const posts = "Posts";
+
+  static const  viewPosts = "View Posts";
+
+  static const participate = "Participate";
+
 }

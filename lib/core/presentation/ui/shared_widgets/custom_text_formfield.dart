@@ -73,7 +73,7 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         border: border,
         filled: true,
-        fillColor: AppColors.ashColor,
+        fillColor: AppColors.white,
         enabledBorder: border,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32.r),
@@ -102,7 +102,7 @@ class CustomTextField extends StatelessWidget {
         labelStyle: TextStyle(
           fontSize: 14.sp,
           fontFamily: "Geist",
-          color: AppColors.white,
+          color: AppColors.blackOA,
           fontWeight: FontWeight.w400,
           letterSpacing: -0.48,
           height: 1.2,
@@ -111,7 +111,7 @@ class CustomTextField extends StatelessWidget {
         hintStyle: TextStyle(
           fontSize: 14.sp,
           fontFamily: "Geist",
-          color: AppColors.buttonBorder,
+          color: AppColors.blackOA,
           fontWeight: FontWeight.w400,
           letterSpacing: -0.48,
           height: 1.2,

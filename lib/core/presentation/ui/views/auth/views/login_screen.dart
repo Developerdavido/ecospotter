@@ -23,6 +23,7 @@ class LoginScreen extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Gap(20.h),
                 const CustomLoginAppBar(),
                 Expanded(
                   child: Padding(

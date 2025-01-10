@@ -26,13 +26,12 @@ class DefaultBackButton extends StatelessWidget {
         width: 50.h,
         decoration: BoxDecoration(
             color: btnColor ?? AppColors.ashColor,
-            border: Border.all(color: AppColors.buttonBorder, width: 0.5),
             shape: BoxShape.circle
         ),
         child: Center(
           child: Icon(
             icon ?? CupertinoIcons.clear,
-            color: AppColors.white,
+            color: iconColor ?? AppColors.white,
             size: 16.sp,
           ),
         ),

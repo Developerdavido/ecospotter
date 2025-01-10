@@ -19,12 +19,14 @@ class DropdownBtn extends StatelessWidget {
   final Function(String?)? onChanged;
   final List<String>? items;
   final String? labelText;
+  final double? height;
   const DropdownBtn(
       {super.key,
       required this.controller,
       this.title,
       this.hintText,
       this.onChanged,
+        this.height,
         this.labelText,
       this.items});
 
@@ -33,8 +35,9 @@ class DropdownBtn extends StatelessWidget {
     return InputField(
       controller: controller,
       readOnly: true,
-      hintText: hintText,
+      hintText: labelText ?? hintText,
       labelText: labelText,
+      title: title,
       keyboardType: TextInputType.text,
       onTap: () {
         locator<DialogService>().showCustomModal(
@@ -43,8 +46,8 @@ class DropdownBtn extends StatelessWidget {
             barrierColor: AppColors.primaryColor.withOpacity(0.1),
             customModal: Container(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-              color: AppColors.primaryColor,
-              height: 0.75.sh,
+              color: AppColors.white,
+              height: height ?? 0.75.sh,
               width: 1.sw,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -56,17 +59,6 @@ class DropdownBtn extends StatelessWidget {
                     },
                   ),
                   Gap(20.h),
-                  DefaultText(
-                    data: AppStrings.select,
-                    fontFamily: "Geist",
-                    fontWeight: FontWeight.w400,
-                    textColor: AppColors.blackOA,
-                    fontSize: 20.sp,
-                    letterSpacing: -0.41,
-                    lineHeight: 1.6,
-                    textAlign: TextAlign.center,
-                  ),
-                  Gap(40.h),
                   Expanded(
                       child: ListView.builder(
                           itemCount: items!.length,
@@ -75,30 +67,36 @@ class DropdownBtn extends StatelessWidget {
                             return GestureDetector(
                               onTap: () {
                                 onChanged!(item);
+                                Get.back();
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(vertical: 6.h),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    DefaultText(
-                                      data: item!,
-                                      fontFamily: "Geist",
-                                      fontWeight: FontWeight.w500,
-                                      textColor: AppColors.blackOA,
-                                      fontSize: 16.sp,
-                                      letterSpacing: -0.41,
-                                      lineHeight: 1.3,
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    Visibility(
-                                      visible: labelText == item,
-                                        child: Icon(
-                                          CupertinoIcons.checkmark_alt,
-                                          size: 16.sp,
-                                          color: AppColors.green,
-                                        ))
-                                  ],
+                                child: Container(
+                                  color: Colors.transparent,
+                                  width: 1.sw,
+                                  height: 50.h,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      DefaultText(
+                                        data: item!,
+                                        fontFamily: "Geist",
+                                        fontWeight: FontWeight.w500,
+                                        textColor: AppColors.blackOA,
+                                        fontSize: 16.sp,
+                                        letterSpacing: -0.41,
+                                        lineHeight: 1.3,
+                                        textAlign: TextAlign.left,
+                                      ),
+                                      Visibility(
+                                        visible: labelText == item,
+                                          child: Icon(
+                                            CupertinoIcons.checkmark_alt,
+                                            size: 16.sp,
+                                            color: AppColors.green,
+                                          ))
+                                    ],
+                                  ),
                                 ),
                               ),
                             );

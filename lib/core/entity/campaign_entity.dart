@@ -3,6 +3,7 @@
 class CampaignEntity {
   final String id;
   final String title;
+  final String imageUrl;
   final String description;
   final String status;
   final DateTime createdAt;
@@ -11,6 +12,7 @@ class CampaignEntity {
 
   const CampaignEntity({
     required this.id,
+    required this.imageUrl,
     required this.title,
     required this.description,
     required this.status,

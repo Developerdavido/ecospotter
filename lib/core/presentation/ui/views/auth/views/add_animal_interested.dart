@@ -1,9 +1,11 @@
+import 'package:citizen_app/core/config/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
+import '../../../../../config/locator.dart';
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_strings.dart';
 import '../../../shared_widgets/custom_app_bar.dart';
@@ -11,10 +13,15 @@ import '../../../shared_widgets/custom_button.dart';
 import '../../../shared_widgets/default_text.dart';
 import '../../app_navigation/app_navigation_screen.dart';
 
-
-class AnimalInterestedScreen extends StatelessWidget {
+class AnimalInterestedScreen extends StatefulWidget {
   const AnimalInterestedScreen({super.key});
 
+  @override
+  State<AnimalInterestedScreen> createState() => _AnimalInterestedScreenState();
+}
+
+class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
+  List<String> selectedAnimals = [];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -26,6 +33,7 @@ class AnimalInterestedScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Gap(20.h),
                 const CustomLoginAppBar(),
                 Expanded(
                   child: SingleChildScrollView(
@@ -58,17 +66,53 @@ class AnimalInterestedScreen extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                           Gap(40.h),
-                          const ChoiceChip(label: Text("Goat"), selected: false),
+                          Wrap(
+                            spacing: 15.w,
+                            runSpacing: 15.h,
+                            children: List.generate(locator<AuthService>().animals.length,
+                                (index) {
+                              var animal = locator<AuthService>().animals[index];
+                              return ChoiceChip(
+                                label: DefaultText(
+                                  data: animal,
+                                  fontFamily: "Geist",
+                                  fontWeight: FontWeight.w400,
+                                  textColor: AppColors.white,
+                                  fontSize: 16.sp,
+                                  letterSpacing: -0.41,
+                                  lineHeight: 1.33,
+                                  maxLines: 4,
+                                  textAlign: TextAlign.center,
+                                ),
+                                selected: selectedAnimals.contains(animal),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(32.r)
+                                ),
+                                padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 12.h),
+                                backgroundColor: AppColors.primaryColor.withOpacity(0.4),
+                                selectedColor: AppColors.primaryColor,
+                                onSelected: (selected) {
+                                  setState(() {
+                                    if(selected == false) {
+                                      selectedAnimals.remove(animal);
+                                    }else {
+                                      selectedAnimals.add(animal);
+                                    }
+                                  });
+                                },
+                              );
+                            }),
+                          ),
                           Gap(40.h),
                           DefaultButton(
                             onBtnTap: () async {
                               // var success  = await authVm.loginUser(AuthMethod.google);
                               // if(success){
-                              Get.offAll(() => const AppNavigation(),
+                              Get.to(() => const AppNavigation(),
                                   transition: Transition.cupertino);
                               // }
                             },
-                            btnText: AppStrings.next,
+                            btnText: AppStrings.submit,
                             isIconPresent: false,
                             btnColor: AppColors.primaryColor,
                             btnTextColor: AppColors.white,

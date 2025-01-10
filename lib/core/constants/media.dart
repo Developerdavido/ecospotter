@@ -14,5 +14,8 @@ abstract class Media {
 
   //svgs
   static const google = '$_baseSvg/google.svg';
+  static const homeFilled = '$_baseSvg/home_filled.svg';
+  static const homeUnfilled = '$_baseSvg/home_unfilled.svg';
+  static const camera = '$_baseSvg/camera.svg';
 
 }

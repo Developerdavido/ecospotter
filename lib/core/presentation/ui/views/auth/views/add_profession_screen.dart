@@ -1,3 +1,6 @@
+import 'package:citizen_app/core/config/locator.dart';
+import 'package:citizen_app/core/config/services/auth_service.dart';
+import 'package:citizen_app/core/presentation/ui/shared_widgets/dropdown_btn.dart';
 import 'package:citizen_app/core/presentation/ui/views/auth/views/add_animal_interested.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,8 +16,20 @@ import '../../../shared_widgets/default_text.dart';
 
 
 
-class AddProfessionScreen extends StatelessWidget {
+class AddProfessionScreen extends StatefulWidget {
   const AddProfessionScreen({super.key});
+
+  @override
+  State<AddProfessionScreen> createState() => _AddProfessionScreenState();
+}
+
+class _AddProfessionScreenState extends State<AddProfessionScreen> {
+
+  final TextEditingController genderController = TextEditingController();
+  final TextEditingController? professionController = TextEditingController();
+
+  String? chosenGender;
+  String? chosenProfession;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +42,7 @@ class AddProfessionScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Gap(20.h),
                 const CustomLoginAppBar(),
                 Expanded(
                   child: SingleChildScrollView(
@@ -57,16 +73,44 @@ class AddProfessionScreen extends StatelessWidget {
                             lineHeight: 1.33,
                             textAlign: TextAlign.center,
                           ),
+                          Gap(20.h),
+                          DropdownBtn(
+                              controller: genderController,
+                            title: "Gender",
+                            height: 0.3.sh,
+                            hintText: "Select gender",
+                            labelText: chosenGender,
+                            items: locator<AuthService>().gender,
+                            onChanged: (gender){
+                                setState(() {
+                                  chosenGender = gender;
+                                });
+                            },
+                          ),
+                          Gap(20.h),
+                          DropdownBtn(
+                            controller: genderController,
+                            title: "Profession",
+                            height: 0.6.sh,
+                            hintText: "Select profession",
+                            labelText: chosenProfession,
+                            items: locator<AuthService>().professions,
+                            onChanged: (profession){
+                              setState(() {
+                                chosenProfession = profession;
+                              });
+                            },
+                          ),
                           Gap(40.h),
                           DefaultButton(
                             onBtnTap: () async {
                               // var success  = await authVm.loginUser(AuthMethod.google);
                               // if(success){
-                              Get.offAll(() => const AnimalInterestedScreen(),
+                              Get.to(() => const AnimalInterestedScreen(),
                                   transition: Transition.cupertino);
                               // }
                             },
-                            btnText: AppStrings.submit,
+                            btnText: AppStrings.next,
                             isIconPresent: false,
                             btnColor: AppColors.primaryColor,
                             btnTextColor: AppColors.white,

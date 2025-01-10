@@ -3,6 +3,7 @@
 class CaptureEntity {
   final String id;
   final String userId;
+  final String username;
   final String specieName;
   final String imageUrl;
   final num latitude;
@@ -22,6 +23,7 @@ class CaptureEntity {
     required this.animalActivity,
     required this.animalLocationFeature,
     required this.createdAt,
+    required this.username,
     required this.campaignId,
   });
 }
