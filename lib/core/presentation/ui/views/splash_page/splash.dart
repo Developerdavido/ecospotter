@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.mainPrimaryColor,
         body: Center(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 30.w),
@@ -66,7 +66,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   data: AppStrings.tagline,
                   fontFamily: "Geist",
                   fontWeight: FontWeight.w400,
-                  textColor: AppColors.blackOA,
+                  textColor: AppColors.white,
                   fontSize: 16.sp,
                   letterSpacing: -0.41,
                   lineHeight: 1.33,

@@ -19,10 +19,14 @@ class CustomLoginAppBar extends StatelessWidget {
       height: kToolbarHeight,
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       width: 1.sw,
-      color: AppColors.white,
+      color: AppColors.mainPrimaryColor,
       child: Row(
         children: [
-          const DefaultBackButton(icon: CupertinoIcons.left_chevron,),
+          const DefaultBackButton(
+            icon: CupertinoIcons.left_chevron,
+            iconColor: AppColors.white,
+            btnColor: AppColors.mainPrimaryColor,
+          ),
           Gap(0.3.sw),
           //Image.asset(Media.appIcon, height: 60.h, width: 60.h, fit: BoxFit.cover,),
           //const Spacer(),

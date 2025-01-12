@@ -23,9 +23,9 @@ class BottomNav extends StatelessWidget {
           child: Container(
             height: 99.h,
             padding: EdgeInsets.symmetric(horizontal: 12.w),
-            decoration: const BoxDecoration(
-                border: Border(top: BorderSide(color: AppColors.buttonBorder, width: 0.3)),
-                color: AppColors.white),
+            decoration: BoxDecoration(
+                border: const Border(top: BorderSide(color: AppColors.buttonBorder, width: 0.3)),
+                color: AppColors.white.withOpacity(0.1)),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,

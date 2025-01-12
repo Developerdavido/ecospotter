@@ -1,28 +1,28 @@
-import 'package:citizen_app/core/presentation/ui/shared_widgets/text_field.dart';
-import 'package:citizen_app/core/presentation/ui/views/capture_form/animal_activity_widget.dart';
-import 'package:citizen_app/core/presentation/ui/views/capture_form/capture_widgets/capture_image.dart';
+import 'package:citizen_app/core/presentation/ui/views/auth/views/add_profession_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
-import '../../../../constants/app_colors.dart';
-import '../../../../constants/app_strings.dart';
-import '../../shared_widgets/custom_button.dart';
-import '../../shared_widgets/default_back_button.dart';
-import '../../shared_widgets/default_text.dart';
+import '../../../../../constants/app_colors.dart';
+import '../../../../../constants/app_strings.dart';
+import '../../../shared_widgets/custom_button.dart';
+import '../../../shared_widgets/default_back_button.dart';
+import '../../../shared_widgets/default_text.dart';
+import '../../../shared_widgets/text_field.dart';
+import '../../capture_form/capture_widgets/capture_image.dart';
 
 
-class CaptureForm extends StatefulWidget {
-  const CaptureForm({super.key});
+class ChooseUsername extends StatefulWidget {
+  const ChooseUsername({super.key});
 
   @override
-  State<CaptureForm> createState() => _CaptureFormState();
+  State<ChooseUsername> createState() => _ChooseUsernameState();
 }
 
-class _CaptureFormState extends State<CaptureForm> {
-  final TextEditingController nameCtrl = TextEditingController();
+class _ChooseUsernameState extends State<ChooseUsername> {
+  final TextEditingController username = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -49,7 +49,7 @@ class _CaptureFormState extends State<CaptureForm> {
                   children: [
                     Gap(20.h),
                     DefaultText(
-                      data: AppStrings.animalNameAndImageTitle,
+                      data: AppStrings.usernameTitle,
                       fontFamily: "Geist",
                       fontWeight: FontWeight.w900,
                       textColor: AppColors.lime,
@@ -60,7 +60,7 @@ class _CaptureFormState extends State<CaptureForm> {
                     ),
                     Gap(4.h),
                     DefaultText(
-                      data: AppStrings.animalNameAndImageMessage,
+                      data: AppStrings.usernameMessage,
                       fontFamily: "Geist",
                       fontWeight: FontWeight.w400,
                       textColor: AppColors.white,
@@ -70,29 +70,13 @@ class _CaptureFormState extends State<CaptureForm> {
                       textAlign: TextAlign.center,
                     ),
                     Gap(0.1.sh),
-                    CaptureImage(
-                      onImageTap: (){},
-                      imagePath: null,
-                    ),
-                    Gap(12.h),
-                    DefaultText(
-                      data: AppStrings.captureImage,
-                      fontFamily: "Geist",
-                      fontWeight: FontWeight.w400,
-                      textColor: AppColors.green,
-                      fontSize: 12.sp,
-                      letterSpacing: -0.41,
-                      lineHeight: 1.33,
-                      textAlign: TextAlign.center,
-                    ),
-                    Gap(12.h),
                     InputField(
-                      controller: nameCtrl,
-                      title: "What is the common name of the animal sighted?",
+                      controller: username,
+                      title: "What username suits you?",
                       hintText: "Enter response here",
                       validator: (value) {
                         if(value == null) {
-                          return "Name input field must not be empty";
+                          return "Username input field must not be empty";
                         }
                         return null;
                       },
@@ -102,7 +86,7 @@ class _CaptureFormState extends State<CaptureForm> {
                         btnColor: AppColors.green5C,
                         btnTextColor: AppColors.mainBlack,
                         onBtnTap: (){
-                          Get.to(()=> const AnimalActivity());
+                          Get.to(()=> const AddProfessionScreen());
                         }, btnText: AppStrings.next),
                   ],
                 ),

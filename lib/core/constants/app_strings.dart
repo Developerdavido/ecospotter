@@ -40,18 +40,23 @@ abstract class AppStrings {
   static const String avatarMessage =
       "Choose an avatar that represents your wildlife watching personality";
 
+  //avatar screen
+  static const String usernameTitle = "What may we call you?";
+  static const String usernameMessage =
+      "Choose a unique username which out community of explorers will identify you with";
+
   // image capture screen
   static const String animalNameAndImageTitle = "Who Did You Spot?";
   static const String animalNameAndImageMessage =
-      "Take or upload a clear photo and tell us what animal you found";
+      "Take or upload a clear photo and tell us what animal you found.";
 
   static const String animalActivityTitle = "What Was It Doing?";
   static const String animalActivityMessage =
-      "Help scientists understand animal behavior by telling us what you observed";
+      "Help scientists understand animal behavior by telling us what you observed.";
 
   static const String conservationCampaignTitle = "Support a Cause";
   static const String conservationCampaignMessage =
-      "Connect your observation to an active conservation campaign and make an even bigger impact";
+      "Connect your observation to an active conservation campaign and make an even bigger impact.";
 
 
   //dropdown btn text
@@ -65,5 +70,11 @@ abstract class AppStrings {
   static const  viewPosts = "View Posts";
 
   static const participate = "Participate";
+
+  static var captureImage = "Tap on the camera button to take a picture";
+
+  static var captureAvatar = "Tap on the camera button to either choose from gallery or capture an image that defines you";
+
+  static var logout = "Logout";
 
 }

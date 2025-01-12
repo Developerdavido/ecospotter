@@ -18,10 +18,10 @@ class DotIndicatorWidget extends StatelessWidget {
       position: page,
       mainAxisAlignment: MainAxisAlignment.center,
       decorator: DotsDecorator(
-          color: AppColors.grey35,
+          color: AppColors.white,
           size: Size.square(8.0.w),
           activeSize: Size(18.0.w, 8.h),
-          activeColor: AppColors.primaryColor,
+          activeColor: AppColors.lime,
           activeShape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.r),
           )),

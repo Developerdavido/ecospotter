@@ -1,28 +1,32 @@
-import 'package:citizen_app/core/presentation/ui/shared_widgets/text_field.dart';
-import 'package:citizen_app/core/presentation/ui/views/capture_form/animal_activity_widget.dart';
-import 'package:citizen_app/core/presentation/ui/views/capture_form/capture_widgets/capture_image.dart';
+import 'package:citizen_app/core/config/services/campaign_service.dart';
+import 'package:citizen_app/core/presentation/ui/views/app_navigation/app_navigation_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
+import '../../../../config/locator.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_strings.dart';
 import '../../shared_widgets/custom_button.dart';
 import '../../shared_widgets/default_back_button.dart';
 import '../../shared_widgets/default_text.dart';
+import '../../shared_widgets/dropdown_btn.dart';
 
 
-class CaptureForm extends StatefulWidget {
-  const CaptureForm({super.key});
+class CurrentImageCampaign extends StatefulWidget {
+  const CurrentImageCampaign({super.key});
 
   @override
-  State<CaptureForm> createState() => _CaptureFormState();
+  State<CurrentImageCampaign> createState() => _CurrentImageCampaignState();
 }
 
-class _CaptureFormState extends State<CaptureForm> {
-  final TextEditingController nameCtrl = TextEditingController();
+class _CurrentImageCampaignState extends State<CurrentImageCampaign> {
+
+  final TextEditingController? professionController = TextEditingController();
+  final TextEditingController campaignCtrl = TextEditingController();
+  String? chosenCampaign;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -49,7 +53,7 @@ class _CaptureFormState extends State<CaptureForm> {
                   children: [
                     Gap(20.h),
                     DefaultText(
-                      data: AppStrings.animalNameAndImageTitle,
+                      data: AppStrings.conservationCampaignTitle,
                       fontFamily: "Geist",
                       fontWeight: FontWeight.w900,
                       textColor: AppColors.lime,
@@ -60,7 +64,7 @@ class _CaptureFormState extends State<CaptureForm> {
                     ),
                     Gap(4.h),
                     DefaultText(
-                      data: AppStrings.animalNameAndImageMessage,
+                      data: AppStrings.conservationCampaignMessage,
                       fontFamily: "Geist",
                       fontWeight: FontWeight.w400,
                       textColor: AppColors.white,
@@ -70,31 +74,17 @@ class _CaptureFormState extends State<CaptureForm> {
                       textAlign: TextAlign.center,
                     ),
                     Gap(0.1.sh),
-                    CaptureImage(
-                      onImageTap: (){},
-                      imagePath: null,
-                    ),
-                    Gap(12.h),
-                    DefaultText(
-                      data: AppStrings.captureImage,
-                      fontFamily: "Geist",
-                      fontWeight: FontWeight.w400,
-                      textColor: AppColors.green,
-                      fontSize: 12.sp,
-                      letterSpacing: -0.41,
-                      lineHeight: 1.33,
-                      textAlign: TextAlign.center,
-                    ),
-                    Gap(12.h),
-                    InputField(
-                      controller: nameCtrl,
-                      title: "What is the common name of the animal sighted?",
-                      hintText: "Enter response here",
-                      validator: (value) {
-                        if(value == null) {
-                          return "Name input field must not be empty";
-                        }
-                        return null;
+                    DropdownBtn(
+                      controller: campaignCtrl,
+                      title: "What campaign are you submitting for?",
+                      height: 0.6.sh,
+                      hintText: "Select campaign",
+                      labelText: chosenCampaign,
+                      items: locator<CampaignService>().campaigns,
+                      onChanged: (campaign){
+                        setState(() {
+                          chosenCampaign = campaign;
+                        });
                       },
                     ),
                     Gap(40.h),
@@ -102,8 +92,8 @@ class _CaptureFormState extends State<CaptureForm> {
                         btnColor: AppColors.green5C,
                         btnTextColor: AppColors.mainBlack,
                         onBtnTap: (){
-                          Get.to(()=> const AnimalActivity());
-                        }, btnText: AppStrings.next),
+                          Get.offAll(()=> const AppNavigation());
+                        }, btnText: AppStrings.submit),
                   ],
                 ),
               ),

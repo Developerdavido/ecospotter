@@ -37,14 +37,14 @@ class ActivityWidget extends StatelessWidget {
                 width: 32.w,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: AppColors.primaryColor
+                  color: AppColors.lime
                 ),
                 child: Center(
                   child: DefaultText(
                     data: model?.username.substring(0,1).toUpperCase() ?? "AN",
                     fontWeight: FontWeight.w700,
                     fontSize: 10.sp,
-                    textColor: AppColors.greyE3,
+                    textColor: AppColors.mainBlack,
                     letterSpacing: -0.42,
                     lineHeight: 1.2,
                   ),
@@ -56,10 +56,10 @@ class ActivityWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       DefaultText(
-                        data: model?.username ?? "Anonymous",
+                        data: "@${model?.username ?? "Anonymous"}",
                         fontFamily: "Geist",
                         fontWeight: FontWeight.w600,
-                        textColor: AppColors.blackOA,
+                        textColor: AppColors.white,
                         fontSize: 16.sp,
                         letterSpacing: -0.41,
                         lineHeight: 1.33,
@@ -69,7 +69,7 @@ class ActivityWidget extends StatelessWidget {
                         data: "small description",
                         fontFamily: "Geist",
                         fontWeight: FontWeight.w400,
-                        textColor: AppColors.blackOA,
+                        textColor: AppColors.white,
                         fontSize: 12.sp,
                         letterSpacing: -0.41,
                         lineHeight: 1.33,
@@ -119,7 +119,7 @@ class ActivityWidget extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.favorite_border_outlined,
-                              color: AppColors.primaryColor,
+                              color: AppColors.white,
                               size: 14.sp,
                             ),
                             Gap(4.w),
@@ -127,7 +127,7 @@ class ActivityWidget extends StatelessWidget {
                               data: "1K",
                               fontFamily: "Geist",
                               fontWeight: FontWeight.w400,
-                              textColor: AppColors.blackOA,
+                              textColor: AppColors.white,
                               fontSize: 14.sp,
                               letterSpacing: -0.41,
                               lineHeight: 1.33,

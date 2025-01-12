@@ -26,7 +26,7 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.mainPrimaryColor,
         body: Stack(
           children: [
             Column(
@@ -47,7 +47,7 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                             data: AppStrings.preferenceTitle,
                             fontFamily: "Geist",
                             fontWeight: FontWeight.w900,
-                            textColor: AppColors.blackOA,
+                            textColor: AppColors.lime,
                             fontSize: 20.sp,
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
@@ -58,7 +58,7 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                             data: AppStrings.preferenceMessage,
                             fontFamily: "Geist",
                             fontWeight: FontWeight.w400,
-                            textColor: AppColors.blackOA,
+                            textColor: AppColors.white,
                             fontSize: 16.sp,
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
@@ -77,7 +77,7 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                                   data: animal,
                                   fontFamily: "Geist",
                                   fontWeight: FontWeight.w400,
-                                  textColor: AppColors.white,
+                                  textColor: AppColors.mainBlack,
                                   fontSize: 16.sp,
                                   letterSpacing: -0.41,
                                   lineHeight: 1.33,
@@ -85,12 +85,13 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                                   textAlign: TextAlign.center,
                                 ),
                                 selected: selectedAnimals.contains(animal),
+                                side: BorderSide.none,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(32.r)
                                 ),
                                 padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 12.h),
-                                backgroundColor: AppColors.primaryColor.withOpacity(0.4),
-                                selectedColor: AppColors.primaryColor,
+                                backgroundColor: AppColors.bottomModal.withOpacity(0.4),
+                                selectedColor: AppColors.bottomModal,
                                 onSelected: (selected) {
                                   setState(() {
                                     if(selected == false) {
@@ -114,8 +115,8 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                             },
                             btnText: AppStrings.submit,
                             isIconPresent: false,
-                            btnColor: AppColors.primaryColor,
-                            btnTextColor: AppColors.white,
+                            btnColor: AppColors.green5C,
+                            btnTextColor: AppColors.mainBlack,
                           ),
                         ],
                       ),

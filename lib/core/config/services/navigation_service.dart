@@ -14,15 +14,15 @@ class NavService {
       NavItem(
           navData: isSelected ? Icons.dashboard : Icons.dashboard_outlined,
           navLabel: "Dashboard",
-          navLabelColor: isSelected ? AppColors.primaryColor : AppColors.unselectedColor),
+          navLabelColor: isSelected ? AppColors.green5C : AppColors.unselectedColor),
       NavItem(
           navData: Icons.camera,
           navLabel: "Capture",
-          navLabelColor: isSelected ? AppColors.primaryColor : AppColors.unselectedColor),
+          navLabelColor: isSelected ? AppColors.green5C : AppColors.unselectedColor),
       NavItem(
           navData: isSelected ? Icons.leaderboard : Icons.leaderboard_outlined,
           navLabel: "Rankings",
-          navLabelColor: isSelected ? AppColors.primaryColor : AppColors.unselectedColor),
+          navLabelColor: isSelected ? AppColors.green5C : AppColors.unselectedColor),
       // NavItem(
       //     navData: isSelected ? Media.eventsFilled : Media.eventsUnfilled,
       //     navLabel: "Leaderboard",

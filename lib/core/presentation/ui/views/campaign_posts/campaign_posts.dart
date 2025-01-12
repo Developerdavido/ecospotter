@@ -19,25 +19,25 @@ class _CampaignPostsState extends State<CampaignPosts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.mainPrimaryColor,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             floating: false,
             pinned: true,
-            backgroundColor: AppColors.white,
+            backgroundColor: AppColors.mainPrimaryColor,
             elevation: 0,
-            surfaceTintColor: AppColors.white,
+            surfaceTintColor: AppColors.mainPrimaryColor,
             leading: const DefaultBackButton(
-              iconColor: AppColors.blackOA,
+              iconColor: AppColors.white,
               icon: CupertinoIcons.back,
-              btnColor: AppColors.white,
+              btnColor: AppColors.mainPrimaryColor,
             ),
             title:  DefaultText(
               data: "Bird Watch Posts",
               fontWeight: FontWeight.w700,
               fontSize: 24.sp,
-              textColor: AppColors.blackOA,
+              textColor: AppColors.white,
               letterSpacing: -0.42,
               lineHeight: 1.2,
             ),

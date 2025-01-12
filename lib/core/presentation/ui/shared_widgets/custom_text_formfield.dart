@@ -41,13 +41,8 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _focusNode = FocusNode();
-
     final border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(32.r),
-      borderSide: const BorderSide(
-        color: AppColors.greyE5,
-        width: 0.5,
-      ),
     );
 
     return TextFormField(
@@ -58,7 +53,7 @@ class CustomTextField extends StatelessWidget {
       enabled: enabled,
       readOnly: readOnly,
       maxLines: expandable ? 5 : 1,
-      minLines: expandable ? 1 : null,
+      minLines: expandable ? 5 : 1,
       onTap: onTap,
       style: TextStyle(
         fontSize: 14.sp,
@@ -73,28 +68,23 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         border: border,
         filled: true,
-        fillColor: AppColors.white,
+        fillColor: AppColors.white.withOpacity(0.1),
         enabledBorder: border,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32.r),
-          borderSide: const BorderSide(
-            color: AppColors.greyE5,
-            width: 0.5,
-          ),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(32.r),
         ),
         hintText: hintText,
         labelText: null,
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32.r),
-          borderSide: const BorderSide(
-            color: AppColors.white,
-            width: 0.5,
-          ),
         ),
         errorStyle: TextStyle(
           fontSize: 14.sp,
           fontFamily: "Geist",
-          color: AppColors.white,
+          color: AppColors.lightGreen,
           fontWeight: FontWeight.w400,
           letterSpacing: -0.48,
           height: 1.2,
@@ -102,7 +92,7 @@ class CustomTextField extends StatelessWidget {
         labelStyle: TextStyle(
           fontSize: 14.sp,
           fontFamily: "Geist",
-          color: AppColors.blackOA,
+          color: AppColors.white,
           fontWeight: FontWeight.w400,
           letterSpacing: -0.48,
           height: 1.2,
@@ -111,7 +101,7 @@ class CustomTextField extends StatelessWidget {
         hintStyle: TextStyle(
           fontSize: 14.sp,
           fontFamily: "Geist",
-          color: AppColors.blackOA,
+          color: AppColors.white,
           fontWeight: FontWeight.w400,
           letterSpacing: -0.48,
           height: 1.2,

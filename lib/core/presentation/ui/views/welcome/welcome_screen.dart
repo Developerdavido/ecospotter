@@ -29,7 +29,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.mainPrimaryColor,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0.w,vertical: 0.04.sh),
         child: Column(
@@ -66,8 +66,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
             const Gap(16),
             DefaultButton(
-              btnColor: AppColors.pinkAccent,
-                btnTextColor: AppColors.white,
+              btnColor: AppColors.green5C,
+                btnTextColor: AppColors.mainBlack,
                 onBtnTap: (){
               Get.to(()=> const LoginScreen());
             }, btnText: AppStrings.continueBtn)
