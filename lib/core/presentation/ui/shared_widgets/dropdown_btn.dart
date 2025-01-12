@@ -46,7 +46,10 @@ class DropdownBtn extends StatelessWidget {
             barrierColor: AppColors.primaryColor.withOpacity(0.1),
             customModal: Container(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-              color: AppColors.white,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(32.r),
+                color: AppColors.bottomModal,
+              ),
               height: height ?? 0.75.sh,
               width: 1.sw,
               child: Column(
@@ -93,7 +96,7 @@ class DropdownBtn extends StatelessWidget {
                                           child: Icon(
                                             CupertinoIcons.checkmark_alt,
                                             size: 16.sp,
-                                            color: AppColors.green,
+                                            color: AppColors.mainPrimaryColor,
                                           ))
                                     ],
                                   ),

@@ -35,7 +35,7 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.mainPrimaryColor,
         body: Stack(
           children: [
             Column(
@@ -56,7 +56,7 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
                             data: AppStrings.professionTitle,
                             fontFamily: "Geist",
                             fontWeight: FontWeight.w900,
-                            textColor: AppColors.blackOA,
+                            textColor: AppColors.lime,
                             fontSize: 20.sp,
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
@@ -67,7 +67,7 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
                             data: AppStrings.professionMessage,
                             fontFamily: "Geist",
                             fontWeight: FontWeight.w400,
-                            textColor: AppColors.blackOA,
+                            textColor: AppColors.white,
                             fontSize: 16.sp,
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
@@ -112,8 +112,8 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
                             },
                             btnText: AppStrings.next,
                             isIconPresent: false,
-                            btnColor: AppColors.primaryColor,
-                            btnTextColor: AppColors.white,
+                            btnColor: AppColors.green5C,
+                            btnTextColor: AppColors.mainBlack,
                           ),
                         ],
                       ),

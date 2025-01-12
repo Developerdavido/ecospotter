@@ -1,4 +1,5 @@
 import 'package:citizen_app/core/presentation/ui/views/auth/views/add_profession_screen.dart';
+import 'package:citizen_app/core/presentation/ui/views/auth/views/username_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -17,7 +18,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.mainPrimaryColor,
         body: Stack(
           children: [
             Column(
@@ -37,7 +38,7 @@ class LoginScreen extends StatelessWidget {
                           data: AppStrings.loginTitle,
                           fontFamily: "Geist",
                           fontWeight: FontWeight.w900,
-                          textColor: AppColors.blackOA,
+                          textColor: AppColors.lime,
                           fontSize: 20.sp,
                           letterSpacing: -0.41,
                           lineHeight: 1.33,
@@ -48,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                           data: AppStrings.loginMessage,
                           fontFamily: "Geist",
                           fontWeight: FontWeight.w400,
-                          textColor: AppColors.blackOA,
+                          textColor: AppColors.white,
                           fontSize: 16.sp,
                           letterSpacing: -0.41,
                           lineHeight: 1.33,
@@ -59,15 +60,15 @@ class LoginScreen extends StatelessWidget {
                           onBtnTap: () async {
                             // var success  = await authVm.loginUser(AuthMethod.google);
                             // if(success){
-                            Get.offAll(() => const AddProfessionScreen(),
+                            Get.to(() => const ChooseUsername(),
                                 transition: Transition.cupertino);
                             // }
                           },
                           btnText: AppStrings.googleLogin,
                           isIconPresent: true,
                           iconData: Media.google,
-                          btnColor: AppColors.primaryColor,
-                          btnTextColor: AppColors.white,
+                          btnColor: AppColors.green5C,
+                          btnTextColor: AppColors.mainBlack,
                         ),
                       ],
                     ),
@@ -78,8 +79,8 @@ class LoginScreen extends StatelessWidget {
                   data: AppStrings.trademark,
                   fontFamily: "Geist",
                   fontWeight: FontWeight.w400,
-                  textColor: AppColors.blackOA,
-                  fontSize: 10.sp,
+                  textColor: AppColors.lime,
+                  fontSize: 12.sp,
                   letterSpacing: -0.14,
                   lineHeight: 2.1,
                   textAlign: TextAlign.center,

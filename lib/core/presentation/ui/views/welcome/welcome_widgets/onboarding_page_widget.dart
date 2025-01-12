@@ -55,28 +55,28 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             }
           }
         ),
-        Gap(10.h),
+        Gap(26.h),
         SizedBox(
           width: 290.w,
           child: DefaultText(
             data: widget.title,
             fontFamily: "Geist",
             fontWeight: FontWeight.w900,
-            textColor: AppColors.blackOA,
+            textColor: AppColors.lime,
             fontSize: 32.sp,
             letterSpacing: -0.41,
             lineHeight: 1.33,
             textAlign: TextAlign.center,
           ),
         ).animate().fadeIn().slideY(begin: 4, delay: 1000.ms, duration: 1000.ms),
-        Gap(26.h),
+        Gap(10.h),
         SizedBox(
           width: 267.w,
           child: DefaultText(
             data: widget.subtitle,
             fontFamily: "Geist",
             fontWeight: FontWeight.w400,
-            textColor: AppColors.blackOA,
+            textColor: AppColors.white,
             fontSize: 16.sp,
             letterSpacing: -0.41,
             lineHeight: 1.33,

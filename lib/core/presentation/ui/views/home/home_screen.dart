@@ -2,6 +2,7 @@ import 'package:citizen_app/core/constants/app_colors.dart';
 import 'package:citizen_app/core/presentation/ui/views/campaign_details/campaign_details.dart';
 import 'package:citizen_app/core/presentation/ui/views/home/home_widgets/activity_widget.dart';
 import 'package:citizen_app/core/presentation/ui/views/home/home_widgets/campaign_widget.dart';
+import 'package:citizen_app/core/presentation/ui/views/profile/user_info_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,13 +20,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.mainPrimaryColor,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             floating: false,
             pinned: true,
-            backgroundColor: AppColors.white,
+            backgroundColor: AppColors.mainPrimaryColor,
             elevation: 0,
             surfaceTintColor: Colors.transparent,
             leading:  Image.asset(
@@ -36,15 +37,19 @@ class HomeScreen extends StatelessWidget {
             actions: [
               Row(
                 children: [
-                  const DefaultBackButton(
+                  DefaultBackButton(
                     icon: CupertinoIcons.person,
+                    btnColor: AppColors.mainPrimaryColor,
+                    onBackTap: (){
+                      Get.to(()=> const UserProfileScreen());
+                    },
                   ),
                   SizedBox(
                     width: 8.w,
                   ),
-                  const DefaultBackButton(
-                    icon: CupertinoIcons.bell,
-                  ),
+                  // const DefaultBackButton(
+                  //   icon: CupertinoIcons.bell,
+                  // ),
                   SizedBox(
                     width: 8.w,
                   ),

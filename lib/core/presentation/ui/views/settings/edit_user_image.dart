@@ -1,28 +1,23 @@
-import 'package:citizen_app/core/presentation/ui/shared_widgets/text_field.dart';
-import 'package:citizen_app/core/presentation/ui/views/capture_form/animal_activity_widget.dart';
-import 'package:citizen_app/core/presentation/ui/views/capture_form/capture_widgets/capture_image.dart';
+import 'package:citizen_app/core/presentation/ui/views/settings/settings_widgets/custom_picture_modal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
+import '../../../../config/locator.dart';
+import '../../../../config/services/dialog_service.dart';
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/app_strings.dart';
 import '../../shared_widgets/custom_button.dart';
 import '../../shared_widgets/default_back_button.dart';
 import '../../shared_widgets/default_text.dart';
+import '../capture_form/capture_widgets/capture_image.dart';
 
 
-class CaptureForm extends StatefulWidget {
-  const CaptureForm({super.key});
+class EditUserImage extends StatelessWidget {
+  const EditUserImage({super.key});
 
-  @override
-  State<CaptureForm> createState() => _CaptureFormState();
-}
-
-class _CaptureFormState extends State<CaptureForm> {
-  final TextEditingController nameCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -49,7 +44,7 @@ class _CaptureFormState extends State<CaptureForm> {
                   children: [
                     Gap(20.h),
                     DefaultText(
-                      data: AppStrings.animalNameAndImageTitle,
+                      data: AppStrings.avatarTitle,
                       fontFamily: "Geist",
                       fontWeight: FontWeight.w900,
                       textColor: AppColors.lime,
@@ -60,7 +55,7 @@ class _CaptureFormState extends State<CaptureForm> {
                     ),
                     Gap(4.h),
                     DefaultText(
-                      data: AppStrings.animalNameAndImageMessage,
+                      data: AppStrings.avatarMessage,
                       fontFamily: "Geist",
                       fontWeight: FontWeight.w400,
                       textColor: AppColors.white,
@@ -71,12 +66,21 @@ class _CaptureFormState extends State<CaptureForm> {
                     ),
                     Gap(0.1.sh),
                     CaptureImage(
-                      onImageTap: (){},
+                      onImageTap: (){
+                        locator<DialogService>().showCustomModal(context: context, customModal: CustomPictureModal(
+                          cameraBtnPressed: (){
+                            Get.back();
+                          },
+                          galleryBtnPressed: (){
+                            Get.back();
+                          },
+                        ));
+                      },
                       imagePath: null,
                     ),
                     Gap(12.h),
                     DefaultText(
-                      data: AppStrings.captureImage,
+                      data: AppStrings.captureAvatar,
                       fontFamily: "Geist",
                       fontWeight: FontWeight.w400,
                       textColor: AppColors.green,
@@ -85,25 +89,13 @@ class _CaptureFormState extends State<CaptureForm> {
                       lineHeight: 1.33,
                       textAlign: TextAlign.center,
                     ),
-                    Gap(12.h),
-                    InputField(
-                      controller: nameCtrl,
-                      title: "What is the common name of the animal sighted?",
-                      hintText: "Enter response here",
-                      validator: (value) {
-                        if(value == null) {
-                          return "Name input field must not be empty";
-                        }
-                        return null;
-                      },
-                    ),
-                    Gap(40.h),
+                    Gap(44.h),
                     DefaultButton(
                         btnColor: AppColors.green5C,
                         btnTextColor: AppColors.mainBlack,
                         onBtnTap: (){
-                          Get.to(()=> const AnimalActivity());
-                        }, btnText: AppStrings.next),
+                          Get.back();
+                        }, btnText: AppStrings.submit),
                   ],
                 ),
               ),

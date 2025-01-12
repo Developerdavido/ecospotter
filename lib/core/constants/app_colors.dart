@@ -38,4 +38,14 @@ abstract class AppColors {
   // static const lightBlack = Color(0xff454B56);
   // static const darkBlack = Color(0xff1A1E24);
 
+  //Colors i am likely to choose for the project
+  static const mainPrimaryColor = Color(0xff00150b);
+  static const bottomModal = Color(0xff74c69d);
+  static const mainBlack = Color(0xff020B07);
+  static const lime = Color(0xff07ED6F);
+  static const lightGreen = Color(0xff4BB88E);
+  static const darkGreen = Color(0xff19A25B);
+  static const mainBrown = Color(0xffA77D5E);
+  static const green5C = Color(0xff5CEAA0);
+
 }

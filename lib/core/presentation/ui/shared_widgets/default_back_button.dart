@@ -32,7 +32,7 @@ class DefaultBackButton extends StatelessWidget {
           child: Icon(
             icon ?? CupertinoIcons.clear,
             color: iconColor ?? AppColors.white,
-            size: 16.sp,
+            size: 24.sp,
           ),
         ),
       ),

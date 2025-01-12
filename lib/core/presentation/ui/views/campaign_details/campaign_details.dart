@@ -21,19 +21,19 @@ class CampaignDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.mainPrimaryColor,
         body: CustomScrollView(
           slivers: [
             const SliverAppBar(
               floating: false,
               pinned: true,
-              backgroundColor: AppColors.white,
+              backgroundColor: AppColors.mainPrimaryColor,
               elevation: 0,
               surfaceTintColor: Colors.transparent,
               leading:  DefaultBackButton(
-                iconColor: AppColors.blackOA,
+                iconColor: AppColors.white,
                 icon: CupertinoIcons.back,
-                btnColor: AppColors.white,
+                btnColor: AppColors.mainPrimaryColor,
               )
             ),
             SliverGap(12.h),
@@ -86,21 +86,21 @@ class CampaignDetails extends StatelessWidget {
                               data: "Bird Watch",
                               fontWeight: FontWeight.w700,
                               fontSize: 24.sp,
-                              textColor: AppColors.blackOA,
+                              textColor: AppColors.white,
                               letterSpacing: -0.42,
                               lineHeight: 1.2,
                             ),
                             Container(
                               height: 3.h,
                               width: 0.2.sw,
-                              color: AppColors.blackOA,
+                              color: AppColors.lime,
                             ),
                             Gap(8.h),
                             DefaultText(
                               data: "${Utils.fullDate( DateTime.now())} - ${Utils.fullDate( DateTime.now())}",
                               fontWeight: FontWeight.w400,
                               fontSize: 12.sp,
-                              textColor: AppColors.grey97,
+                              textColor: AppColors.white,
                               letterSpacing: -0.42,
                               lineHeight: 1.2,
                             ),
@@ -120,36 +120,31 @@ class CampaignDetails extends StatelessWidget {
                     DefaultText(
                       data: "Description",
                       fontWeight: FontWeight.w700,
-                      fontSize: 14.sp,
-                      textColor: AppColors.blackOA,
+                      fontSize: 16.sp,
+                      textColor: AppColors.lime,
                       letterSpacing: -0.42,
                       lineHeight: 1.2,
-                    ),
-                    Container(
-                      height: 3.h,
-                      width: 0.15.sw,
-                      color: AppColors.blackOA,
                     ),
                     Gap(8.h),
                     DefaultText(
                       data: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.",
                       fontWeight: FontWeight.w300,
-                      fontSize: 12.sp,
-                      textColor: AppColors.grey97,
+                      fontSize: 14.sp,
+                      textColor: AppColors.white,
                       letterSpacing: -0.42,
                       maxLines: 10,
                       lineHeight: 1.6,
                     ),
                     Gap(20.h),
                     DefaultButton(
-                        btnColor: AppColors.primaryColor,
-                        btnTextColor: AppColors.white,
+                        btnColor: AppColors.green5C,
+                        btnTextColor: AppColors.mainBlack,
                         onBtnTap: (){
                           Get.to(()=> const CaptureForm());
                         }, btnText: AppStrings.participate),
                     Gap(10.h),
                     DefaultButton(
-                        btnColor: AppColors.primaryColor,
+                        btnColor: AppColors.white.withOpacity(0.1),
                         btnTextColor: AppColors.white,
                         onBtnTap: (){
                           Get.to(()=> const CampaignPosts());
