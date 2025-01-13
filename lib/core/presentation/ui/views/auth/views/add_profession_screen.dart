@@ -3,6 +3,7 @@ import 'package:citizen_app/core/config/services/auth_service.dart';
 import 'package:citizen_app/core/presentation/ui/shared_widgets/dropdown_btn.dart';
 import 'package:citizen_app/core/presentation/ui/views/auth/views/add_animal_interested.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -61,7 +62,14 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
                             textAlign: TextAlign.center,
-                          ),
+                          ).animate(delay: 100.ms)
+                              .slide(
+                            begin: const Offset(0, -0.3),
+                            end: const Offset(0, 0), // End at center
+                            duration: 600.ms,
+                            curve: Curves.easeOutBack,
+                          )
+                              .fade(begin: 0, end: 1, duration: 600.ms),
                           Gap(4.h),
                           DefaultText(
                             data: AppStrings.professionMessage,
@@ -72,7 +80,14 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
                             textAlign: TextAlign.center,
-                          ),
+                          ).animate()
+                              .slide(
+                            begin: const Offset(0, -0.3),
+                            end: const Offset(0, 0), // End at center
+                            duration: 600.ms,
+                            curve: Curves.easeOutBack,
+                          )
+                              .fade(begin: 0, end: 1, duration: 600.ms),
                           Gap(20.h),
                           DropdownBtn(
                               controller: genderController,
@@ -86,7 +101,14 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
                                   chosenGender = gender;
                                 });
                             },
-                          ),
+                          ).animate()
+                              .slide(
+                            begin: const Offset(0, -0.3),
+                            end: const Offset(0, 0), // End at center
+                            duration: 600.ms,
+                            curve: Curves.easeOutBack,
+                          )
+                              .fade(begin: 0, end: 1, duration: 600.ms),
                           Gap(20.h),
                           DropdownBtn(
                             controller: genderController,
@@ -100,7 +122,14 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
                                 chosenProfession = profession;
                               });
                             },
-                          ),
+                          ).animate()
+                              .slide(
+                            begin: const Offset(0, -0.3),
+                            end: const Offset(0, 0), // End at center
+                            duration: 600.ms,
+                            curve: Curves.easeOutBack,
+                          )
+                              .fade(begin: 0, end: 1, duration: 600.ms),
                           Gap(40.h),
                           DefaultButton(
                             onBtnTap: () async {

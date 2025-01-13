@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
@@ -40,19 +41,31 @@ class _CampaignPostsState extends State<CampaignPosts> {
               textColor: AppColors.white,
               letterSpacing: -0.42,
               lineHeight: 1.2,
-            ),
+            ).animate(delay: 100.ms)
+                .slide(
+              begin: const Offset(0.3, 0),
+              end: const Offset(0, 0), // End at center
+              duration: 600.ms,
+              curve: Curves.easeOutBack,
+            )
+                .fade(begin: 0, end: 1, duration: 600.ms),
             expandedHeight: 0.1.sh,
           ),
           SliverGap(12.h),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                return const ActivityWidget(
-                  model: null,
-                );
-              },
-              childCount: 20,
-            ),
+          SliverList.builder(
+            itemCount: 20,
+             itemBuilder: (BuildContext context, int index) {
+              return const ActivityWidget(
+                model: null,
+              ).animate()
+                  .slide(
+                begin: const Offset(0, 0.3),
+                end: const Offset(0, 0), // End at center
+                duration: 600.ms + index.ms,
+                curve: Curves.easeOutBack,
+              )
+                  .fade(begin: 0, end: 1, duration: 600.ms);
+          },
           ),
         ],
       ),

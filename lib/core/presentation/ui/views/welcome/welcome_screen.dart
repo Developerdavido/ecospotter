@@ -5,6 +5,7 @@ import 'package:citizen_app/core/presentation/ui/views/auth/views/login_screen.d
 import 'package:citizen_app/core/presentation/ui/views/welcome/welcome_widgets/indicator_and_skip_widget.dart';
 import 'package:citizen_app/core/presentation/ui/views/welcome/welcome_widgets/onboarding_page_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';

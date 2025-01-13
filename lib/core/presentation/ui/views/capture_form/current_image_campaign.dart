@@ -2,6 +2,7 @@ import 'package:citizen_app/core/config/services/campaign_service.dart';
 import 'package:citizen_app/core/presentation/ui/views/app_navigation/app_navigation_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -61,7 +62,14 @@ class _CurrentImageCampaignState extends State<CurrentImageCampaign> {
                       letterSpacing: -0.41,
                       lineHeight: 1.33,
                       textAlign: TextAlign.center,
-                    ),
+                    ).animate(delay: 100.ms)
+                        .slide(
+                      begin: const Offset(0, -0.3),
+                      end: const Offset(0, 0), // End at center
+                      duration: 600.ms,
+                      curve: Curves.easeOutBack,
+                    )
+                        .fade(begin: 0, end: 1, duration: 600.ms),
                     Gap(4.h),
                     DefaultText(
                       data: AppStrings.conservationCampaignMessage,
@@ -72,7 +80,14 @@ class _CurrentImageCampaignState extends State<CurrentImageCampaign> {
                       letterSpacing: -0.41,
                       lineHeight: 1.33,
                       textAlign: TextAlign.center,
-                    ),
+                    ).animate()
+                        .slide(
+                      begin: const Offset(0, -0.3),
+                      end: const Offset(0, 0), // End at center
+                      duration: 600.ms,
+                      curve: Curves.easeOutBack,
+                    )
+                        .fade(begin: 0, end: 1, duration: 600.ms),
                     Gap(0.1.sh),
                     DropdownBtn(
                       controller: campaignCtrl,
@@ -86,7 +101,14 @@ class _CurrentImageCampaignState extends State<CurrentImageCampaign> {
                           chosenCampaign = campaign;
                         });
                       },
-                    ),
+                    ).animate()
+                        .slide(
+                      begin: const Offset(0, -0.3),
+                      end: const Offset(0, 0), // End at center
+                      duration: 600.ms,
+                      curve: Curves.easeOutBack,
+                    )
+                        .fade(begin: 0, end: 1, duration: 600.ms),
                     Gap(40.h),
                     DefaultButton(
                         btnColor: AppColors.green5C,

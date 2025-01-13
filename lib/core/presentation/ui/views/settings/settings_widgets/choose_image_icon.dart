@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
@@ -31,7 +32,15 @@ class ChooseImageIcon extends StatelessWidget {
               size: 24.sp,
             ),
           ),
-        ), Gap(6.h),
+        ).animate()
+        .slide(
+      begin: const Offset(0, -0.2), // Start from top of screen
+      end: const Offset(0, 0), // End at center
+      duration: 500.ms,
+      curve: Curves.easeOutBack,
+    )
+        .fade(begin: 0, end: 1, duration: 500.ms),
+        Gap(6.h),
         DefaultText(
           data: title ?? "",
           fontWeight: FontWeight.w500,
@@ -39,7 +48,14 @@ class ChooseImageIcon extends StatelessWidget {
           textColor: AppColors.mainBlack,
           letterSpacing: -0.42,
           lineHeight: 1.2,
-        ),
+        ).animate()
+        .slide(
+    begin: const Offset(0, -0.2), // Start from top of screen
+    end: const Offset(0, 0), // End at center
+    duration: 500.ms,
+    curve: Curves.easeOutBack,
+    )
+        .fade(begin: 0, end: 1, duration: 500.ms, delay: 200.ms),
       ],
     );
   }

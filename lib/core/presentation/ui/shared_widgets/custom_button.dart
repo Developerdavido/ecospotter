@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -56,6 +57,12 @@ class DefaultButton extends StatelessWidget {
             ],
           ),
         ),
+      ).animate().scale(
+        delay: 200.ms,
+        duration: 500.ms,
+        begin: const Offset(0.8, 0.8),
+        end: const Offset(1, 1), // 10% size increase
+        curve: Curves.easeOut,
       ),
     );
   }

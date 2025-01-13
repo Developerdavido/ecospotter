@@ -49,7 +49,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   child: CustomShapeImage(
                 image: snapshot.data!,
               )
-            ).animate().scale(duration: 1000.ms,);
+            ).animate()
+                  .slide(
+                begin: const Offset(0, -0.2), // Start from top of screen
+                end: const Offset(0, 0), // End at center
+                duration: 500.ms,
+                curve: Curves.easeOutBack,
+              )
+                  .fade(begin: 0, end: 1, duration: 500.ms);
             }else {
               return const CircularProgressIndicator();
             }
@@ -68,7 +75,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             lineHeight: 1.33,
             textAlign: TextAlign.center,
           ),
-        ).animate().fadeIn().slideY(begin: 4, delay: 1000.ms, duration: 1000.ms),
+        ).animate(delay: 100.ms)
+            .slide(
+          begin: const Offset(0, 0.2), // Start from top of screen
+          end: const Offset(0, 0), // End at center
+          duration: 500.ms,
+          curve: Curves.easeOutBack,
+        )
+            .fade(begin: 0, end: 1, duration: 500.ms),
         Gap(10.h),
         SizedBox(
           width: 267.w,
@@ -83,7 +97,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             maxLines: 4,
             textAlign: TextAlign.center,
           ),
-        ).animate().fadeIn().slideY(begin: 4, delay: 1200.ms, duration: 1000.ms)
+        ).animate(delay: 150.ms)
+            .slide(
+          begin: const Offset(0, 0.2), // Start from top of screen
+          end: const Offset(0, 0), // End at center
+          duration: 500.ms,
+          curve: Curves.easeOutBack,
+        )
+            .fade(begin: 0, end: 1, duration: 500.ms)
       ],
     );
   }
