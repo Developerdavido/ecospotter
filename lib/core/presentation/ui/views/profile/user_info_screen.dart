@@ -64,9 +64,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   const ProfileTop(avatar: null, username: null, email: null,),
                   Expanded(
                       child: Column(
-                        children: AnimateList(interval: 100.ms, effects: [
+                        children: AnimateList(interval: 20.ms, effects: [
                           FadeEffect(duration: 300.ms),
-                          SlideEffect(delay: 200.ms)
+                          SlideEffect(delay: 200.ms, begin: const Offset(0, -0.2), end: const Offset(0, 0))
                         ], children: [
                           Gap(22.h),
                           UserProfileElement(

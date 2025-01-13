@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:citizen_app/core/constants/media.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -9,7 +10,8 @@ import '../../../../../constants/app_colors.dart';
 import '../../../shared_widgets/default_text.dart';
 
 class LeaderBoardTopWidget extends StatelessWidget {
-  const LeaderBoardTopWidget({super.key, this.position, this.imageUrl, this.username, this.points});
+  const LeaderBoardTopWidget(
+      {super.key, this.position, this.imageUrl, this.username, this.points});
 
   final int? position;
   final String? imageUrl;
@@ -39,29 +41,38 @@ class LeaderBoardTopWidget extends StatelessWidget {
                 width: 48.w,
                 fit: BoxFit.contain,
               )
+                .animate(delay: 800.ms)
+                .scale(
+                  begin: const Offset(0.9, 0.9),
+                  end: const Offset(1, 1), // End at center
+                  duration: 600.ms,
+                  curve: Curves.easeOutBack,
+                )
+                .fade(begin: 0, end: 1, duration: 600.ms)
             : Container(),
         Gap(12.h),
         Container(
           height: position == 1 ? 140.h : 110.h,
           width: position == 1 ? 140.h : 110.h,
-          decoration:  ShapeDecoration(
-            shape: const CircleBorder(
-              side: BorderSide(color: AppColors.lime, width: 1.5)
-            ),
-            image: DecorationImage(
-              image: imageUrl == null
-                  ? AssetImage(Media.profile, )
-                  : NetworkImage(imageUrl!) as ImageProvider,
-              fit: BoxFit.contain
-            ),
-            shadows: position == 1 ? [
-              const BoxShadow(
-                color: AppColors.lime,
-                blurRadius: 16,
-                spreadRadius: 1,
-              )
-            ]  : null
-          ),
+          decoration: ShapeDecoration(
+              shape:
+                  const CircleBorder(side: BorderSide(color: AppColors.lime, width: 1.5)),
+              image: DecorationImage(
+                  image: imageUrl == null
+                      ? AssetImage(
+                          Media.profile,
+                        )
+                      : NetworkImage(imageUrl!) as ImageProvider,
+                  fit: BoxFit.contain),
+              shadows: position == 1
+                  ? [
+                      const BoxShadow(
+                        color: AppColors.lime,
+                        blurRadius: 16,
+                        spreadRadius: 1,
+                      )
+                    ]
+                  : null),
         ),
         Gap(12.h),
         DefaultText(

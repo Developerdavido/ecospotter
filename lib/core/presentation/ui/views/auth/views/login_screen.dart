@@ -1,6 +1,7 @@
 import 'package:citizen_app/core/presentation/ui/views/auth/views/add_profession_screen.dart';
 import 'package:citizen_app/core/presentation/ui/views/auth/views/username_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -43,7 +44,14 @@ class LoginScreen extends StatelessWidget {
                           letterSpacing: -0.41,
                           lineHeight: 1.33,
                           textAlign: TextAlign.center,
-                        ),
+                        ).animate(delay: 100.ms)
+                            .slide(
+                          begin: const Offset(0, -0.3),
+                          end: const Offset(0, 0), // End at center
+                          duration: 600.ms,
+                          curve: Curves.easeOutBack,
+                        )
+                            .fade(begin: 0, end: 1, duration: 600.ms),
                         Gap(4.h),
                         DefaultText(
                           data: AppStrings.loginMessage,
@@ -54,7 +62,14 @@ class LoginScreen extends StatelessWidget {
                           letterSpacing: -0.41,
                           lineHeight: 1.33,
                           textAlign: TextAlign.center,
-                        ),
+                        ).animate()
+                            .slide(
+                          begin: const Offset(0, -0.3),
+                          end: const Offset(0, 0), // End at center
+                          duration: 600.ms,
+                          curve: Curves.easeOutBack,
+                        )
+                            .fade(begin: 0, end: 1, duration: 600.ms),
                         Gap(40.h),
                         DefaultButton(
                           onBtnTap: () async {

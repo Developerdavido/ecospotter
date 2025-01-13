@@ -1,5 +1,6 @@
 import 'package:citizen_app/core/config/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -52,7 +53,14 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
                             textAlign: TextAlign.center,
-                          ),
+                          ).animate(delay: 100.ms)
+                              .slide(
+                            begin: const Offset(0, -0.3),
+                            end: const Offset(0, 0), // End at center
+                            duration: 600.ms,
+                            curve: Curves.easeOutBack,
+                          )
+                              .fade(begin: 0, end: 1, duration: 600.ms),
                           Gap(4.h),
                           DefaultText(
                             data: AppStrings.preferenceMessage,
@@ -64,7 +72,14 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                             lineHeight: 1.33,
                             maxLines: 4,
                             textAlign: TextAlign.center,
-                          ),
+                          ).animate()
+                              .slide(
+                            begin: const Offset(0, -0.3),
+                            end: const Offset(0, 0), // End at center
+                            duration: 600.ms,
+                            curve: Curves.easeOutBack,
+                          )
+                              .fade(begin: 0, end: 1, duration: 600.ms),
                           Gap(40.h),
                           Wrap(
                             spacing: 15.w,
@@ -101,7 +116,14 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                                     }
                                   });
                                 },
-                              );
+                              ).animate()
+                                  .slide(
+                                begin: const Offset(0.3, 0),
+                                end: const Offset(0, 0), // End at center
+                                duration: 600.ms,
+                                curve: Curves.easeOutBack,
+                              )
+                                  .fade(begin: 0, end: 1, duration: 600.ms);
                             }),
                           ),
                           Gap(40.h),

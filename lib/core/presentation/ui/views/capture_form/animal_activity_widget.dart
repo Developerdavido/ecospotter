@@ -1,6 +1,7 @@
 import 'package:citizen_app/core/presentation/ui/views/capture_form/current_image_campaign.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -55,7 +56,14 @@ class _AnimalActivityState extends State<AnimalActivity> {
                       letterSpacing: -0.41,
                       lineHeight: 1.33,
                       textAlign: TextAlign.center,
-                    ),
+                    ).animate(delay: 100.ms)
+                        .slide(
+                      begin: const Offset(0, -0.3),
+                      end: const Offset(0, 0), // End at center
+                      duration: 600.ms,
+                      curve: Curves.easeOutBack,
+                    )
+                        .fade(begin: 0, end: 1, duration: 600.ms),
                     Gap(4.h),
                     DefaultText(
                       data: AppStrings.animalActivityMessage,
@@ -66,7 +74,14 @@ class _AnimalActivityState extends State<AnimalActivity> {
                       letterSpacing: -0.41,
                       lineHeight: 1.33,
                       textAlign: TextAlign.center,
-                    ),
+                    ).animate()
+                        .slide(
+                      begin: const Offset(0, -0.3),
+                      end: const Offset(0, 0), // End at center
+                      duration: 600.ms,
+                      curve: Curves.easeOutBack,
+                    )
+                        .fade(begin: 0, end: 1, duration: 600.ms),
                     Gap(0.1.sh),
                     InputField(
                       controller: activityController,
@@ -79,7 +94,14 @@ class _AnimalActivityState extends State<AnimalActivity> {
                         }
                         return null;
                       },
-                    ),
+                    ).animate()
+                        .slide(
+                      begin: const Offset(0, 0.3),
+                      end: const Offset(0, 0), // End at center
+                      duration: 600.ms,
+                      curve: Curves.easeOutBack,
+                    )
+                        .fade(begin: 0, end: 1, duration: 500.ms),
                     Gap(40.h),
                     DefaultButton(
                         btnColor: AppColors.green5C,

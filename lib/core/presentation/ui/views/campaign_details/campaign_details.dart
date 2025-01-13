@@ -4,6 +4,7 @@ import 'package:citizen_app/core/presentation/ui/views/campaign_posts/campaign_p
 import 'package:citizen_app/core/presentation/ui/views/capture_form/capture_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -64,6 +65,11 @@ class CampaignDetails extends StatelessWidget {
                       );
                     },
                   ),
+                ).animate().scale(
+                  duration: 300.ms,
+                  begin: const Offset(0.9, 0.9),
+                  end: const Offset(1, 1), // 10% size increase
+                  curve: Curves.easeOut,
                 ),
               ),
             ),
@@ -73,7 +79,13 @@ class CampaignDetails extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: AnimateList(
+                    interval: 20.ms,
+                    effects: [
+                      SlideEffect(delay: 200.ms, begin: const Offset(0, 0.3), end: const Offset(0, 0)),
+                      FadeEffect(duration: 300.ms),
+                    ],
+                    children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -150,7 +162,7 @@ class CampaignDetails extends StatelessWidget {
                           Get.to(()=> const CampaignPosts());
                         }, btnText: AppStrings.viewPosts),
                     Gap(20.h),
-                  ],
+                  ],)
                 ),
               ),
             )
