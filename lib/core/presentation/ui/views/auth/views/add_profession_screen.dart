@@ -2,6 +2,7 @@ import 'package:citizen_app/core/config/locator.dart';
 import 'package:citizen_app/core/config/services/auth_service.dart';
 import 'package:citizen_app/core/presentation/ui/shared_widgets/dropdown_btn.dart';
 import 'package:citizen_app/core/presentation/ui/views/auth/views/add_animal_interested.dart';
+import 'package:citizen_app/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -95,7 +96,7 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
                             height: 0.3.sh,
                             hintText: "Select gender",
                             labelText: chosenGender,
-                            items: locator<AuthService>().gender,
+                            items: Utils.gender,
                             onChanged: (gender){
                                 setState(() {
                                   chosenGender = gender;
@@ -116,7 +117,7 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
                             height: 0.6.sh,
                             hintText: "Select profession",
                             labelText: chosenProfession,
-                            items: locator<AuthService>().professions,
+                            items: Utils.professions,
                             onChanged: (profession){
                               setState(() {
                                 chosenProfession = profession;

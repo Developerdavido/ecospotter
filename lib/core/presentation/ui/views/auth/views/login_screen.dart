@@ -1,3 +1,11 @@
+import 'dart:developer';
+
+import 'package:citizen_app/core/config/env_config/env_config.dart';
+import 'package:citizen_app/core/config/locator.dart';
+import 'package:citizen_app/core/config/provider/auth_provider.dart';
+import 'package:citizen_app/core/config/services/auth_service.dart';
+import 'package:citizen_app/core/domain/repositories/auth_repository.dart';
+import 'package:citizen_app/core/domain/usecases/auth/login_user.dart';
 import 'package:citizen_app/core/presentation/ui/views/auth/views/add_profession_screen.dart';
 import 'package:citizen_app/core/presentation/ui/views/auth/views/username_screen.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +13,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_strings.dart';
 import '../../../../../constants/media.dart';
@@ -12,8 +22,25 @@ import '../../../shared_widgets/custom_app_bar.dart';
 import '../../../shared_widgets/custom_button.dart';
 import '../../../shared_widgets/default_text.dart';
 
-class LoginScreen extends StatelessWidget {
+
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  AuthProvider provider = AuthProvider();
+
+  String? userId;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    locator<AuthService>().checkForUserStateChanges();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +102,10 @@ class LoginScreen extends StatelessWidget {
                           onBtnTap: () async {
                             // var success  = await authVm.loginUser(AuthMethod.google);
                             // if(success){
-                            Get.to(() => const ChooseUsername(),
-                                transition: Transition.cupertino);
+                            // Get.to(() => const ChooseUsername(),
+                            //     transition: Transition.cupertino);
                             // }
+                            await provider.loginUser();
                           },
                           btnText: AppStrings.googleLogin,
                           isIconPresent: true,

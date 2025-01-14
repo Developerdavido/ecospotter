@@ -1,4 +1,5 @@
 import 'package:citizen_app/core/config/services/auth_service.dart';
+import 'package:citizen_app/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -84,9 +85,9 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                           Wrap(
                             spacing: 15.w,
                             runSpacing: 15.h,
-                            children: List.generate(locator<AuthService>().animals.length,
+                            children: List.generate(Utils.animals.length,
                                 (index) {
-                              var animal = locator<AuthService>().animals[index];
+                              var animal = Utils.animals[index];
                               return ChoiceChip(
                                 label: DefaultText(
                                   data: animal,

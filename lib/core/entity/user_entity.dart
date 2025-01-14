@@ -10,7 +10,7 @@ class UserEntity {
   UserEntity(
       {required this.id,
       this.avatarUrl,
-        this.email,
+      this.email,
       this.speciesOfInterest,
       this.points,
       required this.createdAt,
