@@ -56,6 +56,7 @@ dependencies:
   shimmer: ^3.0.0
   dots_indicator: ^3.0.0
   intl: ^0.20.0
+  flutter_dotenv: ^5.2.1
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +85,10 @@ flutter:
     - assets/images/
     - assets/svgs/
     - assets/icons/
+    - .env
+    - .env.development
+    - .env.production
+
 
 
   fonts:

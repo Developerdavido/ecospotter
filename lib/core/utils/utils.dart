@@ -20,5 +20,27 @@ abstract class Utils {
     String formattedDate = DateFormat('h:mm a').format(date);
     return formattedDate;
   }
+
+  //auth utils
+  //professions
+  static final List<String> professions = [
+    'Student',
+    'Researcher',
+    'Nature Enthusiast',
+    'Other'
+  ];
+
+  //gender
+  static final List<String> gender = ['Male', 'Female'];
+
+  static final List<String> animals = [
+    'Large Mammals',
+    'Small Mammals',
+    'Fishes',
+    'Birds',
+    'Herpetofauna'
+  ];
+
+
 }
 

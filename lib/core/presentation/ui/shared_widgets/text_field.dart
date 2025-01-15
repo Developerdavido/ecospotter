@@ -25,6 +25,8 @@ class InputField extends StatefulWidget {
     this.enabled = true,
     this.readOnly = false,
     this.contentPadding,
+    this.autovalidateMode,
+    this.onEditingComplete,
     this.prefixIcon,
     this.focusNode,
     this.onTap,
@@ -47,6 +49,8 @@ class InputField extends StatefulWidget {
   final bool readOnly;
   final EdgeInsetsGeometry? contentPadding;
   final Widget? prefixIcon;
+  final Function()? onEditingComplete;
+  final AutovalidateMode? autovalidateMode;
   final FocusNode? focusNode;
   final VoidCallback? onTap;
   final bool expandable;
@@ -102,6 +106,8 @@ class _InputFieldState extends State<InputField> {
           expandable: widget.expandable,
           onTap: widget.onTap,
           hintText: widget.hintText,
+          onEditingComplete: widget.onEditingComplete,
+          autovalidateMode: widget.autovalidateMode,
           suffixIcon: widget.suffixIcon,
           prefixIcon: widget.prefixIcon,
           prefix: widget.prefix,

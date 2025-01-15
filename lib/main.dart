@@ -1,12 +1,13 @@
 
+import 'package:citizen_app/core/config/env_config/env_config.dart';
 import 'package:citizen_app/core/config/locator.dart';
+import 'package:citizen_app/core/config/services/supabase_service.dart';
 import 'package:citizen_app/core/presentation/ui/views/splash_page/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'core/config/services/local_storage_service.dart';
+
 import 'core/config/theme/app_theme.dart';
 import 'firebase_options.dart';
 
@@ -15,7 +16,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  //await environment config
+  await EnvConfig.initialize();
+  //initialize supabase
+  await SupabaseService.initialize();
   setupLocator();
   // final prefs = await SharedPreferences.getInstance();
   // CacheHelper.instance.init(prefs);
