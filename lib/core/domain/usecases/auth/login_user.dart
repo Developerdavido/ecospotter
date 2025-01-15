@@ -1,5 +1,6 @@
 
 
+import 'package:citizen_app/core/data/models/auth_model.dart';
 import 'package:citizen_app/core/domain/repositories/auth_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -8,7 +9,7 @@ class LoginUser {
 
   LoginUser(this.authRepository);
 
-  Future<AuthResponse> call() async {
+  Future<AuthModel> call() async {
     return await authRepository.loginUser();
   }
 }

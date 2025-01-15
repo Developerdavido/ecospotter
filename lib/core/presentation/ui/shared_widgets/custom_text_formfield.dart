@@ -17,7 +17,9 @@ class CustomTextField extends StatelessWidget {
   final Widget? prefix;
   final Widget? prefixIcon;
   final List<TextInputFormatter>? inputFormatters;
+  final AutovalidateMode? autovalidateMode;
   final String? Function(String?)? validator;
+  final Function()? onEditingComplete;
   final bool defaultValidation;
 
   const CustomTextField({
@@ -29,6 +31,8 @@ class CustomTextField extends StatelessWidget {
     this.readOnly = false,
     this.expandable = false,
     this.onTap,
+    this.onEditingComplete,
+    this.autovalidateMode,
     this.hintText,
     this.suffixIcon,
     this.prefix,
@@ -65,6 +69,8 @@ class CustomTextField extends StatelessWidget {
       ),
       cursorColor: AppColors.white,
       onTapOutside: (_) => _focusNode.unfocus(),
+      onEditingComplete: onEditingComplete,
+      autovalidateMode: autovalidateMode,
       decoration: InputDecoration(
         border: border,
         filled: true,

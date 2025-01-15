@@ -89,6 +89,10 @@ class _ChooseUsernameState extends State<ChooseUsername> {
                       controller: username,
                       title: "What username suits you?",
                       hintText: "Enter response here",
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      onEditingComplete: (){
+                        //TODO: on editing complete, check if the username exists
+                      },
                       validator: (value) {
                         if(value == null) {
                           return "Username input field must not be empty";

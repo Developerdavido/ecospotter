@@ -10,8 +10,8 @@ class UpdateUserAvatar {
 
   UpdateUserAvatar(this.repository);
 
-  Future<String> call(String userId, File image) async {
-    return repository.updateUserAvatar(userId);
+  Future<dynamic> call(String imagePath, String userId) async {
+    return repository.updateUserAvatar(imagePath, userId);
   }
 
 }

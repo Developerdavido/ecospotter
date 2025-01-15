@@ -13,6 +13,7 @@ class UserModel extends UserEntity {
     super.email,
     super.points,
     super.profession,
+    required super.role,
   });
 
 
@@ -24,7 +25,8 @@ class UserModel extends UserEntity {
         email: json['email'],
         points: json['points'],
         createdAt: json['created_at'],
-        profession: json['profession']
+        profession: json['profession'],
+        role: json['role']
     );
   }
 
@@ -37,6 +39,7 @@ class UserModel extends UserEntity {
       'email': email,
       'points': points,
       'profession': profession,
+      'role':role,
       'created_at': createdAt.toIso8601String()
     };
   }

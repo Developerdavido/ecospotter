@@ -6,6 +6,7 @@ class UserEntity {
   final num? points;
   final DateTime createdAt;
   final String? profession;
+  final String role;
 
   UserEntity(
       {required this.id,
@@ -14,5 +15,6 @@ class UserEntity {
       this.speciesOfInterest,
       this.points,
       required this.createdAt,
+      required this.role,
       this.profession});
 }
