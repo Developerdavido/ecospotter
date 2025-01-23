@@ -8,13 +8,16 @@ import '../../data/models/user_model.dart';
 abstract class AuthRepository {
 
   //get the userId of the application
-  Future<AuthModel> loginUser();
+  Future<AuthModel?>? loginUser();
 
   //update the user data
-  Future<UserModel> updateUser(Map<String, dynamic> userData);
+  Future<List<Map<String, dynamic>>> saveUserToDb(Map<String, dynamic> userData);
 
   //update user  avatar
-  Future<dynamic> updateUserAvatar(String imagePath, String id);
+  Future<String> updateUserAvatar(String imagePath, String id);
+
+  //get user  by id
+  Future<List<Map<String, dynamic>>> getUserById(String id);
 
   //check if user exists
   Future<List<Map<dynamic,dynamic>>> checkIfUsernameExists(String username);

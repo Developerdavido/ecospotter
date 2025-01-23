@@ -24,8 +24,8 @@ class AppThemes {
         elevation: 0,
         systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: AppColors.primaryColor,
-            statusBarIconBrightness: Brightness.dark,
-            statusBarBrightness: Brightness.light
+            statusBarIconBrightness: Brightness.light,
+            statusBarBrightness: Brightness.dark
         ),
       ),
       useMaterial3: true,

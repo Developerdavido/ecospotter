@@ -11,6 +11,9 @@ class CacheHelper {
 
   static const _firstTimerKey = 'first-timer-key';
   static const firebaseTokenKey = 'firebase-token-key';
+  static const accessTokenKey = 'access-token-key';
+  static const userIdKey = 'user-id-key';
+  static const userModelKey = 'user-model-key';
 
   late SharedPreferences _prefs;
 
@@ -60,4 +63,9 @@ class CacheHelper {
 
     return result ?? false;
   }
+
+  Future<bool> clearCache() async {
+    return _prefs.clear();
+  }
+
 }

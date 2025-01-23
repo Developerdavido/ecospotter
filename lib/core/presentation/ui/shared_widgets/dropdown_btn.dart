@@ -1,5 +1,3 @@
-import 'package:citizen_app/core/config/locator.dart';
-import 'package:citizen_app/core/config/services/dialog_service.dart';
 import 'package:citizen_app/core/presentation/ui/shared_widgets/text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +5,9 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-
-import '../../../constants/app_colors.dart';
-import '../../../constants/app_strings.dart';
+import '../../../../config/locator.dart';
+import '../../../../config/services/dialog_service.dart';
+import '../../../../constants/app_colors.dart';
 import 'default_back_button.dart';
 import 'default_text.dart';
 

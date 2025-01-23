@@ -1,17 +1,19 @@
-import 'package:citizen_app/core/config/locator.dart';
-import 'package:citizen_app/core/config/services/auth_service.dart';
+
+import 'package:citizen_app/config/locator.dart';
+import 'package:citizen_app/config/services/dialog_service.dart';
 import 'package:citizen_app/core/presentation/ui/shared_widgets/dropdown_btn.dart';
 import 'package:citizen_app/core/presentation/ui/views/auth/views/add_animal_interested.dart';
-import 'package:citizen_app/core/utils/utils.dart';
+import 'package:citizen_app/core/view_models/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
-import '../../../../../constants/app_colors.dart';
-import '../../../../../constants/app_strings.dart';
-import '../../../../../constants/media.dart';
+import '../../../../../../constants/app_colors.dart';
+import '../../../../../../constants/app_strings.dart';
+import '../../../../../../utils/utils.dart';
 import '../../../shared_widgets/custom_app_bar.dart';
 import '../../../shared_widgets/custom_button.dart';
 import '../../../shared_widgets/default_text.dart';
@@ -35,6 +37,7 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authVm = Provider.of<AuthProvider>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.mainPrimaryColor,
@@ -133,12 +136,20 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
                               .fade(begin: 0, end: 1, duration: 600.ms),
                           Gap(40.h),
                           DefaultButton(
+                            isNull: chosenProfession == null || chosenGender == null,
                             onBtnTap: () async {
-                              // var success  = await authVm.loginUser(AuthMethod.google);
-                              // if(success){
+                              if(chosenProfession == null) {
+                                locator<DialogService>().showSnackBar("Error", "You must select a profession before proceeding");
+                                return;
+                              }
+                              if(chosenGender == null) {
+                                locator<DialogService>().showSnackBar("Error", "You must select a gender before proceeding");
+                                return;
+                              }
+                              authVm.profession = chosenProfession;
+                              authVm.gender = chosenGender;
                               Get.to(() => const AnimalInterestedScreen(),
                                   transition: Transition.cupertino);
-                              // }
                             },
                             btnText: AppStrings.next,
                             isIconPresent: false,

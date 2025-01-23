@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/app_colors.dart';
+import '../../../../constants/app_colors.dart';
+
 
 class DefaultText extends StatelessWidget {
   const DefaultText(

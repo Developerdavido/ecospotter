@@ -1,5 +1,4 @@
-import 'package:citizen_app/core/constants/app_strings.dart';
-import 'package:citizen_app/core/constants/media.dart';
+import 'package:citizen_app/config/services/local_storage_service.dart';
 import 'package:citizen_app/core/presentation/ui/shared_widgets/custom_button.dart';
 import 'package:citizen_app/core/presentation/ui/views/auth/views/login_screen.dart';
 import 'package:citizen_app/core/presentation/ui/views/welcome/welcome_widgets/indicator_and_skip_widget.dart';
@@ -10,9 +9,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
-import '../../../../constants/app_colors.dart';
-
-
+import '../../../../../constants/app_colors.dart';
+import '../../../../../constants/app_strings.dart';
+import '../../../../../constants/media.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -22,29 +21,27 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-
   PageController pageController = PageController(initialPage: 0);
   int pageIndex = 0;
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.mainPrimaryColor,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0.w,vertical: 0.04.sh),
+        padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 0.04.sh),
         child: Column(
           children: [
             Gap(48.h),
             IndicatorAndSkip(
                 page: pageIndex,
-                onTap: (){
+                onTap: () {
                   //TODO: skip and move to login screen
                 }),
             Expanded(
               child: PageView(
                 controller: pageController,
-                onPageChanged: (index){
+                onPageChanged: (index) {
                   setState(() {
                     pageIndex = index;
                   });
@@ -67,11 +64,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
             const Gap(16),
             DefaultButton(
-              btnColor: AppColors.green5C,
+                btnColor: AppColors.green5C,
                 btnTextColor: AppColors.mainBlack,
-                onBtnTap: (){
-              Get.to(()=> const LoginScreen());
-            }, btnText: AppStrings.continueBtn)
+                onBtnTap: () {
+                  CacheHelper.instance.cacheFirstTimer();
+                  Get.to(() => const LoginScreen());
+                },
+                btnText: AppStrings.continueBtn)
           ],
         ),
       ),

@@ -1,17 +1,21 @@
-import 'package:citizen_app/core/config/services/auth_service.dart';
-import 'package:citizen_app/core/utils/utils.dart';
+
+import 'package:citizen_app/core/view_models/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:provider/provider.dart';
 
-import '../../../../../config/locator.dart';
-import '../../../../../constants/app_colors.dart';
-import '../../../../../constants/app_strings.dart';
+import '../../../../../../config/locator.dart';
+import '../../../../../../config/services/dialog_service.dart';
+import '../../../../../../constants/app_colors.dart';
+import '../../../../../../constants/app_strings.dart';
+import '../../../../../../utils/utils.dart';
 import '../../../shared_widgets/custom_app_bar.dart';
 import '../../../shared_widgets/custom_button.dart';
+import '../../../shared_widgets/default_loader.dart';
 import '../../../shared_widgets/default_text.dart';
 import '../../app_navigation/app_navigation_screen.dart';
 
@@ -26,6 +30,7 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
   List<String> selectedAnimals = [];
   @override
   Widget build(BuildContext context) {
+    final authVm = Provider.of<AuthProvider>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.mainPrimaryColor,
@@ -129,12 +134,14 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                           ),
                           Gap(40.h),
                           DefaultButton(
+                            isNull: selectedAnimals.isEmpty,
                             onBtnTap: () async {
-                              // var success  = await authVm.loginUser(AuthMethod.google);
-                              // if(success){
-                              Get.to(() => const AppNavigation(),
-                                  transition: Transition.cupertino);
-                              // }
+                              if(selectedAnimals.isEmpty) {
+                                locator<DialogService>().showSnackBar("Error", "At least one animal must be selected before proceeding");
+                                return;
+                              }
+                              authVm.animalsInterested.addAll(selectedAnimals);
+                              await authVm.saveUserInDb();
                             },
                             btnText: AppStrings.submit,
                             isIconPresent: false,
@@ -148,10 +155,10 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                 ),
               ],
             ),
-            // Visibility(
-            //   visible: authVm.isLoading,
-            //   child: const Loader(),
-            // )
+            Visibility(
+              visible: authVm.isLoading || authVm.loading,
+              child: const Loader(),
+            )
           ],
         ),
       ),

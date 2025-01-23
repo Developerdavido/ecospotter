@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:io';
-import '../../../../../constants/app_colors.dart';
+
+import '../../../../../../constants/app_colors.dart';
 
 class ProfileWidget extends StatelessWidget {
   const ProfileWidget({super.key, this.isEdit = false, this.onImageTap, this.imagePath, this.image});

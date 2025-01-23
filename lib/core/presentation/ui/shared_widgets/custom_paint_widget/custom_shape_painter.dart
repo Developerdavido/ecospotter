@@ -1,8 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-
-import '../../../../constants/app_colors.dart';
+import '../../../../../constants/app_colors.dart';
 
 class CustomShapePainter extends CustomPainter {
   final Color? paintColor;

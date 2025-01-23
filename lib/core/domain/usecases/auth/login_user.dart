@@ -9,7 +9,7 @@ class LoginUser {
 
   LoginUser(this.authRepository);
 
-  Future<AuthModel> call() async {
+  Future<AuthModel?>? call() async {
     return await authRepository.loginUser();
   }
 }

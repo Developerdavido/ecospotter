@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../config/services/navigation_service.dart';
-import '../../../constants/app_colors.dart';
+import '../../../../config/services/navigation_service.dart';
+import '../../../../constants/app_colors.dart';
 
 
 class BottomNav extends StatelessWidget {

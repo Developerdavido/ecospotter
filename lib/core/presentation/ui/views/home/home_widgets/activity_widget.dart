@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:citizen_app/core/data/models/capture_model.dart';
+import 'package:citizen_app/utils/number_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-
-import '../../../../../constants/app_colors.dart';
+import '../../../../../../constants/app_colors.dart';
 import '../../../shared_widgets/default_text.dart';
 
 
@@ -66,7 +66,7 @@ class ActivityWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       DefaultText(
-                        data: "small description",
+                        data: model!.animalActivity,
                         fontFamily: "Geist",
                         fontWeight: FontWeight.w400,
                         textColor: AppColors.white,
@@ -124,7 +124,7 @@ class ActivityWidget extends StatelessWidget {
                             ),
                             Gap(4.w),
                             DefaultText(
-                              data: "1K",
+                              data: NumberFormatter.formatCount(model!.favorites.length),
                               fontFamily: "Geist",
                               fontWeight: FontWeight.w400,
                               textColor: AppColors.white,

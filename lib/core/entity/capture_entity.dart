@@ -8,22 +8,28 @@ class CaptureEntity {
   final String imageUrl;
   final num latitude;
   final num longitude;
-  final num animalActivity;
+  final List<String> favorites;
+  final String animalActivity;
   final String animalLocationFeature;
   final String campaignId;
   final DateTime createdAt;
+  final bool? verified;
+  final num? verificationPoints;
 
-  const CaptureEntity({
+  const CaptureEntity( {
     required this.id,
     required this.userId,
     required this.specieName,
     required this.imageUrl,
+    required this.favorites,
     required this.latitude,
+    required this.username,
     required this.longitude,
     required this.animalActivity,
     required this.animalLocationFeature,
     required this.createdAt,
-    required this.username,
     required this.campaignId,
+    this.verified,
+    this.verificationPoints
   });
 }

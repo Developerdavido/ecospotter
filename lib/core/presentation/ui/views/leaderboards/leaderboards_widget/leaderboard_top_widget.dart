@@ -1,12 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:citizen_app/core/constants/media.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-
-import '../../../../../constants/app_colors.dart';
+import '../../../../../../constants/app_colors.dart';
+import '../../../../../../constants/media.dart';
 import '../../../shared_widgets/default_text.dart';
 
 class LeaderBoardTopWidget extends StatelessWidget {
@@ -76,7 +73,7 @@ class LeaderBoardTopWidget extends StatelessWidget {
         ),
         Gap(12.h),
         DefaultText(
-          data: "@$username",
+          data: "@${username ?? "anon"}",
           fontWeight: FontWeight.w500,
           fontSize: 16.sp,
           textColor: AppColors.white,
@@ -84,7 +81,7 @@ class LeaderBoardTopWidget extends StatelessWidget {
           lineHeight: 1.2,
         ),
         DefaultText(
-          data: "$points",
+          data: "${points ?? 0}",
           fontWeight: FontWeight.w600,
           fontSize: 24.sp,
           textColor: AppColors.darkGreen,

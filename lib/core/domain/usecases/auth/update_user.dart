@@ -9,7 +9,7 @@ class UpdateUser {
 
   UpdateUser(this.repository);
 
-  Future<UserModel> call(Map<String, dynamic> data) async {
-    return repository.updateUser(data);
+  Future<List<Map<String, dynamic>>> call(Map<String, dynamic> data) async {
+    return repository.saveUserToDb(data);
   }
 }

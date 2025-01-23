@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../../../../config/services/navigation_service.dart';
-import '../../../../constants/app_colors.dart';
+import '../../../../../config/services/navigation_service.dart';
+import '../../../../../constants/app_colors.dart';
 import '../../shared_widgets/bottom_nav.dart';
 
 

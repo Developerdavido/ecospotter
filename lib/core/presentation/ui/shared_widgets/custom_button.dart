@@ -3,8 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-
-import '../../../constants/app_colors.dart';
+import '../../../../constants/app_colors.dart';
 import 'default_text.dart';
 
 
@@ -36,7 +35,7 @@ class DefaultButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onBtnTap,
+      onTap: isNull ? null : onBtnTap,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 12.h),
         width: 1.sw,

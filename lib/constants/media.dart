@@ -19,6 +19,7 @@ abstract class Media {
   static const homeFilled = '$_baseSvg/home_filled.svg';
   static const homeUnfilled = '$_baseSvg/home_unfilled.svg';
   static const camera = '$_baseSvg/camera.svg';
+  static const loader = '$_baseSvg/prints.svg';
 
 
 

@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:citizen_app/core/data/models/campaign_model.dart';
-import 'package:citizen_app/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../constants/app_colors.dart';
+import '../../../../../../constants/app_colors.dart';
+import '../../../../../../utils/utils.dart';
 import '../../../shared_widgets/default_text.dart';
 
 

@@ -1,5 +1,3 @@
-
-
 import 'package:citizen_app/core/entity/capture_entity.dart';
 
 class CaptureModel extends CaptureEntity {
@@ -15,6 +13,9 @@ class CaptureModel extends CaptureEntity {
     required super.createdAt,
     required super.campaignId,
     required super.username,
+    required super.favorites,
+    super.verificationPoints,
+    super.verified
   });
 
   factory CaptureModel.fromJson(Map<String, dynamic> json) {
@@ -29,10 +30,15 @@ class CaptureModel extends CaptureEntity {
         animalActivity: json['animal_activity'],
         animalLocationFeature: json['animal_location_type'],
         createdAt: json['created_at'],
-        campaignId: json['campaign_id']);
+        campaignId: json['campaign_id'],
+        verificationPoints: json['verification_points'],
+        verified: json['verified'],
+        favorites: json['favorites'] == null
+            ? []
+            : List<String>.from(json['favorites'].map((x) => x.toString()).toList()));
   }
 
-  Map<String,dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     return {
       'id': id,
       'user_id': userId,
@@ -41,11 +47,11 @@ class CaptureModel extends CaptureEntity {
       'username': username,
       'latitude': latitude,
       'longitude': longitude,
+      'favorites': [],
       'animal_activity': animalActivity,
-      'animal_location_type': animalLocationFeature,
-      'createdAt': createdAt,
+      'verification_points': 0,
+      'verified': false,
       'campaign_id': campaignId,
     };
   }
-
 }

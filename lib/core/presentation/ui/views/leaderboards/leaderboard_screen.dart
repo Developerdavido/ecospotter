@@ -1,20 +1,57 @@
+import 'package:citizen_app/constants/app_strings.dart';
 import 'package:citizen_app/core/presentation/ui/views/leaderboards/leaderboards_widget/leaderboard_ranking_widget.dart';
 import 'package:citizen_app/core/presentation/ui/views/leaderboards/leaderboards_widget/leaderboard_top_widget.dart';
+import 'package:citizen_app/core/view_models/leaderboard_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-
-import '../../../../constants/app_colors.dart';
+import 'package:provider/provider.dart';
+import '../../../../../constants/app_colors.dart';
+import '../../../../view_models/campaign_view_model.dart';
+import '../../shared_widgets/custom_button.dart';
+import '../../shared_widgets/custom_shimmer.dart';
 import '../../shared_widgets/default_back_button.dart';
 import '../../shared_widgets/default_text.dart';
 
-class LeaderboardScreen extends StatelessWidget {
+class LeaderboardScreen extends StatefulWidget {
   const LeaderboardScreen({super.key});
 
   @override
+  State<LeaderboardScreen> createState() => _LeaderboardScreenState();
+}
+
+class _LeaderboardScreenState extends State<LeaderboardScreen> {
+
+  ScrollController scrollController = ScrollController();
+  LeaderboardProvider? leaderboardVm;
+  @override
+  void initState() {
+    // TODO: implement initState
+    leaderboardVm = context.read<LeaderboardProvider>();
+    scrollController.addListener(_scrollFunction);
+    leaderboardVm?.getAllLeaderboards();
+    super.initState();
+  }
+
+  void _scrollFunction(){
+    if(scrollController.position.maxScrollExtent - scrollController.position.pixels <= 150.h){
+      leaderboardVm?.getAllLeaderboards();
+    }
+  }
+
+  @override
+  void dispose() {
+    scrollController.removeListener(_scrollFunction);
+    super.dispose();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
+    leaderboardVm = context.watch<LeaderboardProvider>();
     return Scaffold(
       backgroundColor: AppColors.mainPrimaryColor,
       body: CustomScrollView(
@@ -59,10 +96,10 @@ class LeaderboardScreen extends StatelessWidget {
                   Positioned(
                       bottom: 18.h,
                       left: 0.06.sw,
-                      child: const LeaderBoardTopWidget(
+                      child: LeaderBoardTopWidget(
                         position: 2,
-                        username: "kong32",
-                        points: 223,
+                        username: leaderboardVm!.leaderboards[1].username,
+                        points: leaderboardVm!.leaderboards[1].points,
                       ).animate()
                           .slide(
                         begin: const Offset(-0.4, 0),
@@ -76,8 +113,8 @@ class LeaderboardScreen extends StatelessWidget {
                       right: 0.06.sw,
                       child: LeaderBoardTopWidget(
                         position: 3,
-                        username: "xims22",
-                        points: 32,
+                        username: leaderboardVm!.leaderboards[2].username,
+                        points: leaderboardVm!.leaderboards[2].points,
                       ).animate()
                           .slide(
                         begin: const Offset(0.4, 0),
@@ -92,8 +129,8 @@ class LeaderboardScreen extends StatelessWidget {
                       right: 0,
                       child: LeaderBoardTopWidget(
                         position: 1,
-                        username: "vada24",
-                        points: 1231,
+                        username: leaderboardVm!.leaderboards[0].username,
+                        points: leaderboardVm!.leaderboards[0].points,
                       ).animate()
                           .slide(
                         begin: const Offset(0, -0.4),
@@ -107,27 +144,85 @@ class LeaderboardScreen extends StatelessWidget {
             ),
           ),
           SliverGap(30.h),
-          SliverList.builder(
-            itemCount: 20,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.h),
-                child: LeaderboardRanking(
-                  username: "vada24",
-                  imageUrl: null,
-                  points: 1231,
-                  position: "${index + 1}",
+          ListenableBuilder(
+            listenable: leaderboardVm!,
+            builder: (context, child) {
+              if (leaderboardVm!.loadingError != null && leaderboardVm!.leaderboards.isEmpty) {
+                return SliverToBoxAdapter(
+                  child: Center(
+                    child: Column(
+                      children: [
+                        DefaultText(
+                          data: leaderboardVm!.loadingError!,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18.sp,
+                          textColor: AppColors.white,
+                          letterSpacing: -0.42,
+                          lineHeight: 1.2,
+                          textAlign: TextAlign.center,
+                        ),
+                        DefaultButton(
+                            btnColor: Colors.transparent,
+                            btnTextColor: AppColors.white,
+                            onBtnTap: () {
+                              leaderboardVm?.onRefresh();
+                            },
+                            btnText: AppStrings.retry),
+                      ],
+                    ),
+                  ),
+                );
+              }
+              return RefreshIndicator.adaptive(
+                onRefresh: leaderboardVm!.onRefresh(),
+                child: SliverList.builder(
+                  itemCount: leaderboardVm!.loadingLeaderboards ? 8 :leaderboardVm!.leaderboards.length + 1,
+                  itemBuilder: (BuildContext context, int index) {
+                    if (index == leaderboardVm?.leaderboards.length) {
+                      if (leaderboardVm!.loadingLeaderboards) {
+                        return const CustomShimmerWidget(
+                            type: ShimmerWidgetType.leaderboard);
+                      }
+                      if (!leaderboardVm!.hasMore) {
+                        return Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: DefaultText(
+                              data: "No more users to show for this leaderboard",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18.sp,
+                              textColor: AppColors.white,
+                              letterSpacing: -0.42,
+                              lineHeight: 1.2,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    }
+                    final leaderboard = leaderboardVm?.leaderboards[index];
+                    return Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.h),
+                      child: LeaderboardRanking(
+                        username: leaderboard!.username,
+                        imageUrl: leaderboard.avatar,
+                        points: leaderboard.points,
+                        position: "${index + 1}",
+                      ),
+                    )
+                        .animate()
+                        .slide(
+                          begin: const Offset(0, 0.3),
+                          end: const Offset(0, 0), // End at center
+                          duration: 600.ms + index.ms,
+                          curve: Curves.easeOutBack,
+                        )
+                        .fade(begin: 0, end: 1, duration: 600.ms);
+                  },
                 ),
-              )
-                  .animate()
-                  .slide(
-                    begin: const Offset(0, 0.3),
-                    end: const Offset(0, 0), // End at center
-                    duration: 600.ms + index.ms,
-                    curve: Curves.easeOutBack,
-                  )
-                  .fade(begin: 0, end: 1, duration: 600.ms);
-            },
+              );
+            }
           ),
           SliverGap(0.1.sh)
         ],

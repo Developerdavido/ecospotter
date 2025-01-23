@@ -7,10 +7,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../../config/services/local_storage_service.dart';
-import '../../../../constants/app_colors.dart';
-import '../../../../constants/app_strings.dart';
-import '../../../../constants/media.dart';
+import '../../../../../config/services/local_storage_service.dart';
+import '../../../../../constants/app_colors.dart';
+import '../../../../../constants/app_strings.dart';
+import '../../../../../constants/media.dart';
 import '../../shared_widgets/default_text.dart';
 import '../auth/views/login_screen.dart';
 
@@ -31,9 +31,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _handleLogin() async {
-    //bool userPresent = await locator<AuthService>().doesUserExist();
     _timer = Timer(const Duration(seconds: 2), () {
-      if (!CacheHelper.instance.isFirstTimer) {
+      if (CacheHelper.instance.isFirstTimer == false) {
         Get.offAll(() => const LoginScreen());
       } else {
         Get.offAll(() => const WelcomeScreen());

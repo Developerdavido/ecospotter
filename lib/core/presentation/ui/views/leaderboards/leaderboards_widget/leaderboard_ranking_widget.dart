@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-
-import '../../../../../constants/app_colors.dart';
-import '../../../../../constants/media.dart';
+import '../../../../../../constants/app_colors.dart';
+import '../../../../../../constants/media.dart';
 import '../../../shared_widgets/default_text.dart';
 
 

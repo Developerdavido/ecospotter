@@ -4,7 +4,7 @@ import 'package:citizen_app/core/presentation/ui/views/leaderboards/leaderboard_
 import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
 import '../../constants/media.dart';
-import '../../presentation/ui/shared_widgets/nav_item.dart';
+import '../../core/presentation/ui/shared_widgets/nav_item.dart';
 
 class NavService {
 

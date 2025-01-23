@@ -77,4 +77,6 @@ abstract class AppStrings {
 
   static var logout = "Logout";
 
+  static var retry = "Retry";
+
 }

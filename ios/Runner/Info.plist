@@ -28,6 +28,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSPhotoLibraryUsageDescription</>
+	<string> Gallery is is needed to be able to select photos of species and profile pictures</string>
+	<key>NSCameraUsageDescription</>
+    <string> Camera is needed to be able to capture photos of species and profile pictures</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
