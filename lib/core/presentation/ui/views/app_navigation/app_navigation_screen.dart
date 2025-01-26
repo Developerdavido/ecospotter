@@ -5,8 +5,6 @@ import '../../../../../config/services/navigation_service.dart';
 import '../../../../../constants/app_colors.dart';
 import '../../shared_widgets/bottom_nav.dart';
 
-
-
 class AppNavigation extends StatefulWidget {
   const AppNavigation({super.key});
 
@@ -15,7 +13,6 @@ class AppNavigation extends StatefulWidget {
 }
 
 class _AppNavigationState extends State<AppNavigation> {
-
   int currentIndex = 0;
 
   changeTheCurrentIndex(int index) {
@@ -26,19 +23,25 @@ class _AppNavigationState extends State<AppNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.primaryColor,
-      body: Stack(
-        children: [
-          NavService.selectedScreen(currentIndex)!,
-          Positioned(
-              right: 0,
-              left: 0,
-              bottom: 0,
-              child: BottomNav(currentIndex: currentIndex, getCurrentIndex: (index) {
-                changeTheCurrentIndex(index);
-              }).animate().fade().scale(delay: 500.ms,))
-        ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.primaryColor,
+        body: Stack(
+          children: [
+            NavService.selectedScreen(currentIndex)!,
+            Positioned(
+                right: 0,
+                left: 0,
+                bottom: 0,
+                child: BottomNav(
+                        currentIndex: currentIndex,
+                        getCurrentIndex: (index) {
+                          changeTheCurrentIndex(index);
+                        }).animate().fade().scale(
+                      delay: 500.ms,
+                    ))
+          ],
+        ),
       ),
     );
   }

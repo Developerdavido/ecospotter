@@ -1,5 +1,6 @@
 import 'package:citizen_app/constants/app_strings.dart';
 import 'package:citizen_app/core/presentation/ui/views/leaderboards/leaderboards_widget/leaderboard_ranking_widget.dart';
+import 'package:citizen_app/core/presentation/ui/views/leaderboards/leaderboards_widget/leaderboard_top_three_positions.dart';
 import 'package:citizen_app/core/presentation/ui/views/leaderboards/leaderboards_widget/leaderboard_top_widget.dart';
 import 'package:citizen_app/core/view_models/leaderboard_provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,7 +25,6 @@ class LeaderboardScreen extends StatefulWidget {
 }
 
 class _LeaderboardScreenState extends State<LeaderboardScreen> {
-
   ScrollController scrollController = ScrollController();
   LeaderboardProvider? leaderboardVm;
   @override
@@ -36,8 +36,9 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
     super.initState();
   }
 
-  void _scrollFunction(){
-    if(scrollController.position.maxScrollExtent - scrollController.position.pixels <= 150.h){
+  void _scrollFunction() {
+    if (scrollController.position.maxScrollExtent - scrollController.position.pixels <=
+        150.h) {
       leaderboardVm?.getAllLeaderboards();
     }
   }
@@ -47,7 +48,6 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
     scrollController.removeListener(_scrollFunction);
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -85,110 +85,30 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                 )
                 .fade(begin: 0, end: 1, duration: 600.ms),
           ),
+          SliverGap(12.h),
           SliverToBoxAdapter(
-            child: Container(
-              height: 0.45.sh,
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-              width: 1.sw,
-              decoration: const BoxDecoration(color: Colors.transparent),
-              child: Stack(
-                children: [
-                  Positioned(
-                      bottom: 18.h,
-                      left: 0.06.sw,
-                      child: LeaderBoardTopWidget(
-                        position: 2,
-                        username: leaderboardVm!.leaderboards[1].username,
-                        points: leaderboardVm!.leaderboards[1].points,
-                      ).animate()
-                          .slide(
-                        begin: const Offset(-0.4, 0),
-                        end: const Offset(0, 0), // End at center
-                        duration: 600.ms,
-                        curve: Curves.easeOutBack,
-                      )
-                          .fade(begin: 0, end: 1, duration: 600.ms),),
-                  Positioned(
-                      bottom: 18.h,
-                      right: 0.06.sw,
-                      child: LeaderBoardTopWidget(
-                        position: 3,
-                        username: leaderboardVm!.leaderboards[2].username,
-                        points: leaderboardVm!.leaderboards[2].points,
-                      ).animate()
-                          .slide(
-                        begin: const Offset(0.4, 0),
-                        end: const Offset(0, 0), // End at center
-                        duration: 600.ms,
-                        curve: Curves.easeOutBack,
-                      )
-                          .fade(begin: 0, end: 1, duration: 600.ms),),
-                  Positioned(
-                      top: 24.h,
-                      left: 0,
-                      right: 0,
-                      child: LeaderBoardTopWidget(
-                        position: 1,
-                        username: leaderboardVm!.leaderboards[0].username,
-                        points: leaderboardVm!.leaderboards[0].points,
-                      ).animate()
-                          .slide(
-                        begin: const Offset(0, -0.4),
-                        end: const Offset(0, 0), // End at center
-                        duration: 600.ms,
-                        curve: Curves.easeOutBack,
-                      )
-                          .fade(begin: 0, end: 1, duration: 600.ms),),
-                ],
-              ),
-            ),
-          ),
+              child: leaderboardVm!.leaderboards.length < 3
+                  ? const SizedBox.shrink()
+                  : LeaderTopThreePositions(
+                      leaderboards: leaderboardVm!.leaderboards,
+                    )),
           SliverGap(30.h),
-          ListenableBuilder(
-            listenable: leaderboardVm!,
-            builder: (context, child) {
-              if (leaderboardVm!.loadingError != null && leaderboardVm!.leaderboards.isEmpty) {
-                return SliverToBoxAdapter(
-                  child: Center(
-                    child: Column(
-                      children: [
-                        DefaultText(
-                          data: leaderboardVm!.loadingError!,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18.sp,
-                          textColor: AppColors.white,
-                          letterSpacing: -0.42,
-                          lineHeight: 1.2,
-                          textAlign: TextAlign.center,
-                        ),
-                        DefaultButton(
-                            btnColor: Colors.transparent,
-                            btnTextColor: AppColors.white,
-                            onBtnTap: () {
-                              leaderboardVm?.onRefresh();
-                            },
-                            btnText: AppStrings.retry),
-                      ],
-                    ),
-                  ),
-                );
-              }
-              return RefreshIndicator.adaptive(
-                onRefresh: leaderboardVm!.onRefresh(),
-                child: SliverList.builder(
-                  itemCount: leaderboardVm!.loadingLeaderboards ? 8 :leaderboardVm!.leaderboards.length + 1,
-                  itemBuilder: (BuildContext context, int index) {
-                    if (index == leaderboardVm?.leaderboards.length) {
-                      if (leaderboardVm!.loadingLeaderboards) {
-                        return const CustomShimmerWidget(
-                            type: ShimmerWidgetType.leaderboard);
-                      }
-                      if (!leaderboardVm!.hasMore) {
-                        return Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: DefaultText(
-                              data: "No more users to show for this leaderboard",
+          SliverFillRemaining(
+            child: leaderboardVm!.loadingLeaderboards
+                ? ListView(
+                    children: List.generate(
+                        6,
+                        (index) => const CustomShimmerWidget(
+                            type: ShimmerWidgetType.leaderboard)),
+                  )
+                : leaderboardVm!.loadingError != null ||
+                        leaderboardVm!.leaderboards.isEmpty
+                    ? Center(
+                        child: Column(
+                          children: [
+                            DefaultText(
+                              data: leaderboardVm?.loadingError ??
+                                  "No users on the leaderboard yet.",
                               fontWeight: FontWeight.w500,
                               fontSize: 18.sp,
                               textColor: AppColors.white,
@@ -196,33 +116,72 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                               lineHeight: 1.2,
                               textAlign: TextAlign.center,
                             ),
-                          ),
-                        );
-                      }
-                      return const SizedBox.shrink();
-                    }
-                    final leaderboard = leaderboardVm?.leaderboards[index];
-                    return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.h),
-                      child: LeaderboardRanking(
-                        username: leaderboard!.username,
-                        imageUrl: leaderboard.avatar,
-                        points: leaderboard.points,
-                        position: "${index + 1}",
+                            DefaultButton(
+                                btnColor: Colors.transparent,
+                                btnTextColor: AppColors.white,
+                                onBtnTap: () {
+                                  leaderboardVm?.onRefresh();
+                                },
+                                btnText: AppStrings.retry),
+                          ],
+                        ),
+                      )
+                    : RefreshIndicator.adaptive(
+                        onRefresh: () => leaderboardVm!.onRefresh(),
+                        child: ListView.builder(
+                          itemCount: leaderboardVm!.leaderboards.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            if (index == leaderboardVm?.leaderboards.length) {
+                              if (leaderboardVm!.loadingLeaderboards) {
+                                return SizedBox(
+                                  height: 20.w,
+                                  width: 20.w,
+                                  child: const CircularProgressIndicator(
+                                    color: AppColors.lime,
+                                    strokeWidth: 0.8,
+                                  ),
+                                );
+                              }
+                              if (!leaderboardVm!.hasMore) {
+                                return Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: DefaultText(
+                                      data: "No more users to show for this leaderboard",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18.sp,
+                                      textColor: AppColors.white,
+                                      letterSpacing: -0.42,
+                                      lineHeight: 1.2,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                );
+                              }
+                              return const SizedBox.shrink();
+                            }
+                            final leaderboard = leaderboardVm?.leaderboards[index];
+                            return Padding(
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.h),
+                              child: LeaderboardRanking(
+                                username: leaderboard!.username,
+                                imageUrl: leaderboard.avatar,
+                                points: leaderboard.points,
+                                position: "${index + 1}",
+                              ),
+                            )
+                                .animate()
+                                .slide(
+                                  begin: const Offset(0, 0.3),
+                                  end: const Offset(0, 0), // End at center
+                                  duration: 600.ms + index.ms,
+                                  curve: Curves.easeOutBack,
+                                )
+                                .fade(begin: 0, end: 1, duration: 600.ms);
+                          },
+                        ),
                       ),
-                    )
-                        .animate()
-                        .slide(
-                          begin: const Offset(0, 0.3),
-                          end: const Offset(0, 0), // End at center
-                          duration: 600.ms + index.ms,
-                          curve: Curves.easeOutBack,
-                        )
-                        .fade(begin: 0, end: 1, duration: 600.ms);
-                  },
-                ),
-              );
-            }
           ),
           SliverGap(0.1.sh)
         ],

@@ -10,7 +10,7 @@ class CaptureEntity {
   final num longitude;
   final List<String> favorites;
   final String animalActivity;
-  final String animalLocationFeature;
+  final String? animalLocationFeature;
   final String campaignId;
   final DateTime createdAt;
   final bool? verified;
@@ -26,7 +26,7 @@ class CaptureEntity {
     required this.username,
     required this.longitude,
     required this.animalActivity,
-    required this.animalLocationFeature,
+    this.animalLocationFeature,
     required this.createdAt,
     required this.campaignId,
     this.verified,

@@ -20,26 +20,28 @@ class ImageService {
   Future<CroppedFile?> cropPickedImage({String? toolbarTitle, File? imageFile}) async {
     CroppedFile? croppedFile = await ImageCropper().cropImage(
       sourcePath: imageFile!.path,
+      aspectRatioPresets: [
+        CropAspectRatioPreset.original,
+        CropAspectRatioPreset.square,
+        CropAspectRatioPreset.ratio5x4,
+        CropAspectRatioPreset.ratio16x9,
+      ],
       uiSettings: [
         AndroidUiSettings(
           toolbarTitle: toolbarTitle,
           toolbarColor: AppColors.primaryColor,
           toolbarWidgetColor: AppColors.lime,
-          aspectRatioPresets: [
-            CropAspectRatioPreset.original,
-            CropAspectRatioPreset.square,
-            CropAspectRatioPreset.ratio5x4,
-            CropAspectRatioPreset.ratio16x9,
-          ],
+          initAspectRatio: CropAspectRatioPreset.original
         ),
         IOSUiSettings(
           title: toolbarTitle,
-          aspectRatioPresets: [
-            CropAspectRatioPreset.original,
-            CropAspectRatioPreset.square,
-            CropAspectRatioPreset.ratio5x4,
-            CropAspectRatioPreset.ratio16x9,
-          ],
+
+          // aspectRatioPresets: [
+          //   CropAspectRatioPreset.original,
+          //   CropAspectRatioPreset.square,
+          //   CropAspectRatioPreset.ratio5x4,
+          //   CropAspectRatioPreset.ratio16x9,
+          // ],
         ),
       ],
     );

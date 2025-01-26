@@ -10,7 +10,8 @@ class LeaderboardDataSource {
   Future<List<Map<String, dynamic>>> insertUser(Map<String, dynamic> data) async {
     return await SupabaseService.supabase
         .from(ApiConstants.leaderboard)
-        .insert(data);
+        .insert(data)
+        .select();
   }
   //load all leaderboards
   Future<List<Map<String, dynamic>>> loadAllLeaderboards({required int currentPage, required int limit}) async {
@@ -21,7 +22,7 @@ class LeaderboardDataSource {
         .order('created_at', ascending: false);
   }
   //update leaderboard data for user
-  Future<List<Map<String, dynamic>>> updateUser(String userId, Map<String, dynamic> data) async {
+  Future<List<Map<String, dynamic>>> updateUserPointsOnLeaderboard(String userId, Map<String, dynamic> data) async {
     return await SupabaseService.supabase
         .from(ApiConstants.leaderboard)
         .update(data).eq("id", userId);

@@ -122,6 +122,7 @@ class _CurrentImageCampaignState extends State<CurrentImageCampaign> {
                               btnColor: AppColors.green5C,
                               btnTextColor: AppColors.mainBlack,
                               onBtnTap: () {
+
                                 vm.uploadCapture(authVm.userModel!.id,
                                     authVm.userModel!.username!);
                                },

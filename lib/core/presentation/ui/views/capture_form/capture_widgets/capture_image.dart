@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,8 +27,8 @@ class CaptureImage extends StatelessWidget {
                 size: 56,
                 color: AppColors.grey97,
               )
-            : Image.asset(
-                imagePath!,
+            : Image.file(
+                File(imagePath!),
                 fit: BoxFit.cover,
               ),
       ),

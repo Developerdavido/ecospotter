@@ -39,6 +39,13 @@ android {
         jvmTarget = '1.8'
     }
 
+//    packagingOptions {
+//        exclude 'META-INF/kotlin-stdlib-common.kotlin_module'
+//        exclude 'META-INF/kotlin-stdlib.kotlin_module'
+//        exclude 'META-INF/kotlin-stdlib-jdk7.kotlin_module'
+//        exclude 'META-INF/kotlin-stdlib-jdk8.kotlin_module'
+//    }
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }

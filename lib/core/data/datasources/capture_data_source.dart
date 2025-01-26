@@ -18,7 +18,7 @@ class CaptureDataSource {
         .select()
         .eq('campaign_id', campaignId)
         .range(currentPage * limit, (currentPage + 1) * limit - 1)
-        .order('created_at', ascending: false);
+        .order('captured_at', ascending: false);
   }
 
   //save the captured image
@@ -32,15 +32,15 @@ class CaptureDataSource {
     final fileExt = path.extension(imageFile.path);
     final fileName = '${const Uuid().v4()}$fileExt';
     final String fullPath = await SupabaseService.supabase.storage.from('campaigns').upload(
-      'conservation/$userId/$fileName',
+      'conservation/$userId$fileName',
       imageFile,
       fileOptions: const FileOptions(cacheControl: '3600', upsert: false),
     );
 
     //fetch the public url
     String userImageResponse = await SupabaseService.supabase.storage
-        .from('avatars')
-        .getPublicUrl('user_images/$userId/$fileName');
+        .from('campaigns')
+        .getPublicUrl('conservation/$userId$fileName');
     return userImageResponse;
   }
 

@@ -156,7 +156,7 @@ class CampaignDetails extends StatelessWidget {
                             btnColor: AppColors.green5C,
                             btnTextColor: AppColors.mainBlack,
                             onBtnTap: (){
-                              Get.to(()=> const CaptureForm());
+                              Get.to(()=> const CaptureForm(isHome: false,));
                             }, btnText: AppStrings.participate),
                         Gap(10.h),
                         DefaultButton(

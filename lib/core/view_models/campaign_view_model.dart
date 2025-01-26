@@ -36,12 +36,13 @@ class CampaignProvider extends BaseProvider {
     }
   }
 
-  onRefresh(){
+  Future<void> onRefresh(){
     campaigns.clear();
     hasMore = true;
     currentPage = 0;
     loadingError = null;
-    getAllCampaigns();
+   return  getAllCampaigns();
+
   }
 
 

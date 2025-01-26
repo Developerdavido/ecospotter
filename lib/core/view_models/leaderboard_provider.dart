@@ -38,12 +38,12 @@ class LeaderboardProvider extends BaseProvider {
     }
   }
 
-  onRefresh(){
+  Future<void> onRefresh(){
     leaderboards.clear();
     hasMore = true;
     currentPage = 0;
     loadingError = null;
-    getAllLeaderboards();
+    return getAllLeaderboards();
   }
 
 

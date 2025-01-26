@@ -49,6 +49,7 @@ class CustomShimmerWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.r),
           ),
         ),
+        Gap(8.h),
         Column(
           children: [
             Row(
@@ -105,7 +106,6 @@ class CustomShimmerWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.shimmerBaseColor,
             shape: BoxShape.circle,
-            borderRadius: BorderRadius.circular(8.r),
           ),
         ),
         Gap(12.h),
@@ -140,6 +140,7 @@ class CustomShimmerWidget extends StatelessWidget {
   Widget _buildPostsShimmer(context) {
     return Container(
       width: 0.9.sw,
+      height: 0.25.sh,
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       color: Colors.transparent,
       child: Column(

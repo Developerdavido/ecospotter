@@ -52,105 +52,73 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    campaignVm = context.watch<CampaignProvider>();
     return Scaffold(
       backgroundColor: AppColors.mainPrimaryColor,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            floating: false,
-            pinned: true,
-            backgroundColor: AppColors.mainPrimaryColor,
-            elevation: 0,
-            surfaceTintColor: Colors.transparent,
-            leading: Image.asset(
-              Media.appIcon,
-              height: 40.h,
-              width: 0.6.sw,
-            ),
-            actions: [
-              Row(
-                children: [
-                  DefaultBackButton(
-                    icon: CupertinoIcons.person,
-                    btnColor: AppColors.mainPrimaryColor,
-                    onBackTap: () {
-                      Get.to(() => const UserProfileScreen());
-                    },
-                  ),
-                  SizedBox(
-                    width: 8.w,
-                  ),
-                  // const DefaultBackButton(
-                  //   icon: CupertinoIcons.bell,
-                  // ),
-                  SizedBox(
-                    width: 8.w,
-                  ),
-                ],
-              )
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              DefaultBackButton(
+                icon: CupertinoIcons.person,
+                btnColor: AppColors.mainPrimaryColor,
+                onBackTap: () {
+                  Get.to(() => const UserProfileScreen());
+                },
+              ),
+              SizedBox(
+                width: 8.w,
+              ),
+              // const DefaultBackButton(
+              //   icon: CupertinoIcons.bell,
+              // ),
+              SizedBox(
+                width: 8.w,
+              ),
             ],
           ),
-          SliverGap(12.h),
-          // SliverToBoxAdapter(
-          //   child:  Padding(
-          //     padding: EdgeInsets.symmetric(horizontal: 16.0.w),
-          //     child: DefaultText(
-          //       data: "Welcome \nanon12345",
-          //       fontFamily: "Geist",
-          //       fontWeight: FontWeight.w600,
-          //       textColor: AppColors.white,
-          //       fontSize: 48.sp,
-          //       letterSpacing: -0.41,
-          //       lineHeight: 1.33,
-          //       textAlign: TextAlign.left,
-          //     ).animate(delay: 100.ms)
-          //         .slide(
-          //       begin: const Offset(0.3, 0),
-          //       end: const Offset(0, 0), // End at center
-          //       duration: 600.ms,
-          //       curve: Curves.easeOutBack,
-          //     )
-          //         .fade(begin: 0, end: 1, duration: 600.ms),
-          //   ),
-          // ),
-          //SliverGap(0.05.sh),
-          ListenableBuilder(
-            builder: (context, child) {
-              if (campaignVm!.loadingError != null && campaignVm!.campaigns.isEmpty) {
-                return SliverToBoxAdapter(
-                  child: Center(
-                    child: Column(
-                      children: [
-                        DefaultText(
-                          data: campaignVm!.loadingError!,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18.sp,
-                          textColor: AppColors.white,
-                          letterSpacing: -0.42,
-                          lineHeight: 1.2,
-                          textAlign: TextAlign.center,
-                        ),
-                        DefaultButton(
-                            btnColor: Colors.transparent,
-                            btnTextColor: AppColors.white,
-                            onBtnTap: () {
-                              campaignVm?.onRefresh();
-                            },
-                            btnText: AppStrings.retry),
-                      ],
-                    ),
+          Gap(12.h),
+          Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: campaignVm!.loadingError != null || campaignVm!.campaigns.isEmpty
+                    ? Center(
+                  child: Column(
+                    children: [
+                      DefaultText(
+                        data: campaignVm?.loadingError ?? "No Campaigns currently available",
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18.sp,
+                        textColor: AppColors.white,
+                        letterSpacing: -0.42,
+                        lineHeight: 1.2,
+                        textAlign: TextAlign.center,
+                      ),
+                      DefaultButton(
+                          btnColor: Colors.transparent,
+                          btnTextColor: AppColors.white,
+                          onBtnTap: () {
+                            campaignVm?.onRefresh();
+                          },
+                          btnText: AppStrings.retry),
+                    ],
                   ),
-                );
-              }
-              return RefreshIndicator.adaptive(
-                onRefresh: campaignVm?.onRefresh(),
-                child: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
+                )
+                    : RefreshIndicator.adaptive(
+                  onRefresh: () => campaignVm!.onRefresh(),
+                  child: ListView.builder(
+                    itemBuilder: (BuildContext context, int index) {
                       if (index == campaignVm?.campaigns.length) {
                         if (campaignVm!.loadingCampaigns) {
-                          return const CustomShimmerWidget(
-                              type: ShimmerWidgetType.campaigns);
+                          return SizedBox(
+                            height: 20.w,
+                            width: 20.w,
+                            child: const CircularProgressIndicator(
+                              color: AppColors.lime,
+                              strokeWidth: 0.8,
+                            ),
+                          );
                         }
                         if (!campaignVm!.hasMore) {
                           return Center(
@@ -180,23 +148,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                           .animate()
                           .slide(
-                            begin: const Offset(0, 0.3),
-                            end: const Offset(0, 0), // End at center
-                            duration: 600.ms + index.ms,
-                            curve: Curves.easeOutBack,
-                          )
+                        begin: const Offset(0, 0.3),
+                        end: const Offset(0, 0), // End at center
+                        duration: 600.ms + index.ms,
+                        curve: Curves.easeOutBack,
+                      )
                           .fade(begin: 0, end: 1, duration: 600.ms);
                     },
-                    childCount: campaignVm!.loadingCampaigns ? 4 :campaignVm!.campaigns.length + 1,
+                    itemCount: campaignVm!.campaigns.length,
                   ),
                 ),
-              );
-            },
-            listenable: campaignVm!,
-          ),
-          SliverGap(70.h),
+              )),
+          Gap(70.h),
         ],
-      ),
+      )
     );
   }
 }

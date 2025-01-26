@@ -28,7 +28,7 @@ class CampaignWidget extends StatelessWidget {
           children: [
             CachedNetworkImage(
               imageUrl: model?.imageUrl ?? "",
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
               errorWidget: (context, dto, widget) {
                 return Container(
                     height: 257.h,
@@ -55,7 +55,7 @@ class CampaignWidget extends StatelessWidget {
                   width: 1.sw,
                   padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
                   decoration: BoxDecoration(
-                    color: AppColors.white.withOpacity(0.1),
+                    color: AppColors.primaryColor.withOpacity(0.4),
                     borderRadius: BorderRadius.only(bottomRight: Radius.circular(8.r), bottomLeft: Radius.circular(8.r))
                   ),
                   child: Row(

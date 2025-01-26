@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:citizen_app/config/services/local_storage_service.dart';
 import 'package:citizen_app/config/services/supabase_service.dart';
 import 'package:citizen_app/core/data/models/auth_model.dart';
@@ -185,12 +187,15 @@ class AuthProvider extends BaseProvider {
       List<Map<String, dynamic>> userData = await auth.saveUserToDb(model.toMap());
       if (userData.isNotEmpty) {
         userModel = UserModel.fromJson(userData[0]);
+        log(userModel!.username!);
+        log(userModel!.avatarUrl!);
+        log(userModel!.displayName!);
         var leaderboardModel = LeaderboardModel(
           avatar: userModel!.avatarUrl,
           points: userModel!.points as int,
           username: userModel!.username,
         );
-        List<Map<String, dynamic>> leaderboards = await leaderboardData.insertUser(leaderboardModel.toMap());
+        await leaderboardData.insertUser(leaderboardModel.toMap());
         await CacheHelper.instance.cacheModel(CacheHelper.userModelKey, userData[0]);
         Get.offAll(() => const AppNavigation(), transition: Transition.cupertino);
         clearUserInfo();

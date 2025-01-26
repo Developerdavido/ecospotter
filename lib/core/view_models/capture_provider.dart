@@ -1,5 +1,6 @@
 
 
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:citizen_app/core/data/models/capture_model.dart';
@@ -37,6 +38,7 @@ class CaptureProvider extends BaseProvider {
       loadingCaptures = true;
       List<Map<String, dynamic>> loadedCaptures =
       await captureData.loadAllPostsForCampaigns(campaignId: id, currentPage: currentPage, limit: limit);
+      log(loadedCaptures.length.toString());
       if(loadedCaptures.isEmpty){
         hasMore = false;
       }else {
@@ -52,12 +54,12 @@ class CaptureProvider extends BaseProvider {
     }
   }
 
-  onRefresh(String id){
+  Future<void> onRefresh(String id){
     captures.clear();
     hasMore = true;
     currentPage = 0;
     loadingError = null;
-    getAllCapturesForCampaign(id);
+    return getAllCapturesForCampaign(id);
   }
 
   //upload captureData
@@ -66,12 +68,13 @@ class CaptureProvider extends BaseProvider {
     try {
       var imageResponse = await captureData.uploadImage(imageUrl!, userId);
       if (imageResponse.isNotEmpty) {
+
         // the response for the map will be
         var captureModel = CaptureModel(
             id: "",
             userId: userId,
             specieName: animalName!,
-            imageUrl: imageUrl!,
+            imageUrl: imageResponse,
             latitude: latitude!,
             longitude: longitude!,
             animalActivity: animalActivity!,
@@ -96,6 +99,7 @@ class CaptureProvider extends BaseProvider {
       setUiState(UiState.done);
     } on Exception catch (e) {
       dialog.showSnackBar("Error", e.toString());
+      log(e.toString());
       setUiState(UiState.done);
     }
   }

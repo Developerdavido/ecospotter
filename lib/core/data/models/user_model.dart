@@ -24,6 +24,7 @@ class UserModel extends UserEntity {
       email: json['email'],
       points: json['points'],
       sex: json['sex'],
+      username: json['username'],
       createdAt: DateTime.parse(json['created_at']),
       profession: json['profession'],
       role: json['role'],

@@ -9,7 +9,7 @@ class CaptureModel extends CaptureEntity {
     required super.latitude,
     required super.longitude,
     required super.animalActivity,
-    required super.animalLocationFeature,
+    super.animalLocationFeature,
     required super.createdAt,
     required super.campaignId,
     required super.username,
@@ -21,7 +21,7 @@ class CaptureModel extends CaptureEntity {
   factory CaptureModel.fromJson(Map<String, dynamic> json) {
     return CaptureModel(
         id: json['id'],
-        userId: json['uuid'],
+        userId: json['user_id'],
         username: json['username'],
         specieName: json['species_name'],
         imageUrl: json['image_url'],
@@ -29,7 +29,7 @@ class CaptureModel extends CaptureEntity {
         longitude: json['longitude'],
         animalActivity: json['animal_activity'],
         animalLocationFeature: json['animal_location_type'],
-        createdAt: json['created_at'],
+        createdAt: DateTime.parse(json['captured_at']),
         campaignId: json['campaign_id'],
         verificationPoints: json['verification_points'],
         verified: json['verified'],
@@ -40,7 +40,6 @@ class CaptureModel extends CaptureEntity {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'user_id': userId,
       'species_name': specieName,
       'image_url': imageUrl,
