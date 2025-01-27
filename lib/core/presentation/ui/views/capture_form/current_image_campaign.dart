@@ -1,3 +1,4 @@
+import 'package:citizen_app/config/services/location_service.dart';
 import 'package:citizen_app/core/presentation/ui/views/app_navigation/app_navigation_screen.dart';
 import 'package:citizen_app/core/view_models/auth_provider.dart';
 import 'package:citizen_app/core/view_models/campaign_view_model.dart';
@@ -122,7 +123,9 @@ class _CurrentImageCampaignState extends State<CurrentImageCampaign> {
                               btnColor: AppColors.green5C,
                               btnTextColor: AppColors.mainBlack,
                               onBtnTap: () {
-
+                                //add the position
+                                vm.latitude = locator<LocationService>().position!.latitude;
+                                vm.longitude = locator<LocationService>().position!.longitude;
                                 vm.uploadCapture(authVm.userModel!.id,
                                     authVm.userModel!.username!);
                                },

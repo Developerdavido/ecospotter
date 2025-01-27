@@ -1,5 +1,7 @@
 
 
+import 'dart:developer';
+
 import 'package:citizen_app/core/data/models/ranking_model.dart';
 import 'package:citizen_app/core/view_models/base_provider.dart';
 
@@ -16,11 +18,13 @@ class LeaderboardProvider extends BaseProvider {
   //get all campaigns
   getAllLeaderboards() async {
     //if loading campaigns is true || the data does not have more then return
+    log(loadingLeaderboards.toString());
     if (loadingLeaderboards || !hasMore) return;
     try {
       loadingLeaderboards = true;
       List<Map<String, dynamic>> loadedLeaderboards =
       await leaderboardData.loadAllLeaderboards(currentPage: currentPage, limit: limit);
+      log(loadingLeaderboards.toString());
       if(loadedLeaderboards.isEmpty){
         hasMore = false;
       }else {

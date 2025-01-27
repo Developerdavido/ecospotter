@@ -30,9 +30,15 @@ class AuthDataSource {
       serverClientId: webClientId,
     );
     final googleUser = await googleSignIn.signIn();
+
+    if (googleUser == null) {
+      throw 'No google user credential found';
+    }
+
     final googleAuth = await googleUser!.authentication;
     final accessToken = googleAuth.accessToken;
     final idToken = googleAuth.idToken;
+
 
     //get the user details
     String? name = googleUser.displayName;

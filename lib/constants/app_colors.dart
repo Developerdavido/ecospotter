@@ -39,7 +39,7 @@ abstract class AppColors {
   // static const darkBlack = Color(0xff1A1E24);
 
   //Colors i am likely to choose for the project
-  static const mainPrimaryColor = Color(0xff00150b);
+  static const mainPrimaryColor = Color(0xff210052);
   static const bottomModal = Color(0xff74c69d);
   static const mainBlack = Color(0xff020B07);
   static const lime = Color(0xff07ED6F);

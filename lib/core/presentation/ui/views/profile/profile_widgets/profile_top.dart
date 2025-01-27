@@ -17,7 +17,7 @@ class ProfileTop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const ProfileWidget(image: null, isEdit: false).animate().scale(
+        ProfileWidget(image: avatar, isEdit: false).animate().scale(
       delay: 200.ms,
       duration: 500.ms,
       begin: const Offset(0.8, 0.8),

@@ -1,3 +1,4 @@
+import 'package:citizen_app/core/presentation/ui/views/campaign_posts/campaign_posts_widgets/custom_post_app_bar.dart';
 import 'package:citizen_app/core/view_models/campaign_view_model.dart';
 import 'package:citizen_app/core/view_models/capture_provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -57,28 +58,7 @@ class _CampaignPostsState extends State<CampaignPosts> {
       backgroundColor: AppColors.mainPrimaryColor,
       body: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-              child: DefaultText(
-                data: "${campaignVm!.currentCampaign!.title} \nPosts",
-                fontWeight: FontWeight.w700,
-                fontSize: 24.sp,
-                textColor: AppColors.white,
-                letterSpacing: -0.42,
-                lineHeight: 1.2,
-              )
-                  .animate(delay: 100.ms)
-                  .slide(
-                    begin: const Offset(0.3, 0),
-                    end: const Offset(0, 0), // End at center
-                    duration: 600.ms,
-                    curve: Curves.easeOutBack,
-                  )
-                  .fade(begin: 0, end: 1, duration: 600.ms),
-            ),
-          ),
-          SliverGap(12.h),
+          CustomPostAppBar(model: campaignVm!.currentCampaign,),
           SliverFillRemaining(
             child: captureVm!.loadingCaptures
                 ? ListView(
@@ -116,6 +96,7 @@ class _CampaignPostsState extends State<CampaignPosts> {
                             captureVm!.onRefresh(campaignVm!.currentCampaign!.id),
                         child: ListView.builder(
                           itemCount: captureVm!.captures.length,
+                          physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (BuildContext context, int index) {
                             if (index == captureVm?.captures.length) {
                               if (captureVm!.loadingCaptures) {

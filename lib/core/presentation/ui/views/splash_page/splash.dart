@@ -60,7 +60,8 @@ class _SplashScreenState extends State<SplashScreen> {
               children: [
                 Image.asset(
                   Media.appIcon,
-                  height: 50.h,
+                  height: 130.h,
+                  width: 130.h,
                 )
                     .animate()
                     .slide(

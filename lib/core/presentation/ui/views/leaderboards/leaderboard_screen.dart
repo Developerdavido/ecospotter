@@ -63,11 +63,6 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
             elevation: 0,
             surfaceTintColor: AppColors.mainPrimaryColor,
             centerTitle: true,
-            leading: DefaultBackButton(
-              iconColor: AppColors.white,
-              icon: CupertinoIcons.back,
-              btnColor: AppColors.mainPrimaryColor.withOpacity(0.1),
-            ),
             title: DefaultText(
               data: "Leaderboards",
               fontWeight: FontWeight.w400,
@@ -85,7 +80,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                 )
                 .fade(begin: 0, end: 1, duration: 600.ms),
           ),
-          SliverGap(12.h),
+          if(leaderboardVm!.leaderboards.length >= 3) SliverGap(12.h),
           SliverToBoxAdapter(
               child: leaderboardVm!.leaderboards.length < 3
                   ? const SizedBox.shrink()

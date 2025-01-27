@@ -1,6 +1,7 @@
 import 'package:citizen_app/core/presentation/ui/views/capture_form/capture_form.dart';
 import 'package:citizen_app/core/presentation/ui/views/home/home_screen.dart';
 import 'package:citizen_app/core/presentation/ui/views/leaderboards/leaderboard_screen.dart';
+import 'package:citizen_app/core/presentation/ui/views/profile/user_info_screen.dart';
 import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
 import '../../constants/media.dart';
@@ -24,6 +25,10 @@ class NavService {
           navLabel: "Rankings",
           navLabelColor: isSelected ? AppColors.green5C : AppColors.unselectedColor),
       // NavItem(
+      //     navData: isSelected ? Icons.person_rounded : Icons.person_outline_rounded,
+      //     navLabel: "Profile",
+      //     navLabelColor: isSelected ? AppColors.green5C : AppColors.unselectedColor),
+      // NavItem(
       //     navData: isSelected ? Media.eventsFilled : Media.eventsUnfilled,
       //     navLabel: "Leaderboard",
       //     navLabelColor: isSelected ? AppColors.white : AppColors.unselectedColor),
@@ -36,6 +41,7 @@ class NavService {
       const HomeScreen(),
       const CaptureForm(),
       const LeaderboardScreen(),
+      //const UserProfileScreen()
     ];
     if (screens[currentIndex] != null) {
       return screens[currentIndex];

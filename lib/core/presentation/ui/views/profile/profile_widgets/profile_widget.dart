@@ -16,7 +16,7 @@ class ProfileWidget extends StatelessWidget {
     return Stack(
       children: [
         GestureDetector(
-          onTap: isEdit! ? onImageTap : null,
+          onTap: isEdit ? onImageTap : null,
           child: CircleAvatar(
               backgroundColor: AppColors.white.withOpacity(0.1),
               radius: 65.r,

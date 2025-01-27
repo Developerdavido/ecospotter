@@ -46,6 +46,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     final _focusNode = FocusNode();
     final border = OutlineInputBorder(
+      borderSide: const BorderSide(color: Colors.transparent),
       borderRadius: BorderRadius.circular(32.r),
     );
 
@@ -76,17 +77,11 @@ class CustomTextField extends StatelessWidget {
         filled: true,
         fillColor: AppColors.white.withOpacity(0.1),
         enabledBorder: border,
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(32.r),
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(32.r),
-        ),
+        focusedBorder: border,
+        disabledBorder: border,
         hintText: hintText,
         labelText: null,
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(32.r),
-        ),
+        errorBorder: border,
         errorStyle: TextStyle(
           fontSize: 14.sp,
           fontFamily: "Geist",

@@ -1,7 +1,9 @@
 import 'package:citizen_app/core/presentation/ui/shared_widgets/custom_shimmer.dart';
 import 'package:citizen_app/core/presentation/ui/views/campaign_details/campaign_details.dart';
 import 'package:citizen_app/core/presentation/ui/views/home/home_widgets/campaign_widget.dart';
+import 'package:citizen_app/core/presentation/ui/views/home/home_widgets/home_app_bar.dart';
 import 'package:citizen_app/core/presentation/ui/views/profile/user_info_screen.dart';
+import 'package:citizen_app/core/view_models/auth_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -28,10 +30,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   ScrollController scrollController = ScrollController();
   CampaignProvider? campaignVm;
+  AuthProvider? authVm;
   @override
   void initState() {
     // TODO: implement initState
     campaignVm = context.read<CampaignProvider>();
+    authVm = context.read<AuthProvider>();
     scrollController.addListener(_scrollFunction);
     campaignVm?.getAllCampaigns();
     super.initState();
@@ -53,41 +57,30 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     campaignVm = context.watch<CampaignProvider>();
+    authVm = context.watch<AuthProvider>();
     return Scaffold(
-      backgroundColor: AppColors.mainPrimaryColor,
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              DefaultBackButton(
-                icon: CupertinoIcons.person,
-                btnColor: AppColors.mainPrimaryColor,
-                onBackTap: () {
-                  Get.to(() => const UserProfileScreen());
-                },
-              ),
-              SizedBox(
-                width: 8.w,
-              ),
-              // const DefaultBackButton(
-              //   icon: CupertinoIcons.bell,
-              // ),
-              SizedBox(
-                width: 8.w,
-              ),
-            ],
-          ),
-          Gap(12.h),
-          Expanded(
+        backgroundColor: AppColors.mainPrimaryColor,
+        body: CustomScrollView(
+          slivers: [
+            HomeAppBar(username: authVm!.userModel!.username),
+            SliverGap(16.h),
+            SliverFillRemaining(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.w),
-                child: campaignVm!.loadingError != null || campaignVm!.campaigns.isEmpty
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: campaignVm!.loadingCampaigns
+                    ? ListView(
+                  children: List.generate(
+                      6,
+                          (index) => const CustomShimmerWidget(
+                          type: ShimmerWidgetType.campaigns)),
+                )
+                    : campaignVm!.loadingError != null || campaignVm!.campaigns.isEmpty
                     ? Center(
                   child: Column(
                     children: [
                       DefaultText(
-                        data: campaignVm?.loadingError ?? "No Campaigns currently available",
+                        data: campaignVm?.loadingError ??
+                            "No Campaigns currently available",
                         fontWeight: FontWeight.w500,
                         fontSize: 18.sp,
                         textColor: AppColors.white,
@@ -108,6 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     : RefreshIndicator.adaptive(
                   onRefresh: () => campaignVm!.onRefresh(),
                   child: ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       if (index == campaignVm?.campaigns.length) {
                         if (campaignVm!.loadingCampaigns) {
@@ -158,10 +152,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: campaignVm!.campaigns.length,
                   ),
                 ),
-              )),
-          Gap(70.h),
-        ],
-      )
-    );
+              ),
+            ),
+            SliverGap(70.h),
+          ],
+        ));
   }
 }
