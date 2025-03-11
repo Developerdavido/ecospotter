@@ -19,4 +19,6 @@ List<SingleChildWidget> providers = [
 void resetAllProviders(BuildContext context) {
   Provider.of<AuthProvider>(context).dispose();
   Provider.of<CampaignProvider>(context).dispose();
+  Provider.of<CaptureProvider>(context).dispose();
+  Provider.of<LeaderboardProvider>(context).dispose();
 }
