@@ -1,0 +1,2 @@
+/Users/dartvada/Documents/GitHub/ecospotter/android/app/.cxx/Debug/w04a182i/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/dartvada/Documents/GitHub/ecospotter/android/app/.cxx/Debug/w04a182i/armeabi-v7a/CMakeFiles/rebuild_cache.dir

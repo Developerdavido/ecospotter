@@ -1,0 +1,1 @@
+/Users/dartvada/Documents/GitHub/ecospotter/build/app/intermediates/cxx/Debug/6g521a6i/obj/arm64-v8a

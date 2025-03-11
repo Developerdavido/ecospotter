@@ -38,8 +38,9 @@ dependencies:
   firebase_core: ^2.24.2
   firebase_auth: ^4.15.3
   google_sign_in: ^6.2.1
-  sign_in_with_apple: ^5.0.0
-  twitter_login: ^4.4.2
+  sign_in_with_apple: ^6.1.4
+  twitter_login:
+    path: /Users/dartvada/ForkedProjects/twitter_login_fork/
   provider: ^6.1.2
   shared_preferences: ^2.2.2
   smooth_page_indicator: ^1.1.0
@@ -59,7 +60,7 @@ dependencies:
   flutter_dotenv: ^5.2.1
   path: ^1.9.0
   uuid: ^4.5.1
-  image_cropper: ^5.0.1
+  image_cropper: ^7.1.0
   geolocator: ^12.0.0
 
 dev_dependencies:
