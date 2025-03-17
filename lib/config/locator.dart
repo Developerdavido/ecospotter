@@ -1,8 +1,10 @@
 
 
+import 'package:citizen_app/config/services/ai_service.dart';
 import 'package:citizen_app/config/services/auth_service.dart';
 import 'package:citizen_app/config/services/campaign_service.dart';
 import 'package:citizen_app/config/services/dialog_service.dart';
+import 'package:citizen_app/config/services/http_service.dart';
 import 'package:citizen_app/config/services/image_service.dart';
 import 'package:citizen_app/config/services/location_service.dart';
 import 'package:citizen_app/config/services/navigation_service.dart';
@@ -15,6 +17,8 @@ import 'package:get_it/get_it.dart';
 final GetIt locator = GetIt.instance;
 
 setupLocator() {
+  locator.registerLazySingleton<HttpService>(() => HttpService());
+  locator.registerLazySingleton<AiService>(() => AiService());
   locator.registerLazySingleton<DialogService>(() => DialogService());
   locator.registerLazySingleton<AuthService>(() => AuthService());
   locator.registerLazySingleton<CampaignService>(() => CampaignService());

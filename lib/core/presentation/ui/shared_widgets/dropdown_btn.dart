@@ -42,7 +42,7 @@ class DropdownBtn extends StatelessWidget {
         locator<DialogService>().showCustomModal(
             context: context,
             isDismissible: false,
-            barrierColor: AppColors.primaryColor.withOpacity(0.1),
+            barrierColor: AppColors.primaryColor.withValues(alpha: 0.1),
             customModal: Container(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
               decoration: BoxDecoration(
