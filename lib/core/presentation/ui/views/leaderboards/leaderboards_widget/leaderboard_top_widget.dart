@@ -26,7 +26,7 @@ class LeaderBoardTopWidget extends StatelessWidget {
           fontWeight: FontWeight.w500,
           fontSize: 16.sp,
           fontFamily: "Orpheus Pro",
-          textColor: AppColors.white,
+          textColor: AppColors.blackOA,
           letterSpacing: -0.42,
           lineHeight: 1.2,
         ),
@@ -64,7 +64,7 @@ class LeaderBoardTopWidget extends StatelessWidget {
               shadows: position == 1
                   ? [
                       const BoxShadow(
-                        color: AppColors.lime,
+                        color: AppColors.white,
                         blurRadius: 16,
                         spreadRadius: 1,
                       )
@@ -76,7 +76,7 @@ class LeaderBoardTopWidget extends StatelessWidget {
           data: "@${username ?? "anon"}",
           fontWeight: FontWeight.w500,
           fontSize: 16.sp,
-          textColor: AppColors.white,
+          textColor: AppColors.blackOA,
           letterSpacing: -0.42,
           lineHeight: 1.2,
         ),

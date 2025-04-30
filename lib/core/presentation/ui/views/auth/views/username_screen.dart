@@ -31,19 +31,19 @@ class _ChooseUsernameState extends State<ChooseUsername> {
     return SafeArea(
       child: Consumer<AuthProvider>(builder: (context, auth, _) {
         return Scaffold(
-          backgroundColor: AppColors.mainPrimaryColor,
+          backgroundColor: AppColors.primaryColorWhiteBackground,
           body: CustomScrollView(
             slivers: [
               const SliverAppBar(
                   floating: false,
                   pinned: true,
-                  backgroundColor: AppColors.mainPrimaryColor,
+                  backgroundColor: AppColors.primaryColorWhiteBackground,
                   elevation: 0,
                   surfaceTintColor: Colors.transparent,
                   leading: DefaultBackButton(
-                    iconColor: AppColors.white,
+                    iconColor: AppColors.blackOA,
                     icon: CupertinoIcons.back,
-                    btnColor: AppColors.mainPrimaryColor,
+                    btnColor: AppColors.primaryColorWhiteBackground,
                   )),
               SliverToBoxAdapter(
                 child: Padding(
@@ -57,7 +57,7 @@ class _ChooseUsernameState extends State<ChooseUsername> {
                             data: AppStrings.usernameTitle,
                             fontFamily: "Geist",
                             fontWeight: FontWeight.w900,
-                            textColor: AppColors.lime,
+                            textColor: AppColors.mainPrimaryColor,
                             fontSize: 20.sp,
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
@@ -76,7 +76,7 @@ class _ChooseUsernameState extends State<ChooseUsername> {
                             data: AppStrings.usernameMessage,
                             fontFamily: "Geist",
                             fontWeight: FontWeight.w400,
-                            textColor: AppColors.white,
+                            textColor: AppColors.blackOA,
                             fontSize: 16.sp,
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
@@ -162,8 +162,8 @@ class _ChooseUsernameState extends State<ChooseUsername> {
                           Gap(40.h),
                           DefaultButton(
                               isNull: auth.found == false,
-                              btnColor: AppColors.green5C,
-                              btnTextColor: AppColors.mainBlack,
+                              btnColor: AppColors.mainPrimaryColor,
+                              btnTextColor: AppColors.white,
                               onBtnTap: () {
                                 auth.userName = username.text;
                                 Get.to(() => const AddProfessionScreen());

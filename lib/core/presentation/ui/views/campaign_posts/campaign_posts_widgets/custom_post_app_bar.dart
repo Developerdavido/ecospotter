@@ -20,13 +20,13 @@ class CustomPostAppBar extends StatelessWidget {
     return SliverAppBar(
       expandedHeight: 0.18.sh,
       collapsedHeight: kToolbarHeight + 0.01.sh,
-      backgroundColor: AppColors.mainPrimaryColor,
+      backgroundColor: AppColors.primaryColorWhiteBackground,
       pinned: true,
       floating: false,
       leading: DefaultBackButton(
         icon: Icons.chevron_left,
-        btnColor: AppColors.mainPrimaryColor,
-        iconColor: AppColors.white,
+        btnColor: AppColors.primaryColorWhiteBackground,
+        iconColor: AppColors.blackOA,
         onBackTap: () {
           Get.back();
         },
@@ -35,7 +35,7 @@ class CustomPostAppBar extends StatelessWidget {
         data: "Posts",
         fontWeight: FontWeight.w700,
         fontSize: 24.sp,
-        textColor: AppColors.white,
+        textColor: AppColors.mainPrimaryColor,
         letterSpacing: -0.42,
         lineHeight: 1.5,
       )
@@ -77,7 +77,7 @@ class CustomPostAppBar extends StatelessWidget {
                       data: "Browse through pictures and posts from other users participating in this conservation campaign. See one you like! 😉",
                       fontWeight: FontWeight.w500,
                       fontSize: 20.sp,
-                      textColor: AppColors.white,
+                      textColor: AppColors.blackOA,
                       maxLines: 6,
                       lineHeight: 1.2,
                       textAlign: TextAlign.center,

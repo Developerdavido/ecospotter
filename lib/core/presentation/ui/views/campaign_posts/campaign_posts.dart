@@ -55,7 +55,7 @@ class _CampaignPostsState extends State<CampaignPosts> {
     captureVm = context.watch<CaptureProvider>();
     campaignVm = context.watch<CampaignProvider>();
     return Scaffold(
-      backgroundColor: AppColors.mainPrimaryColor,
+      backgroundColor: AppColors.primaryColorWhiteBackground,
       body: CustomScrollView(
         slivers: [
           CustomPostAppBar(model: campaignVm!.currentCampaign,),

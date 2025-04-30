@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _handleLogin() async {
     _timer = Timer(const Duration(seconds: 2), () {
-      if (CacheHelper.instance.isFirstTimer == false) {
+      if (CacheHelper.instance.isFirstTimer == true) {
         Get.offAll(() => const LoginScreen());
       } else {
         Get.offAll(() => const WelcomeScreen());

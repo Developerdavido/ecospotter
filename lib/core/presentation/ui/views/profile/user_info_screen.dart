@@ -34,27 +34,27 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.mainPrimaryColor,
+      backgroundColor: AppColors.primaryColorWhiteBackground,
       body: Consumer<AuthProvider>(builder: (context, authVm, _) {
         return CustomScrollView(
           slivers: [
             SliverAppBar(
               floating: false,
               pinned: true,
-              backgroundColor: AppColors.mainPrimaryColor,
+              backgroundColor: AppColors.primaryColorWhiteBackground,
               elevation: 0,
-              surfaceTintColor: AppColors.mainPrimaryColor,
+              surfaceTintColor: AppColors.primaryColorWhiteBackground,
               centerTitle: true,
-              leading: DefaultBackButton(
-                iconColor: AppColors.white,
+              leading: const DefaultBackButton(
+                iconColor: AppColors.blackOA,
                 icon: CupertinoIcons.back,
-                btnColor: AppColors.mainPrimaryColor.withOpacity(0.1),
+                btnColor: AppColors.primaryColorWhiteBackground
               ),
               title: DefaultText(
                 data: "Profile",
                 fontWeight: FontWeight.w400,
                 fontSize: 24.sp,
-                textColor: AppColors.white,
+                textColor: AppColors.mainPrimaryColor,
                 letterSpacing: -0.42,
                 lineHeight: 1.2,
               ),

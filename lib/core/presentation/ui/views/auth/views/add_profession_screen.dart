@@ -40,7 +40,7 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
     final authVm = Provider.of<AuthProvider>(context);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.mainPrimaryColor,
+        backgroundColor: AppColors.primaryColorWhiteBackground,
         body: Stack(
           children: [
             Column(
@@ -61,7 +61,7 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
                             data: AppStrings.professionTitle,
                             fontFamily: "Geist",
                             fontWeight: FontWeight.w900,
-                            textColor: AppColors.lime,
+                            textColor: AppColors.mainPrimaryColor,
                             fontSize: 20.sp,
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
@@ -79,7 +79,7 @@ class _AddProfessionScreenState extends State<AddProfessionScreen> {
                             data: AppStrings.professionMessage,
                             fontFamily: "Geist",
                             fontWeight: FontWeight.w400,
-                            textColor: AppColors.white,
+                            textColor: AppColors.blackOA,
                             fontSize: 16.sp,
                             letterSpacing: -0.41,
                             lineHeight: 1.33,

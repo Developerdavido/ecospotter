@@ -26,7 +26,6 @@ void main() async {
   setupLocator();
   final prefs = await SharedPreferences.getInstance();
   CacheHelper.instance.init(prefs);
-
   runApp(const MyApp());
 }
 

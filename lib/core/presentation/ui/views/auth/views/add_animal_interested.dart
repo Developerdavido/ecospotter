@@ -33,7 +33,7 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
     final authVm = Provider.of<AuthProvider>(context);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.mainPrimaryColor,
+        backgroundColor: AppColors.primaryColorWhiteBackground,
         body: Stack(
           children: [
             Column(
@@ -54,7 +54,7 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                             data: AppStrings.preferenceTitle,
                             fontFamily: "Geist",
                             fontWeight: FontWeight.w900,
-                            textColor: AppColors.lime,
+                            textColor: AppColors.mainPrimaryColor,
                             fontSize: 20.sp,
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
@@ -72,7 +72,7 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                             data: AppStrings.preferenceMessage,
                             fontFamily: "Geist",
                             fontWeight: FontWeight.w400,
-                            textColor: AppColors.white,
+                            textColor: AppColors.blackOA,
                             fontSize: 16.sp,
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
@@ -98,7 +98,7 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                                   data: animal,
                                   fontFamily: "Geist",
                                   fontWeight: FontWeight.w400,
-                                  textColor: AppColors.mainBlack,
+                                  textColor: AppColors.white,
                                   fontSize: 16.sp,
                                   letterSpacing: -0.41,
                                   lineHeight: 1.33,
@@ -111,8 +111,8 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                                   borderRadius: BorderRadius.circular(32.r)
                                 ),
                                 padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 12.h),
-                                backgroundColor: AppColors.bottomModal.withOpacity(0.4),
-                                selectedColor: AppColors.bottomModal,
+                                backgroundColor: AppColors.mainPrimaryColor.withValues(alpha: 0.4),
+                                selectedColor: AppColors.mainPrimaryColor,
                                 onSelected: (selected) {
                                   setState(() {
                                     if(selected == false) {
@@ -145,8 +145,8 @@ class _AnimalInterestedScreenState extends State<AnimalInterestedScreen> {
                             },
                             btnText: AppStrings.submit,
                             isIconPresent: false,
-                            btnColor: AppColors.green5C,
-                            btnTextColor: AppColors.mainBlack,
+                            btnColor: AppColors.mainPrimaryColor,
+                            btnTextColor: AppColors.white,
                           ),
                         ],
                       ),

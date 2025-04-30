@@ -27,7 +27,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.mainPrimaryColor,
+      backgroundColor: AppColors.primaryColorWhiteBackground,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 0.04.sh),
         child: Column(
@@ -63,14 +63,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
             const Gap(16),
+
             DefaultButton(
-                btnColor: AppColors.green5C,
-                btnTextColor: AppColors.mainBlack,
-                onBtnTap: () {
+                btnColor: AppColors.mainPrimaryColor,
+                btnTextColor: AppColors.white,
+                onBtnTap: pageIndex == 2 ?() {
                   CacheHelper.instance.cacheFirstTimer();
-                  Get.to(() => const LoginScreen());
+                  Get.offAll(() => const LoginScreen());
+                }
+                : (){
+                  pageController.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeIn);
                 },
-                btnText: AppStrings.continueBtn)
+                btnText: pageIndex == 2 ? AppStrings.continueBtn : AppStrings.next)
           ],
         ),
       ),

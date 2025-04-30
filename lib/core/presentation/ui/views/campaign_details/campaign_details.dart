@@ -29,7 +29,7 @@ class CampaignDetails extends StatelessWidget {
       builder: (context, campaignVm, child) {
         return SafeArea(
           child: Scaffold(
-            backgroundColor: AppColors.mainPrimaryColor,
+            backgroundColor: AppColors.primaryColorWhiteBackground,
             body: CustomScrollView(
               slivers: [
                 CampaignDetailsAppBar(model: campaignVm.currentCampaign,),
@@ -50,7 +50,7 @@ class CampaignDetails extends StatelessWidget {
                           data: "Description",
                           fontWeight: FontWeight.w600,
                           fontSize: 20.sp,
-                          textColor: AppColors.lime,
+                          textColor: AppColors.mainPrimaryColor,
                           letterSpacing: -0.42,
                           lineHeight: 1.2,
                         ),
@@ -59,7 +59,7 @@ class CampaignDetails extends StatelessWidget {
                           data: campaignVm.currentCampaign!.description,
                           fontWeight: FontWeight.w300,
                           fontSize: 14.sp,
-                          textColor: AppColors.white,
+                          textColor: AppColors.blackOA,
                           letterSpacing: -0.42,
                           maxLines: 10,
                           lineHeight: 1.6,
@@ -82,15 +82,15 @@ class CampaignDetails extends StatelessWidget {
                       children: [
                         Gap(20.h),
                         DefaultButton(
-                            btnColor: AppColors.green5C,
-                            btnTextColor: AppColors.mainBlack,
+                            btnColor: AppColors.mainPrimaryColor,
+                            btnTextColor: AppColors.white,
                             onBtnTap: (){
                               Get.to(()=> const CaptureForm(isHome: false,));
                             }, btnText: AppStrings.participate),
                         Gap(10.h),
                         DefaultButton(
-                            btnColor: AppColors.white.withOpacity(0.1),
-                            btnTextColor: AppColors.white,
+                            btnColor: AppColors.mainPrimaryColor.withValues(alpha: 0.1),
+                            btnTextColor: AppColors.blackOA,
                             onBtnTap: (){
                               Get.to(()=> const CampaignPosts());
                             }, btnText: AppStrings.viewPosts),

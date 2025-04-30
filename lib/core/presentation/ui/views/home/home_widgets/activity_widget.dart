@@ -24,7 +24,7 @@ class ActivityWidget extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(32.r),
-          color: AppColors.white.withOpacity(0.1)
+          color: AppColors.mainPrimaryColor.withValues(alpha: 0.1)
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -40,14 +40,14 @@ class ActivityWidget extends StatelessWidget {
                   width: 32.w,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    color: AppColors.lime
+                    color: AppColors.mainPrimaryColor
                   ),
                   child: Center(
                     child: DefaultText(
                       data: model?.username.substring(0,1).toUpperCase() ?? "AN",
                       fontWeight: FontWeight.w700,
                       fontSize: 10.sp,
-                      textColor: AppColors.mainBlack,
+                      textColor: AppColors.white,
                       letterSpacing: -0.42,
                       lineHeight: 1.2,
                     ),
@@ -62,7 +62,7 @@ class ActivityWidget extends StatelessWidget {
                           data: "@${model?.username ?? "Anonymous"}",
                           fontFamily: "Geist",
                           fontWeight: FontWeight.w600,
-                          textColor: AppColors.white,
+                          textColor: AppColors.mainPrimaryColor,
                           fontSize: 18.sp,
                           letterSpacing: -0.41,
                           lineHeight: 1.33,
@@ -72,7 +72,7 @@ class ActivityWidget extends StatelessWidget {
                           data: model!.animalActivity,
                           fontFamily: "Geist",
                           fontWeight: FontWeight.w400,
-                          textColor: AppColors.white,
+                          textColor: AppColors.blackOA,
                           fontSize: 14.sp,
                           letterSpacing: -0.41,
                           lineHeight: 1.33,
@@ -106,12 +106,11 @@ class ActivityWidget extends StatelessWidget {
                                 height: 0.15.sh,
                                 width: 0.9.sw,
                                 decoration: BoxDecoration(
-                                    color: AppColors.ashColor,
+                                    color: Colors.transparent,
                                     borderRadius: BorderRadius.circular(8.r),
                                     image: DecorationImage(
                                         image: imageProvider,
                                         fit: BoxFit.cover,
-                                        colorFilter: const ColorFilter.mode(AppColors.ashColor, BlendMode.colorBurn)
                                     )
                                 ),
                               ),
@@ -125,7 +124,7 @@ class ActivityWidget extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.favorite_border_outlined,
-                                color: AppColors.white,
+                                color: AppColors.blackOA,
                                 size: 14.sp,
                               ),
                               Gap(4.w),
@@ -133,7 +132,7 @@ class ActivityWidget extends StatelessWidget {
                                 data: NumberFormatter.formatCount(model!.favorites.length),
                                 fontFamily: "Geist",
                                 fontWeight: FontWeight.w400,
-                                textColor: AppColors.white,
+                                textColor: AppColors.blackOA,
                                 fontSize: 14.sp,
                                 letterSpacing: -0.41,
                                 lineHeight: 1.33,

@@ -21,14 +21,14 @@ class UserProfileElement extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(32.r),
-          color: AppColors.white.withOpacity(0.1),
+          color: AppColors.mainPrimaryColor.withValues(alpha: 0.1),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Icon(
               iconData,
-              color: AppColors.green,
+              color: AppColors.mainPrimaryColor,
               size: 22.sp,
             ),
             Gap(20.w),
@@ -36,7 +36,7 @@ class UserProfileElement extends StatelessWidget {
               data: title ?? "",
               fontWeight: FontWeight.w500,
               fontSize: 16.sp,
-              textColor: AppColors.white,
+              textColor: AppColors.blackOA,
               letterSpacing: -0.42,
               lineHeight: 1.2,
             ),

@@ -1,3 +1,4 @@
+import 'package:citizen_app/core/view_models/ai_provider.dart';
 import 'package:citizen_app/core/view_models/auth_provider.dart';
 import 'package:citizen_app/core/view_models/campaign_view_model.dart';
 import 'package:citizen_app/core/view_models/leaderboard_provider.dart';
@@ -11,6 +12,7 @@ import '../../core/view_models/capture_provider.dart';
 
 List<SingleChildWidget> providers = [
   ChangeNotifierProvider<AuthProvider>.value(value: AuthProvider()),
+  ChangeNotifierProvider<AIVm>.value(value: AIVm()),
   ChangeNotifierProvider<CampaignProvider>.value(value: CampaignProvider()),
   ChangeNotifierProvider<CaptureProvider>.value(value: CaptureProvider()),
   ChangeNotifierProvider<LeaderboardProvider>.value(value: LeaderboardProvider()),

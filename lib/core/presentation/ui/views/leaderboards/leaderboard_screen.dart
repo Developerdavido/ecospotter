@@ -53,21 +53,21 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   Widget build(BuildContext context) {
     leaderboardVm = context.watch<LeaderboardProvider>();
     return Scaffold(
-      backgroundColor: AppColors.mainPrimaryColor,
+      backgroundColor: AppColors.primaryColorWhiteBackground,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             floating: false,
             pinned: true,
-            backgroundColor: AppColors.mainPrimaryColor,
+            backgroundColor: AppColors.primaryColorWhiteBackground,
             elevation: 0,
-            surfaceTintColor: AppColors.mainPrimaryColor,
+            surfaceTintColor: AppColors.primaryColorWhiteBackground,
             centerTitle: true,
             title: DefaultText(
               data: "Leaderboards",
               fontWeight: FontWeight.w400,
               fontSize: 24.sp,
-              textColor: AppColors.white,
+              textColor: AppColors.mainPrimaryColor,
               letterSpacing: -0.42,
               lineHeight: 1.2,
             )
@@ -106,14 +106,14 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                                   "No users on the leaderboard yet.",
                               fontWeight: FontWeight.w500,
                               fontSize: 18.sp,
-                              textColor: AppColors.white,
+                              textColor: AppColors.blackOA,
                               letterSpacing: -0.42,
                               lineHeight: 1.2,
                               textAlign: TextAlign.center,
                             ),
                             DefaultButton(
                                 btnColor: Colors.transparent,
-                                btnTextColor: AppColors.white,
+                                btnTextColor: AppColors.mainPrimaryColor,
                                 onBtnTap: () {
                                   leaderboardVm?.onRefresh();
                                 },
@@ -132,7 +132,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                                   height: 20.w,
                                   width: 20.w,
                                   child: const CircularProgressIndicator(
-                                    color: AppColors.lime,
+                                    color: AppColors.mainPrimaryColor,
                                     strokeWidth: 0.8,
                                   ),
                                 );
@@ -145,7 +145,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                                       data: "No more users to show for this leaderboard",
                                       fontWeight: FontWeight.w500,
                                       fontSize: 18.sp,
-                                      textColor: AppColors.white,
+                                      textColor: AppColors.blackOA,
                                       letterSpacing: -0.42,
                                       lineHeight: 1.2,
                                       textAlign: TextAlign.center,

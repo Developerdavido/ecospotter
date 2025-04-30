@@ -22,14 +22,22 @@ The \$correctAnswer value must be a string"''';
 
   //this prompt will make a call to get the detail information of the species
   static String moreInfo({String? specieName}) {
-    return ''' "Generate some interesting trivia of not more than 150 words about the animal species based on the following JSON parameters,
+    return ''' "Generate some interesting trivia and general physiology of not more than 150 words about the animal species based on the following JSON parameters,
 {"name": $specieName}.
 The questions must be of JSON format with the following structure 
 {
 "description":\$description,
+"trivia":\$trivia
 }
-The \$image value must be a string"''';
+if name inputed is not a valid animal common/scientific name , The response should return the JSON format with the following structure
+{
+"message": "Ooops!!! sorry, the animal name is not valid"
+}
+The \$description value must be a string,
+The \$trivia value must be a String"''';
   }
+
+
 }
 
 

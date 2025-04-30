@@ -5,6 +5,7 @@ import 'package:citizen_app/config/services/location_service.dart';
 import 'package:citizen_app/core/presentation/ui/shared_widgets/text_field.dart';
 import 'package:citizen_app/core/presentation/ui/views/capture_form/animal_activity_widget.dart';
 import 'package:citizen_app/core/presentation/ui/views/capture_form/capture_widgets/capture_image.dart';
+import 'package:citizen_app/core/view_models/ai_provider.dart';
 import 'package:citizen_app/core/view_models/capture_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -37,12 +38,15 @@ class _CaptureFormState extends State<CaptureForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   File? imageFile;
+  AIVm? vm;
 
   @override
   void initState() {
     // TODO: implement initState
+    vm = context.read<AIVm>();
     super.initState();
     locator<LocationService>().startListening();
+    vm?.getAnimalDescription("boy");
   }
 
   @override
@@ -59,19 +63,19 @@ class _CaptureFormState extends State<CaptureForm> {
       builder: (context, vm, child) {
         return SafeArea(
           child: Scaffold(
-            backgroundColor: AppColors.mainPrimaryColor,
+            backgroundColor: AppColors.primaryColorWhiteBackground,
             body: CustomScrollView(
               slivers: [
                 SliverAppBar(
                     floating: false,
                     pinned: true,
-                    backgroundColor: AppColors.mainPrimaryColor,
+                    backgroundColor: AppColors.primaryColorWhiteBackground,
                     elevation: 0,
                     surfaceTintColor: Colors.transparent,
                     leading:  widget.isHome ? null : const DefaultBackButton(
-                      iconColor: AppColors.white,
+                      iconColor: AppColors.blackOA,
                       icon: CupertinoIcons.back,
-                      btnColor: AppColors.mainPrimaryColor,
+                      btnColor: AppColors.primaryColorWhiteBackground,
                     )
                 ),
                 SliverToBoxAdapter(
@@ -94,7 +98,7 @@ class _CaptureFormState extends State<CaptureForm> {
                                     data: AppStrings.animalNameAndImageTitle,
                                     fontFamily: "Geist",
                                     fontWeight: FontWeight.w900,
-                                    textColor: AppColors.lime,
+                                    textColor: AppColors.mainPrimaryColor,
                                     fontSize: 20.sp,
                                     letterSpacing: -0.41,
                                     lineHeight: 1.33,
@@ -112,7 +116,7 @@ class _CaptureFormState extends State<CaptureForm> {
                                     data: AppStrings.animalNameAndImageMessage,
                                     fontFamily: "Geist",
                                     fontWeight: FontWeight.w400,
-                                    textColor: AppColors.white,
+                                    textColor: AppColors.blackOA,
                                     fontSize: 16.sp,
                                     letterSpacing: -0.41,
                                     lineHeight: 1.33,
@@ -143,7 +147,7 @@ class _CaptureFormState extends State<CaptureForm> {
                                     data: AppStrings.captureImage,
                                     fontFamily: "Geist",
                                     fontWeight: FontWeight.w400,
-                                    textColor: AppColors.green,
+                                    textColor: AppColors.blackOA,
                                     fontSize: 12.sp,
                                     letterSpacing: -0.41,
                                     lineHeight: 1.33,

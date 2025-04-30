@@ -20,12 +20,8 @@ class BottomNav extends StatelessWidget {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
           child: Container(
-            height: 99.h,
+            height: 66.h,
             padding: EdgeInsets.symmetric(horizontal: 12.w),
-            decoration: const BoxDecoration(
-              border: Border(top: BorderSide(color: AppColors.buttonBorder, width: 0.3)),
-              //color: AppColors.white.withOpacity(0.1)
-            ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,

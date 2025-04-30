@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
     campaignVm = context.watch<CampaignProvider>();
     authVm = context.watch<AuthProvider>();
     return Scaffold(
-        backgroundColor: AppColors.mainPrimaryColor,
+        backgroundColor: AppColors.primaryColorWhiteBackground,
         body: CustomScrollView(
           slivers: [
             HomeAppBar(username: authVm!.userModel!.username),
@@ -83,14 +83,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             "No Campaigns currently available",
                         fontWeight: FontWeight.w500,
                         fontSize: 18.sp,
-                        textColor: AppColors.white,
+                        textColor: AppColors.blackOA,
                         letterSpacing: -0.42,
                         lineHeight: 1.2,
                         textAlign: TextAlign.center,
                       ),
                       DefaultButton(
                           btnColor: Colors.transparent,
-                          btnTextColor: AppColors.white,
+                          btnTextColor: AppColors.blackOA,
                           onBtnTap: () {
                             campaignVm?.onRefresh();
                           },
@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 20.w,
                             width: 20.w,
                             child: const CircularProgressIndicator(
-                              color: AppColors.lime,
+                              color: AppColors.mainPrimaryColor,
                               strokeWidth: 0.8,
                             ),
                           );
@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 data: "No more campaigns",
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18.sp,
-                                textColor: AppColors.white,
+                                textColor: AppColors.blackOA,
                                 letterSpacing: -0.42,
                                 lineHeight: 1.2,
                                 textAlign: TextAlign.center,
@@ -133,21 +133,24 @@ class _HomeScreenState extends State<HomeScreen> {
                         return const SizedBox.shrink();
                       }
                       final campaign = campaignVm?.campaigns[index];
-                      return CampaignWidget(
-                        model: campaign,
-                        onCardTap: () {
-                          campaignVm!.setCurrentCampaign(campaign!);
-                          Get.to(() => const CampaignDetails());
-                        },
-                      )
-                          .animate()
-                          .slide(
-                        begin: const Offset(0, 0.3),
-                        end: const Offset(0, 0), // End at center
-                        duration: 600.ms + index.ms,
-                        curve: Curves.easeOutBack,
-                      )
-                          .fade(begin: 0, end: 1, duration: 600.ms);
+                      return Padding(
+                        padding: EdgeInsets.symmetric(vertical: 6.h),
+                        child: CampaignWidget(
+                          model: campaign,
+                          onCardTap: () {
+                            campaignVm!.setCurrentCampaign(campaign!);
+                            Get.to(() => const CampaignDetails());
+                          },
+                        )
+                            .animate()
+                            .slide(
+                          begin: const Offset(0, 0.3),
+                          end: const Offset(0, 0), // End at center
+                          duration: 600.ms + index.ms,
+                          curve: Curves.easeOutBack,
+                        )
+                            .fade(begin: 0, end: 1, duration: 600.ms),
+                      );
                     },
                     itemCount: campaignVm!.campaigns.length,
                   ),

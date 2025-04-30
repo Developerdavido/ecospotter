@@ -36,7 +36,7 @@ class LeaderboardRanking extends StatelessWidget {
             height: 50.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(32.r),
-              color: AppColors.white.withOpacity(0.1)
+              color: AppColors.mainPrimaryColor.withValues(alpha: 0.1)
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,7 +62,7 @@ class LeaderboardRanking extends StatelessWidget {
                       data: "@$username",
                       fontWeight: FontWeight.w500,
                       fontSize: 18.sp,
-                      textColor: AppColors.white,
+                      textColor: AppColors.blackOA,
                       letterSpacing: -0.42,
                       lineHeight: 1.2,
                     ),

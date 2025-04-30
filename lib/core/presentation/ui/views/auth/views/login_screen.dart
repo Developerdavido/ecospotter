@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
     authVm = context.watch<AuthProvider>();
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.mainPrimaryColor,
+        backgroundColor: AppColors.primaryColorWhiteBackground,
         body: Stack(
           children: [
             Column(
@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           data: AppStrings.loginTitle,
                           fontFamily: "Geist",
                           fontWeight: FontWeight.w900,
-                          textColor: AppColors.lime,
+                          textColor: AppColors.mainPrimaryColor,
                           fontSize: 20.sp,
                           letterSpacing: -0.41,
                           lineHeight: 1.33,
@@ -80,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           data: AppStrings.loginMessage,
                           fontFamily: "Geist",
                           fontWeight: FontWeight.w400,
-                          textColor: AppColors.white,
+                          textColor: AppColors.blackOA,
                           fontSize: 16.sp,
                           letterSpacing: -0.41,
                           lineHeight: 1.33,
@@ -101,8 +101,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           btnText: AppStrings.googleLogin,
                           isIconPresent: true,
                           iconData: Media.google,
-                          btnColor: AppColors.green5C,
-                          btnTextColor: AppColors.mainBlack,
+                          btnColor: AppColors.mainPrimaryColor,
+                          btnTextColor: AppColors.white,
                         ),
                       ],
                     ),
@@ -113,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   data: AppStrings.trademark,
                   fontFamily: "Geist",
                   fontWeight: FontWeight.w400,
-                  textColor: AppColors.lime,
+                  textColor: AppColors.mainPrimaryColor,
                   fontSize: 12.sp,
                   letterSpacing: -0.14,
                   lineHeight: 2.1,

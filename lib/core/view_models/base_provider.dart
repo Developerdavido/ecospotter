@@ -1,10 +1,12 @@
 
 
+import 'package:citizen_app/config/services/ai_service.dart';
 import 'package:citizen_app/config/services/dialog_service.dart';
 import 'package:citizen_app/config/services/image_service.dart';
 import 'package:citizen_app/core/data/datasources/campaign_data_source.dart';
 import 'package:citizen_app/core/data/datasources/capture_data_source.dart';
 import 'package:citizen_app/core/data/datasources/leaderboard_data_source.dart';
+import 'package:citizen_app/core/view_models/ai_provider.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../config/locator.dart';
@@ -16,6 +18,7 @@ class BaseProvider with ChangeNotifier {
 
 
   var auth = locator<AuthDataSource>();
+  var ai = locator<AiService>();
   var campaignData = locator<CampaignDataSource>();
   var leaderboardData = locator<LeaderboardDataSource>();
   var captureData = locator<CaptureDataSource>();

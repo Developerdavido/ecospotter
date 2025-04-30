@@ -1,6 +1,7 @@
 
 
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,6 +26,7 @@ class CacheHelper {
   void init(SharedPreferences prefs, {bool opening = true}) {
     _prefs = prefs;
     if(opening) _isFirstTimer = _checkIfUserIsFirstTimer();
+    log("First timer ====> _isFirstTimer: $_isFirstTimer");
   }
 
   /// Cache the first timer.
@@ -33,7 +35,7 @@ class CacheHelper {
   /// Button on the Onboarding page. It stores [false], meaning the user is
   /// no longer a first timer.
   Future<void> cacheFirstTimer() async {
-    await _prefs.setBool(_firstTimerKey, false);
+    await _prefs.setBool(_firstTimerKey, true);
   }
 
 

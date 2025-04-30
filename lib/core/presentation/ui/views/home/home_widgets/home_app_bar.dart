@@ -18,8 +18,8 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 0.22.sh,
-      backgroundColor: AppColors.mainPrimaryColor,
+      expandedHeight: 0.24.sh,
+      backgroundColor: AppColors.primaryColorWhiteBackground,
       pinned: true,
       floating: false,
       leading: Image.asset(
@@ -29,13 +29,15 @@ class HomeAppBar extends StatelessWidget {
       actions: [
         DefaultBackButton(
           icon: CupertinoIcons.person,
-          btnColor: AppColors.mainPrimaryColor,
+          btnColor: Colors.transparent,
+          iconColor: AppColors.blackOA,
           onBackTap: () {
             Get.to(() => const UserProfileScreen());
           },
         ),
         const DefaultBackButton(
           btnColor: Colors.transparent,
+          iconColor: AppColors.blackOA,
           icon: CupertinoIcons.bell,
         ),
       ],
@@ -44,7 +46,7 @@ class HomeAppBar extends StatelessWidget {
           // Get the current height of the AppBar
           final double currentHeight = constraints.biggest.height;
           // Get the maximum height (expanded)
-          final double maxHeight = MediaQuery.of(context).padding.top + 0.22.sh;
+          final double maxHeight = MediaQuery.of(context).padding.top + 0.24.sh;
 
           // Calculate how expanded the app bar is (0.0 to 1.0)
           final double expandRatio = ((currentHeight - kToolbarHeight) /
@@ -69,7 +71,7 @@ class HomeAppBar extends StatelessWidget {
                       data: "Hello, $username",
                       fontWeight: FontWeight.bold,
                       fontSize: 32.sp,
-                      textColor: AppColors.lime,
+                      textColor: AppColors.mainPrimaryColor,
                       letterSpacing: -0.42,
                       lineHeight: 1.2,
                       textAlign: TextAlign.left,
@@ -80,7 +82,7 @@ class HomeAppBar extends StatelessWidget {
                         data: "Browse through running campaigns or take any available trivia right of the bat to earn points!",
                         fontWeight: FontWeight.w500,
                         fontSize: 18.sp,
-                        textColor: AppColors.white,
+                        textColor: AppColors.blackOA,
                         letterSpacing: -0.42,
                         maxLines: 6,
                         lineHeight: 1.2,

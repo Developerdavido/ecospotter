@@ -36,19 +36,19 @@ class _CurrentImageCampaignState extends State<CurrentImageCampaign> {
     return SafeArea(
       child: Consumer3<CaptureProvider, CampaignProvider, AuthProvider>(builder: (context, vm, campVm, authVm, _) {
         return Scaffold(
-          backgroundColor: AppColors.mainPrimaryColor,
+          backgroundColor: AppColors.primaryColorWhiteBackground,
           body: CustomScrollView(
             slivers: [
               const SliverAppBar(
                   floating: false,
                   pinned: true,
-                  backgroundColor: AppColors.mainPrimaryColor,
+                  backgroundColor: AppColors.primaryColorWhiteBackground,
                   elevation: 0,
                   surfaceTintColor: Colors.transparent,
                   leading: DefaultBackButton(
                     iconColor: AppColors.white,
                     icon: CupertinoIcons.back,
-                    btnColor: AppColors.mainPrimaryColor,
+                    btnColor: AppColors.blackOA,
                   )),
               SliverToBoxAdapter(
                 child: Padding(
@@ -62,7 +62,7 @@ class _CurrentImageCampaignState extends State<CurrentImageCampaign> {
                             data: AppStrings.conservationCampaignTitle,
                             fontFamily: "Geist",
                             fontWeight: FontWeight.w900,
-                            textColor: AppColors.lime,
+                            textColor: AppColors.mainPrimaryColor,
                             fontSize: 20.sp,
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
@@ -81,7 +81,7 @@ class _CurrentImageCampaignState extends State<CurrentImageCampaign> {
                             data: AppStrings.conservationCampaignMessage,
                             fontFamily: "Geist",
                             fontWeight: FontWeight.w400,
-                            textColor: AppColors.white,
+                            textColor: AppColors.blackOA,
                             fontSize: 16.sp,
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
@@ -120,8 +120,8 @@ class _CurrentImageCampaignState extends State<CurrentImageCampaign> {
                               .fade(begin: 0, end: 1, duration: 600.ms),
                           Gap(40.h),
                           DefaultButton(
-                              btnColor: AppColors.green5C,
-                              btnTextColor: AppColors.mainBlack,
+                              btnColor: AppColors.mainPrimaryColor,
+                              btnTextColor: AppColors.white,
                               onBtnTap: () {
                                 //add the position
                                 vm.latitude = locator<LocationService>().position!.latitude;

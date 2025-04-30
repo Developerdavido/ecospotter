@@ -37,6 +37,7 @@ class AuthProvider extends BaseProvider {
     setUiState(UiState.loading);
     try {
       authModel = await auth.loginUser();
+      log("auth model i need");
       setUiState(UiState.done);
       if (authModel != null) {
         //cache the accessToken
@@ -61,6 +62,7 @@ class AuthProvider extends BaseProvider {
       }
     } on Exception catch (e) {
       setUiState(UiState.done);
+      log(e.toString());
       dialog.showSnackBar("Error", e.toString());
     }
   }

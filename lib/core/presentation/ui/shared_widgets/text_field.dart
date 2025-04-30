@@ -91,7 +91,7 @@ class _InputFieldState extends State<InputField> {
         DefaultText(
           data: widget.title ?? "",
           fontWeight: FontWeight.w400,
-          textColor: AppColors.white,
+          textColor: AppColors.blackOA,
           fontSize: 14.sp,
           letterSpacing: -0.48,
           lineHeight: 1.2,

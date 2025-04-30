@@ -8,10 +8,14 @@ import '../../constants/prompts.dart';
 
 class AiService extends HttpService{
 
+  //make the call to get the trivia questions
   Future<Response> getTriviaQuestions({String? specieName, String? occupation}) async {
     String prompt = Prompts.triviaQuestions(specieName: specieName, occupation: occupation);
     print(prompt);
-    var response = await post("key=${EnvConfig.geminiApiKey}");
+    var body = {
+      "contents":[{"parts": [{"text": prompt}]}]
+    };
+    var response = await post("key=${EnvConfig.geminiApiKey}", body: body);
     return response;
   }
 
@@ -19,7 +23,10 @@ class AiService extends HttpService{
   Future<Response> getMoreInfo({String? specieName}) async {
     String prompt = Prompts.moreInfo(specieName: specieName);
     print(prompt);
-    var response = await post("key=${EnvConfig.geminiApiKey}");
+    var body = {
+      "contents":[{"parts": [{"text": prompt}]}]
+    };
+    var response = await post("key=${EnvConfig.geminiApiKey}", body: body);
     return response;
   }
 }

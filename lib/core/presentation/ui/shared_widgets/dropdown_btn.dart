@@ -47,7 +47,7 @@ class DropdownBtn extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(32.r),
-                color: AppColors.bottomModal,
+                color: AppColors.primaryColorWhiteBackground,
               ),
               height: height ?? 0.75.sh,
               width: 1.sw,

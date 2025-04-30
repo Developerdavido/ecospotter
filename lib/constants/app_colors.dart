@@ -48,5 +48,6 @@ abstract class AppColors {
   static const darkGreen = Color(0xff19A25B);
   static const mainBrown = Color(0xffA77D5E);
   static const green5C = Color(0xff5CEAA0);
+  static const primaryColorWhiteBackground = Color(0xfff7f3ff);
 
 }

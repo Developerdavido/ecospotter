@@ -31,19 +31,19 @@ class _AnimalActivityState extends State<AnimalActivity> {
       child: Consumer<CaptureProvider>(
         builder: (context, vm, _) {
           return Scaffold(
-            backgroundColor: AppColors.mainPrimaryColor,
+            backgroundColor: AppColors.primaryColorWhiteBackground,
             body: CustomScrollView(
               slivers: [
                 const SliverAppBar(
                     floating: false,
                     pinned: true,
-                    backgroundColor: AppColors.mainPrimaryColor,
+                    backgroundColor: AppColors.primaryColorWhiteBackground,
                     elevation: 0,
                     surfaceTintColor: Colors.transparent,
                     leading:  DefaultBackButton(
-                      iconColor: AppColors.white,
+                      iconColor: AppColors.blackOA,
                       icon: CupertinoIcons.back,
-                      btnColor: AppColors.mainPrimaryColor,
+                      btnColor: AppColors.primaryColorWhiteBackground,
                     )
                 ),
                 SliverToBoxAdapter(
@@ -58,7 +58,7 @@ class _AnimalActivityState extends State<AnimalActivity> {
                             data: AppStrings.animalActivityTitle,
                             fontFamily: "Geist",
                             fontWeight: FontWeight.w900,
-                            textColor: AppColors.lime,
+                            textColor: AppColors.mainPrimaryColor,
                             fontSize: 20.sp,
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
@@ -76,7 +76,7 @@ class _AnimalActivityState extends State<AnimalActivity> {
                             data: AppStrings.animalActivityMessage,
                             fontFamily: "Geist",
                             fontWeight: FontWeight.w400,
-                            textColor: AppColors.white,
+                            textColor: AppColors.blackOA,
                             fontSize: 16.sp,
                             letterSpacing: -0.41,
                             lineHeight: 1.33,
@@ -111,8 +111,8 @@ class _AnimalActivityState extends State<AnimalActivity> {
                               .fade(begin: 0, end: 1, duration: 500.ms),
                           Gap(40.h),
                           DefaultButton(
-                              btnColor: AppColors.green5C,
-                              btnTextColor: AppColors.blackOA,
+                              btnColor: AppColors.mainPrimaryColor,
+                              btnTextColor: AppColors.white,
                               onBtnTap: (){
                                 if(_key.currentState!.validate()) {
                                   vm.animalActivity = activityController.text.trim();

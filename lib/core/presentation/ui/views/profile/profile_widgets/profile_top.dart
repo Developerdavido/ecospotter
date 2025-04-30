@@ -29,7 +29,7 @@ class ProfileTop extends StatelessWidget {
           data: "@${username ?? "anon"}",
           fontWeight: FontWeight.w500,
           fontSize: 16.sp,
-          textColor: AppColors.lime,
+          textColor: AppColors.mainPrimaryColor,
           letterSpacing: -0.42,
           lineHeight: 1.2,
         ).animate(delay: 100.ms)
@@ -44,7 +44,7 @@ class ProfileTop extends StatelessWidget {
           data: email ?? "janedoe@gmail.com",
           fontWeight: FontWeight.w500,
           fontSize: 16.sp,
-          textColor: AppColors.white,
+          textColor: AppColors.blackOA,
           letterSpacing: -0.42,
           lineHeight: 1.2,
         ).animate(delay: 150.ms)
