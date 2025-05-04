@@ -37,7 +37,6 @@ class AuthProvider extends BaseProvider {
     setUiState(UiState.loading);
     try {
       authModel = await auth.loginUser();
-      log("auth model i need");
       setUiState(UiState.done);
       if (authModel != null) {
         //cache the accessToken

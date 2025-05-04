@@ -20,6 +20,16 @@ abstract class Media {
   static const homeUnfilled = '$_baseSvg/home_unfilled.svg';
   static const camera = '$_baseSvg/camera.svg';
   static const loader = '$_baseSvg/prints.svg';
+  static const eye = '$_baseSvg/eye.svg';
+  static const database = '$_baseSvg/database.svg';
+  static const award = '$_baseSvg/award.svg';
+  static const bulb = '$_baseSvg/light-bulb.svg';
+  static const map = '$_baseSvg/map.svg';
+  static const share = '$_baseSvg/share-android.svg';
+  static const trophy = '$_baseSvg/trophy.svg';
+  static const star = '$_baseSvg/star.svg';
+  static const shield = '$_baseSvg/shield.svg';
+
 
 
 

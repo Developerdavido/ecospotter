@@ -1,6 +1,7 @@
 import 'package:citizen_app/config/provider/providers.dart';
 import 'package:citizen_app/config/services/local_storage_service.dart';
 import 'package:citizen_app/config/services/supabase_service.dart';
+import 'package:citizen_app/core/presentation/ui/views/profile/profile_widgets/build_badge_widget.dart';
 import 'package:citizen_app/core/presentation/ui/views/profile/profile_widgets/profile_top.dart';
 import 'package:citizen_app/core/presentation/ui/views/profile/profile_widgets/user_profile_element.dart';
 import 'package:citizen_app/core/presentation/ui/views/settings/edit_user_image.dart';
@@ -72,6 +73,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       username: authVm.userModel!.username,
                       email: authVm.userModel!.email,
                     ),
+                    Gap(12.h),
+                    //this will show a list of the user earned badges
+                    BuildBadgeWidget(userId: authVm.userModel!.id,),
+                    Gap(12.h),
                     Expanded(
                         child: Column(
                       children: AnimateList(interval: 20.ms, effects: [

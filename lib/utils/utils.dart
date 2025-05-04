@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 abstract class Utils {
@@ -75,6 +77,40 @@ abstract class Utils {
       print('Error parsing JSON: $e');
       return null;
     }
+  }
+
+  //select random material color
+
+  static Color getRandomMaterialColor() {
+    // List of primary Material colors
+    final List<Color> materialColors = [
+      Colors.red,
+      Colors.pink,
+      Colors.purple,
+      Colors.deepPurple,
+      Colors.indigo,
+      Colors.blue,
+      Colors.lightBlue,
+      Colors.cyan,
+      Colors.teal,
+      Colors.green,
+      Colors.lightGreen,
+      Colors.lime,
+      Colors.yellow,
+      Colors.amber,
+      Colors.orange,
+      Colors.deepOrange,
+      Colors.brown,
+      Colors.grey,
+      Colors.blueGrey,
+    ];
+
+    // Generate a random index
+    final random = Random();
+    final randomIndex = random.nextInt(materialColors.length);
+
+    // Return the random color
+    return materialColors[randomIndex];
   }
 
 
