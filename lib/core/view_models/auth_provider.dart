@@ -90,17 +90,20 @@ class AuthProvider extends BaseProvider {
     try {
       String? accessToken = CacheHelper.instance.readString(CacheHelper.accessTokenKey);
       //if the access token is not present then it means that the user is a first time user
+      log("this is the token value $accessToken");
+
       if (accessToken == null) return;
 
       //read the database
       String? userId = CacheHelper.instance.readString(CacheHelper.userIdKey);
-
+      log("this is the user id value $userId");
       if (userId == null) return;
 
       //check if the user model is not null
-      if (userModel != null) {
-        userModel = UserModel.fromJson(await CacheHelper.instance
-            .readModel(CacheHelper.userModelKey) as Map<String, dynamic>);
+      userModel = UserModel.fromJson(await CacheHelper.instance.readModel(CacheHelper.userModelKey) as Map<String, dynamic>);
+
+      if(userModel != null) {
+        log("this is the username value ${userModel!.username}");
         Get.offAll(() => const AppNavigation(), transition: Transition.cupertino);
         return;
       }

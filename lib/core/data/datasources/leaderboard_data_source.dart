@@ -22,7 +22,7 @@ class LeaderboardDataSource {
         .order('created_at', ascending: false);
   }
   //update leaderboard data for user
-  Future<List<Map<String, dynamic>>> updateUserPointsOnLeaderboard(String userId, Map<String, dynamic> data) async {
+  Future<void> updateUserPointsOnLeaderboard(String userId, Map<String, dynamic> data) async {
     return await SupabaseService.supabase
         .from(ApiConstants.leaderboard)
         .update(data).eq("user_id", userId);
