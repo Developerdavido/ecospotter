@@ -18,7 +18,7 @@ class LinearProgressBar extends StatelessWidget {
         child: LinearProgressIndicator(
           value: progressValue,
           backgroundColor: AppColors.borderColor,
-          valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primaryColor),
+          valueColor: const AlwaysStoppedAnimation<Color>(AppColors.mainPrimaryColor),
           minHeight: 5.h,
           borderRadius: BorderRadius.circular(8.r),
         ).animate().fade());

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
@@ -21,80 +22,86 @@ class CardBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.2),
-              shape: BoxShape.circle,
-              border: Border.all(color: color, width: 2),
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.mainPrimaryColor.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(24.r),
+      ),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.2),
+                shape: BoxShape.circle,
+                border: Border.all(color: color, width: 2),
+              ),
+              child: assetPath == null
+                  ? SvgPicture.asset(Media.trophy, colorFilter: ColorFilter.mode(color, BlendMode.srcIn), height: 10, width: 10, fit: BoxFit.contain,)
+                  : SvgPicture.network(assetPath ?? Media.trophy, colorFilter: ColorFilter.mode(color, BlendMode.srcIn), height: 10, width: 10, fit: BoxFit.contain,),
             ),
-            child: assetPath == null
-                ? SvgPicture.asset(Media.trophy, colorFilter: ColorFilter.mode(color, BlendMode.srcIn), height: 10, width: 10, fit: BoxFit.contain,)
-                : SvgPicture.network(assetPath ?? Media.trophy, colorFilter: ColorFilter.mode(color, BlendMode.srcIn), height: 10, width: 10, fit: BoxFit.contain,),
-          ),
-          const Gap(4),
-          SizedBox(
-            width: 70,
-            child: DefaultText(
-              data: title,
-              fontWeight: FontWeight.w400,
-              fontSize: 14,
-              maxLines: 2,
-              textColor: AppColors.blackOA,
-              letterSpacing: -0.42,
-              textAlign: TextAlign.center,
-              lineHeight: 1.2,
-            ),
-          ),
-          const Gap(4),
-          if(isEarned) DefaultText(
-            data: "Earned on: ${earnedAt.toString().substring(0, 16)}",
-            fontWeight: FontWeight.w400,
-            fontSize: 10,
-            maxLines: 1,
-            textColor: AppColors.grey97,
-            letterSpacing: -0.42,
-            lineHeight: 1.2,
-          ),
-
-          if(showBadgeProgress && !isEarned) Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DefaultText(
-                data: "Required: $pointsRequired points",
+            const Gap(4),
+            SizedBox(
+              width: 70,
+              child: DefaultText(
+                data: title,
                 fontWeight: FontWeight.w400,
-                fontSize: 10,
-                maxLines: 1,
+                fontSize: 14,
+                maxLines: 2,
                 textColor: AppColors.blackOA,
                 letterSpacing: -0.42,
+                textAlign: TextAlign.center,
                 lineHeight: 1.2,
               ),
-              const Gap(4),
-              LinearProgressIndicator(
-                value: progress,
-                backgroundColor: AppColors.grey35.withValues(alpha: 0.3),
-                valueColor: AlwaysStoppedAnimation<Color>(progress >= 1.0 ? AppColors.green : AppColors.mainPrimaryColor),
-              ),
-              const Gap(4),
-              DefaultText(
-                data: "Progress: $currentPoints/$pointsRequired points (${(progress * 100).toStringAsFixed(1)}%)",
-                fontWeight: FontWeight.w400,
-                fontSize: 10,
-                maxLines: 1,
-                textColor: progress >= 1.0 ? AppColors.green : AppColors.grey35,
-                letterSpacing: -0.42,
-                lineHeight: 1.2,
-              ),
-            ],
-          )
-        ],
+            ),
+            const Gap(4),
+            if(isEarned) DefaultText(
+              data: "Earned on: ${earnedAt.toString().substring(0, 16)}",
+              fontWeight: FontWeight.w400,
+              fontSize: 10,
+              maxLines: 1,
+              textColor: AppColors.grey97,
+              letterSpacing: -0.42,
+              lineHeight: 1.2,
+            ),
+
+            if(showBadgeProgress && !isEarned) Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                DefaultText(
+                  data: "Required: $pointsRequired points",
+                  fontWeight: FontWeight.w400,
+                  fontSize: 10,
+                  maxLines: 1,
+                  textColor: AppColors.blackOA,
+                  letterSpacing: -0.42,
+                  lineHeight: 1.2,
+                ),
+                const Gap(4),
+                LinearProgressIndicator(
+                  value: currentPoints! / pointsRequired! ,
+                  backgroundColor: AppColors.grey35.withValues(alpha: 0.3),
+                  valueColor: const AlwaysStoppedAnimation<Color>(AppColors.mainPrimaryColor),
+                ),
+                const Gap(4),
+                DefaultText(
+                  data: "Progress: $currentPoints/$pointsRequired points (${(currentPoints! / pointsRequired! * 100).toStringAsFixed(1)}%)",
+                  fontWeight: FontWeight.w400,
+                  fontSize: 10,
+                  maxLines: 1,
+                  textColor: (currentPoints! / pointsRequired!) >= 1.0 ? AppColors.green : AppColors.grey35,
+                  letterSpacing: -0.42,
+                  lineHeight: 1.2,
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

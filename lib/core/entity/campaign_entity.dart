@@ -7,6 +7,7 @@ class CampaignEntity {
   final String description;
   final String status;
   final String type;
+  final String? topic;
   final DateTime createdAt;
   final DateTime startDate;
   final DateTime endDate;
@@ -16,6 +17,7 @@ class CampaignEntity {
     required this.imageUrl,
     required this.title,
     required this.type,
+    this.topic,
     required this.description,
     required this.status,
     required this.createdAt,

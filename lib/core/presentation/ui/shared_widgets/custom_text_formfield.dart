@@ -19,6 +19,7 @@ class CustomTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final AutovalidateMode? autovalidateMode;
   final String? Function(String?)? validator;
+  final String? Function(String?)? onChanged;
   final Function()? onEditingComplete;
   final bool defaultValidation;
 
@@ -34,6 +35,7 @@ class CustomTextField extends StatelessWidget {
     this.onEditingComplete,
     this.autovalidateMode,
     this.hintText,
+    this.onChanged,
     this.suffixIcon,
     this.prefix,
     this.prefixIcon,
@@ -71,6 +73,7 @@ class CustomTextField extends StatelessWidget {
       cursorColor: AppColors.blackOA,
       onTapOutside: (_) => _focusNode.unfocus(),
       onEditingComplete: onEditingComplete,
+      onChanged: onChanged,
       autovalidateMode: autovalidateMode,
       decoration: InputDecoration(
         border: border,

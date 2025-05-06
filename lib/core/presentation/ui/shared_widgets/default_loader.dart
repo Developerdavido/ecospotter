@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 
 import '../../../../constants/app_colors.dart';
 import '../../../../constants/media.dart';
+import 'default_text.dart';
 
 class Loader extends StatelessWidget {
-  const Loader({super.key});
+  final String? loaderText;
+  const Loader({super.key, this.loaderText});
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +25,36 @@ class Loader extends StatelessWidget {
               height: 99.h,
               padding: EdgeInsets.symmetric(horizontal: 12.w),
               decoration: BoxDecoration(color: AppColors.white.withValues(alpha: 0.2)),
-              child: SizedBox(
+              child: Container(
                   height: 0.1.sh,
-                  width: 0.1.sh,
-                  child: Center(
-                    child: SizedBox(
-                      height: 66,
-                      width: 66,
-                      child: CircularProgressIndicator(
-                        color: AppColors.mainPrimaryColor,
-                        strokeWidth: 2.w,
+                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16.r),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 44,
+                        width: 44,
+                        child: CircularProgressIndicator(
+                          color: AppColors.mainPrimaryColor,
+                          strokeWidth: 2.w,
 
+                        ),
                       ),
-                    ),
+                      Gap(8.h),
+                      DefaultText(
+                        data: loaderText ?? "Loading..",
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14.sp,
+                        textColor: AppColors.mainPrimaryColor,
+                        letterSpacing: -0.42,
+                        lineHeight: 1.2,
+                      ),
+                    ],
                   )
               //     Center(
               //       child: SvgPicture.asset(

@@ -1,5 +1,6 @@
 import 'package:citizen_app/core/presentation/ui/views/badges/widget/card_badge.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -53,7 +54,7 @@ class BuildBadgeWidget extends StatelessWidget {
         const SizedBox(height: 8),
         //this will show a list of the user earned badges
         SizedBox(
-            height: 100,
+            height: 0.15.sh,
             child: FutureBuilder<List<dynamic>>(
                 future: Future.wait([badgeVm.getAllBadges(), badgeVm.getAllUserBadges(userId!)]),
                 builder: (context, snapshot) {

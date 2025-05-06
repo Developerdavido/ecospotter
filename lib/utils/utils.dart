@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -10,49 +11,38 @@ abstract class Utils {
     return formattedDate;
   }
 
-  static monthOfEvent(date){
+  static monthOfEvent(date) {
     String formattedDate = DateFormat('MMM').format(date);
     return formattedDate;
   }
 
-  static fullDate(date){
+  static fullDate(date) {
     String formattedDate = DateFormat('dd/MMM/yyyy').format(date);
     return formattedDate;
   }
 
-  static time(date){
+  static time(date) {
     String formattedDate = DateFormat('h:mm a').format(date);
     return formattedDate;
   }
 
   //auth utils
   //professions
-  static final List<String> professions = [
-    'Student',
-    'Researcher',
-    'Nature Enthusiast',
-    'Other'
-  ];
+  static final List<String> professions = ['Student', 'Researcher', 'Nature Enthusiast', 'Other'];
 
   //gender
   static final List<String> gender = ['Male', 'Female'];
 
-  static final List<String> animals = [
-    'Large Mammals',
-    'Small Mammals',
-    'Fishes',
-    'Birds',
-    'Herpetofauna'
-  ];
+  static final List<String> animals = ['Large Mammals', 'Small Mammals', 'Fishes', 'Birds', 'Herpetofauna'];
 
   Map<int, dynamic> alphabetMap = {
-    0 : "a)",
-    1 : "b)",
-    2 : "c)",
-    3 : "d)",
-    4 : "e)",
-    5 : "f)",
-    6 : "g)",
+    0: "a)",
+    1: "b)",
+    2: "c)",
+    3: "d)",
+    4: "e)",
+    5: "f)",
+    6: "g)",
   };
 
   //this is for the animal activity
@@ -113,6 +103,13 @@ abstract class Utils {
     return materialColors[randomIndex];
   }
 
-
+  //check for internet connectivity
+  static Future<bool> isInternetPresent() async {
+    final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult.contains(ConnectivityResult.ethernet) || connectivityResult.contains(ConnectivityResult.mobile) || connectivityResult.contains(ConnectivityResult.wifi)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
-

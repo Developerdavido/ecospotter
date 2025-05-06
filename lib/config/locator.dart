@@ -8,6 +8,7 @@ import 'package:citizen_app/config/services/http_service.dart';
 import 'package:citizen_app/config/services/image_service.dart';
 import 'package:citizen_app/config/services/location_service.dart';
 import 'package:citizen_app/config/services/navigation_service.dart';
+import 'package:citizen_app/config/services/notification_service.dart';
 import 'package:citizen_app/core/data/datasources/auth/auth_data_source.dart';
 import 'package:citizen_app/core/data/datasources/badge_service.dart';
 import 'package:citizen_app/core/data/datasources/campaign_data_source.dart';
@@ -21,6 +22,7 @@ setupLocator() {
   locator.registerLazySingleton<HttpService>(() => HttpService());
   locator.registerLazySingleton<AiService>(() => AiService());
   locator.registerLazySingleton<DialogService>(() => DialogService());
+  locator.registerLazySingleton<NotificationService>(() => NotificationService());
   locator.registerLazySingleton<AuthService>(() => AuthService());
   locator.registerLazySingleton<CampaignService>(() => CampaignService());
   locator.registerLazySingleton<NavService>(() => NavService());

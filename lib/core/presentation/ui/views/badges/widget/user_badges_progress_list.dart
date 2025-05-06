@@ -52,10 +52,9 @@ class UserBadgesProgressList extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10.w),
             child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
+                  crossAxisCount: 2,
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 10,
-                  childAspectRatio: 0.8,
                 ),
                 itemCount: allBadges.length,
                 itemBuilder: (context, index) {

@@ -1,5 +1,7 @@
+import 'package:citizen_app/core/presentation/ui/views/capture_form/capture_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 
 import '../../../../../config/services/navigation_service.dart';
 import '../../../../../constants/app_colors.dart';
@@ -36,7 +38,11 @@ class _AppNavigationState extends State<AppNavigation> {
                 child: BottomNav(
                         currentIndex: currentIndex,
                         getCurrentIndex: (index) {
-                          changeTheCurrentIndex(index);
+                          if(index == 1) {
+                            Get.to(()=> const CaptureForm(isHome: false));
+                          } else {
+                            changeTheCurrentIndex(index);
+                          }
                         }).animate().fade().scale(
                       delay: 500.ms,
                     ))

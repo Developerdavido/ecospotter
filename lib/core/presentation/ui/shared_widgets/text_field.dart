@@ -21,6 +21,7 @@ class InputField extends StatefulWidget {
     this.inputFormatters,
     this.prefix,
     this.title,
+    this.onChanged,
     this.enabled = true,
     this.readOnly = false,
     this.contentPadding,
@@ -37,6 +38,7 @@ class InputField extends StatefulWidget {
   final String? hintText;
   final String? title;
   final String? Function(String? value)? validator;
+  final String? Function(String? value)? onChanged;
   final TextEditingController controller;
   final TextEditingController? countryCodeController;
   final TextInputType? keyboardType;
@@ -110,6 +112,7 @@ class _InputFieldState extends State<InputField> {
           suffixIcon: widget.suffixIcon,
           prefixIcon: widget.prefixIcon,
           prefix: widget.prefix,
+          onChanged: widget.onChanged,
           inputFormatters: widget.inputFormatters,
           validator: widget.validator,
           defaultValidation: widget.defaultValidation,

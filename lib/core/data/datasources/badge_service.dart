@@ -1,7 +1,10 @@
 import 'dart:convert';
 
+import 'package:citizen_app/config/locator.dart';
 import 'package:citizen_app/config/services/local_storage_service.dart';
+import 'package:citizen_app/config/services/notification_service.dart';
 import 'package:citizen_app/config/services/supabase_service.dart';
+import 'package:citizen_app/core/data/datasources/leaderboard_data_source.dart';
 import 'package:flutter/material.dart';
 
 import '../models/badge_model.dart';
@@ -27,7 +30,11 @@ class BadgeService {
 
     //get the user earned badges
     final userBadges = await getUserBadges(userId);
-    final earnedBadgeIds = userBadges.map((e) => e['badge_id']).toSet();
+    Set earnedBadgeIds = {};
+    if(userBadges.isNotEmpty) {
+      earnedBadgeIds = userBadges.map((e) => e['badge_id']).toSet();
+    }
+
 
     //find badges that can be awarded based on points
     final List<Map<String, dynamic>> newlyEarnedBadges = [];
@@ -51,12 +58,17 @@ class BadgeService {
   //award a new badge to the user
   Future<void> awardBadge(String userId, String badgeId) async {
     final now = DateTime.now();
-    await SupabaseService.supabase.from('user_badges').insert({
-      'user_id': userId,
-      'badge_id': badgeId,
-      'earned_at': now.toIso8601String(),
-      'is_viewed': false,
-    });
+    try{
+      await SupabaseService.supabase.from('user_badges').insert({
+        'user_id': userId,
+        'badge_id': badgeId,
+        //'earned_at': now.toIso8601String(),
+        'is_viewed': false,
+      });
+    } catch (e){
+      print("badge award error ===> ${e.toString()}");
+    }
+
   }
 
   //save the badges to local
@@ -163,22 +175,29 @@ class BadgeService {
   }
 
   //update user points
-  Future<void> updateUserPoints(String userId, int additionalPoints) async {
+  Future<bool> updateUserPoints(String userId, int additionalPoints) async {
+    bool success = false;
     final response = await SupabaseService.supabase.from('profiles').select('points').eq('id', userId);
     if (response.isNotEmpty) {
       final points = response[0]['points'] as int;
       await SupabaseService.supabase.from('profiles').update({'points': points + additionalPoints}).eq('id', userId);
+      
+      await locator<LeaderboardDataSource>().updateUserPointsOnLeaderboard(userId, {'points': points + additionalPoints});
 
       //check and award badges locally
-      final newlyEarnedBadges = await checkAndAwardBadges(userId, additionalPoints);
+      final newlyEarnedBadges = await checkAndAwardBadges(userId, additionalPoints + points);
 
       //show notification for new badges
       if(newlyEarnedBadges.isNotEmpty){
         for(final badge in newlyEarnedBadges) {
           //TODO: show a notification when a new badge has been added
-          print("New badge earned: ${badge.name}");
+          locator<NotificationService>().showNotification(2, title: "Congratulations 🥳", body: "Hurray you have just earned the ${badge.name} badge!");
         }
       }
+      return true;
+    } else {
+      success = false;
     }
+    return success;
   }
 }

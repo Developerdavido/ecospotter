@@ -25,6 +25,6 @@ class LeaderboardDataSource {
   Future<List<Map<String, dynamic>>> updateUserPointsOnLeaderboard(String userId, Map<String, dynamic> data) async {
     return await SupabaseService.supabase
         .from(ApiConstants.leaderboard)
-        .update(data).eq("id", userId);
+        .update(data).eq("user_id", userId);
   }
 }

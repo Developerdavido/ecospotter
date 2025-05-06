@@ -3,6 +3,7 @@ import 'package:citizen_app/core/presentation/ui/views/home/home_screen.dart';
 import 'package:citizen_app/core/presentation/ui/views/leaderboards/leaderboard_screen.dart';
 import 'package:citizen_app/core/presentation/ui/views/profile/user_info_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../constants/app_colors.dart';
 import '../../constants/media.dart';
 import '../../core/presentation/ui/shared_widgets/nav_item.dart';
@@ -44,6 +45,10 @@ class NavService {
       //const UserProfileScreen()
     ];
     if (screens[currentIndex] != null) {
+      if(currentIndex == 1) {
+        Get.to(()=> const CaptureForm(isHome: false,));
+        return null;
+      }
       return screens[currentIndex];
     }
     return null;

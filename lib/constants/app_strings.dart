@@ -3,6 +3,7 @@ abstract class AppStrings {
   static const String continueBtn = "Continue";
   static const String googleLogin = "Sign in with Google";
   static const String next = "Next";
+  static const String ok = "Ok";
   static const String submit = "Submit";
 
   //splash screen tagline

@@ -1,4 +1,5 @@
 
+import 'package:citizen_app/config/services/notification_service.dart';
 import 'package:citizen_app/core/presentation/ui/views/splash_page/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -24,6 +25,7 @@ void main() async {
   //initialize supabase
   await SupabaseService.initialize();
   setupLocator();
+  NotificationService().init();
   final prefs = await SharedPreferences.getInstance();
   CacheHelper.instance.init(prefs);
   runApp(const MyApp());

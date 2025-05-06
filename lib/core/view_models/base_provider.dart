@@ -3,6 +3,7 @@
 import 'package:citizen_app/config/services/ai_service.dart';
 import 'package:citizen_app/config/services/dialog_service.dart';
 import 'package:citizen_app/config/services/image_service.dart';
+import 'package:citizen_app/config/services/notification_service.dart';
 import 'package:citizen_app/core/data/datasources/badge_service.dart';
 import 'package:citizen_app/core/data/datasources/campaign_data_source.dart';
 import 'package:citizen_app/core/data/datasources/capture_data_source.dart';
@@ -25,6 +26,7 @@ class BaseProvider with ChangeNotifier {
   var badgeService = locator<BadgeService>();
   var captureData = locator<CaptureDataSource>();
   var imageService = locator<ImageService>();
+  var notifyService = locator<NotificationService>();
   var dialog = locator<DialogService>();
 
   UiState uiState = UiState.idle;

@@ -28,6 +28,7 @@ abstract class Media {
   static const share = '$_baseSvg/share-android.svg';
   static const trophy = '$_baseSvg/trophy.svg';
   static const star = '$_baseSvg/star.svg';
+  static const ai = '$_baseSvg/ai.svg';
   static const shield = '$_baseSvg/shield.svg';
 
 

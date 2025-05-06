@@ -10,6 +10,7 @@ class CampaignModel extends CampaignEntity {
     required super.imageUrl,
     required super.status,
     required super.type,
+    super.topic,
     required super.createdAt,
     required super.startDate,
     required super.endDate});
@@ -19,6 +20,7 @@ class CampaignModel extends CampaignEntity {
         id: json['id'] ?? "",
         title: json['title'] ?? "",
         type: json['type'] ?? "",
+        topic: json['topic'] ?? "",
         description: json['description'] ?? "",
         status: json['status'] ?? "",
         createdAt: DateTime.parse(json['created_at']),

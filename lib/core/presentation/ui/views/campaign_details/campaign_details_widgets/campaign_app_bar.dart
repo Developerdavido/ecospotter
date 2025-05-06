@@ -8,6 +8,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../constants/app_colors.dart';
+import '../../../../../../constants/media.dart';
 import '../../../../../../utils/utils.dart';
 import '../../../../../data/models/campaign_model.dart';
 import '../../../shared_widgets/default_back_button.dart';
@@ -17,9 +18,10 @@ import '../../home/home_widgets/custom_campaign_tag.dart';
 
 
 class CampaignDetailsAppBar extends StatelessWidget {
-  const CampaignDetailsAppBar({super.key, this.model});
+  const CampaignDetailsAppBar({super.key, this.model, this.onInfoTap});
 
   final CampaignModel? model;
+  final VoidCallback? onInfoTap;
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +175,9 @@ class CampaignDetailsAppBar extends StatelessWidget {
       actions: [
         Padding(
           padding: EdgeInsets.all(8.0.w),
-          child:const  DefaultBackButton(
+          child:DefaultBackButton(
+            onBackTap: onInfoTap,
+            asset: Media.ai,
             icon: Icons.info_outline,
             btnColor: AppColors.white,
             iconColor: AppColors.mainPrimaryColor,

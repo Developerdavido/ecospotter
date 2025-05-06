@@ -14,7 +14,7 @@ class ReusableSystemOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnnotatedRegion(
       value: const SystemUiOverlayStyle(
-        statusBarColor: AppColors.white,
+        statusBarColor: AppColors.primaryColorWhiteBackground,
         statusBarIconBrightness: Brightness.dark,
       ), child: child,);
   }

@@ -6,16 +6,11 @@ class TriviaModel extends TriviaEntity {
 
   factory TriviaModel.fromJson(Map<String, dynamic> json) {
     return TriviaModel(
-      questions: json["questions"] == null
-          ? []
-          : List<QuestionModel>.from(
-              json["questions"]!.map((x) => QuestionModel.fromJson(x))),
+      questions: json["questions"] == null ? [] : List<QuestionModel>.from(json["questions"]!.map((x) => QuestionModel.fromJson(x))),
     );
   }
 
   Map<String, dynamic> toJson() => {
-        "questions": questions == null
-            ? []
-            : List<dynamic>.from(questions.map((x) => x.toJson())),
+        "questions": questions == null ? [] : List<dynamic>.from(questions.map((x) => x.toJson())),
       };
 }

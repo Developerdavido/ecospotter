@@ -8,6 +8,7 @@ import 'package:citizen_app/core/presentation/ui/views/app_navigation/app_naviga
 import 'package:citizen_app/core/presentation/ui/views/auth/views/add_animal_interested.dart';
 import 'package:citizen_app/core/presentation/ui/views/auth/views/add_profession_screen.dart';
 import 'package:citizen_app/core/view_models/base_provider.dart';
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
@@ -208,6 +209,20 @@ class AuthProvider extends BaseProvider {
     } on Exception catch (e) {
       dialog.showSnackBar("Error", e.toString());
       setUiState(UiState.done);
+    }
+  }
+
+  retrieveUserAndUpdateProfile(String userId) async {
+    setUiState(UiState.loading);
+    try{
+      List<Map<String, dynamic>> userData = await auth.getUserById(userId);
+      setUiState(UiState.done);
+      if (userData.isNotEmpty) {
+        userModel = UserModel.fromJson(userData[0]);
+        await CacheHelper.instance.cacheModel(CacheHelper.userModelKey, userData[0]);
+      }
+    } on Exception catch(e) {
+      print("User data was not found dur to this error $e");
     }
   }
 
