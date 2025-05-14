@@ -103,184 +103,176 @@ class _CaptureFormState extends State<CaptureForm> {
   Widget build(BuildContext context) {
     return Consumer2<CaptureProvider, AIVm>(
       builder: (context, vm, aiVm, child) {
-        return GestureDetector(
-          onTap: (){
-            if(!_focusNode.hasPrimaryFocus){
-              _focusNode.unfocus();
-            }
-            makeTheApiCall();
-          },
-          child: SafeArea(
-            child: Scaffold(
-              backgroundColor: AppColors.primaryColorWhiteBackground,
-              body: Stack(
-                children: [
-                  CustomScrollView(
-                    slivers: [
-                      SliverAppBar(
-                          floating: false,
-                          pinned: true,
-                          backgroundColor: AppColors.primaryColorWhiteBackground,
-                          elevation: 0,
-                          surfaceTintColor: Colors.transparent,
-                          leading:  widget.isHome ? null : const DefaultBackButton(
-                            iconColor: AppColors.blackOA,
-                            icon: CupertinoIcons.back,
-                            btnColor: AppColors.primaryColorWhiteBackground,
-                          )
-                      ),
-                      SliverToBoxAdapter(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16.0.w),
-                          child: Form(
-                            key: _formKey,
-                            child: Stack(
-                              children: [
-                                Column(
-                                  children: AnimateList(
-                                    interval: 20.ms,
-                                    effects: [
-                                      SlideEffect(delay: 200.ms, begin: const Offset(0, 0.3), end: const Offset(0, 0)),
-                                      FadeEffect(duration: 300.ms),
+        return SafeArea(
+          child: Scaffold(
+            backgroundColor: AppColors.primaryColorWhiteBackground,
+            body: Stack(
+              children: [
+                CustomScrollView(
+                  slivers: [
+                    SliverAppBar(
+                        floating: false,
+                        pinned: true,
+                        backgroundColor: AppColors.primaryColorWhiteBackground,
+                        elevation: 0,
+                        surfaceTintColor: Colors.transparent,
+                        leading:  widget.isHome ? null : const DefaultBackButton(
+                          iconColor: AppColors.blackOA,
+                          icon: CupertinoIcons.back,
+                          btnColor: AppColors.primaryColorWhiteBackground,
+                        )
+                    ),
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                        child: Form(
+                          key: _formKey,
+                          child: Stack(
+                            children: [
+                              Column(
+                                children: AnimateList(
+                                  interval: 20.ms,
+                                  effects: [
+                                    SlideEffect(delay: 200.ms, begin: const Offset(0, 0.3), end: const Offset(0, 0)),
+                                    FadeEffect(duration: 300.ms),
+                                  ],
+                                    children: [
+                                      Gap(20.h),
+                                      DefaultText(
+                                        data: AppStrings.animalNameAndImageTitle,
+                                        fontFamily: "Geist",
+                                        fontWeight: FontWeight.w900,
+                                        textColor: AppColors.mainPrimaryColor,
+                                        fontSize: 20.sp,
+                                        letterSpacing: -0.41,
+                                        lineHeight: 1.33,
+                                        textAlign: TextAlign.center,
+                                      ).animate(delay: 100.ms)
+                                          .slide(
+                                        begin: const Offset(0, -0.3),
+                                        end: const Offset(0, 0), // End at center
+                                        duration: 600.ms,
+                                        curve: Curves.easeOutBack,
+                                      )
+                                          .fade(begin: 0, end: 1, duration: 600.ms),
+                                      Gap(4.h),
+                                      DefaultText(
+                                        data: AppStrings.animalNameAndImageMessage,
+                                        fontFamily: "Geist",
+                                        fontWeight: FontWeight.w400,
+                                        textColor: AppColors.blackOA,
+                                        fontSize: 16.sp,
+                                        letterSpacing: -0.41,
+                                        lineHeight: 1.33,
+                                        textAlign: TextAlign.center,
+                                      ).animate()
+                                          .slide(
+                                        begin: const Offset(0, -0.3),
+                                        end: const Offset(0, 0), // End at center
+                                        duration: 600.ms,
+                                        curve: Curves.easeOutBack,
+                                      )
+                                          .fade(begin: 0, end: 1, duration: 600.ms),
+                                      Gap(0.1.sh),
+                                      CaptureImage(
+                                        onImageTap: () async {
+                                         var file =  await vm.captureAndCropImage(source: ImageSource.camera);
+                                         if(file != null) {
+                                           setState(() {
+                                             imageFile = file;
+                                           });
+                                           vm.imageUrl = imageFile!.path;
+                                         }
+                                        },
+                                        imagePath: imageFile?.path,
+                                      ),
+                                      Gap(12.h),
+                                      DefaultText(
+                                        data: AppStrings.captureImage,
+                                        fontFamily: "Geist",
+                                        fontWeight: FontWeight.w400,
+                                        textColor: AppColors.blackOA,
+                                        fontSize: 12.sp,
+                                        letterSpacing: -0.41,
+                                        lineHeight: 1.33,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      Gap(12.h),
+                                      InputField(
+                                        controller: nameCtrl,
+                                        onChanged: (value) {
+                                          animalName = value;
+                                        },
+                                        title: "What is the common name of the animal sighted?",
+                                        hintText: "Enter response here",
+                                        onEditingComplete: (){
+                                          if(!_focusNode.hasPrimaryFocus) {
+                                            _focusNode.unfocus();
+                                          }
+                                          makeTheApiCall();
+                                        },
+
+                                        validator: (value) {
+                                          if(value == null) {
+                                            return "Name input field must not be empty";
+                                          }
+                                          return null;
+                                        },
+                                      ),
+                                      Gap(40.h),
+                                      DefaultButton(
+                                          btnColor: AppColors.mainPrimaryColor,
+                                          isNull: imageFile == null,
+                                          btnTextColor: AppColors.white,
+                                          onBtnTap: (){
+                                            if(imageFile == null) {
+                                              locator<DialogService>().showSnackBar("Image Error", "An image must be taken before proceeding");
+                                              return;
+                                            }
+                                            if(_formKey.currentState!.validate()) {
+                                              vm.animalName = nameCtrl.text;
+                                              Get.to(()=> const AnimalActivity());
+                                            }
+
+                                          }, btnText: AppStrings.next),
                                     ],
-                                      children: [
-                                        Gap(20.h),
-                                        DefaultText(
-                                          data: AppStrings.animalNameAndImageTitle,
-                                          fontFamily: "Geist",
-                                          fontWeight: FontWeight.w900,
-                                          textColor: AppColors.mainPrimaryColor,
-                                          fontSize: 20.sp,
-                                          letterSpacing: -0.41,
-                                          lineHeight: 1.33,
-                                          textAlign: TextAlign.center,
-                                        ).animate(delay: 100.ms)
-                                            .slide(
-                                          begin: const Offset(0, -0.3),
-                                          end: const Offset(0, 0), // End at center
-                                          duration: 600.ms,
-                                          curve: Curves.easeOutBack,
-                                        )
-                                            .fade(begin: 0, end: 1, duration: 600.ms),
-                                        Gap(4.h),
-                                        DefaultText(
-                                          data: AppStrings.animalNameAndImageMessage,
-                                          fontFamily: "Geist",
-                                          fontWeight: FontWeight.w400,
-                                          textColor: AppColors.blackOA,
-                                          fontSize: 16.sp,
-                                          letterSpacing: -0.41,
-                                          lineHeight: 1.33,
-                                          textAlign: TextAlign.center,
-                                        ).animate()
-                                            .slide(
-                                          begin: const Offset(0, -0.3),
-                                          end: const Offset(0, 0), // End at center
-                                          duration: 600.ms,
-                                          curve: Curves.easeOutBack,
-                                        )
-                                            .fade(begin: 0, end: 1, duration: 600.ms),
-                                        Gap(0.1.sh),
-                                        CaptureImage(
-                                          onImageTap: () async {
-                                           var file =  await vm.captureAndCropImage(source: ImageSource.camera);
-                                           if(file != null) {
-                                             setState(() {
-                                               imageFile = file;
-                                             });
-                                             vm.imageUrl = imageFile!.path;
-                                           }
-                                          },
-                                          imagePath: imageFile?.path,
-                                        ),
-                                        Gap(12.h),
-                                        DefaultText(
-                                          data: AppStrings.captureImage,
-                                          fontFamily: "Geist",
-                                          fontWeight: FontWeight.w400,
-                                          textColor: AppColors.blackOA,
-                                          fontSize: 12.sp,
-                                          letterSpacing: -0.41,
-                                          lineHeight: 1.33,
-                                          textAlign: TextAlign.center,
-                                        ),
-                                        Gap(12.h),
-                                        InputField(
-                                          controller: nameCtrl,
-                                          onChanged: (value) {
-                                            animalName = value;
-                                          },
-                                          title: "What is the common name of the animal sighted?",
-                                          hintText: "Enter response here",
-                                          onEditingComplete: (){
-                                            if(!_focusNode.hasPrimaryFocus) {
-                                              _focusNode.unfocus();
-                                            }
-                                            makeTheApiCall();
-                                          },
-
-                                          validator: (value) {
-                                            if(value == null) {
-                                              return "Name input field must not be empty";
-                                            }
-                                            return null;
-                                          },
-                                        ),
-                                        Gap(40.h),
-                                        DefaultButton(
-                                            btnColor: AppColors.mainPrimaryColor,
-                                            isNull: imageFile == null,
-                                            btnTextColor: AppColors.white,
-                                            onBtnTap: (){
-                                              if(imageFile == null) {
-                                                locator<DialogService>().showSnackBar("Image Error", "An image must be taken before proceeding");
-                                                return;
-                                              }
-                                              if(_formKey.currentState!.validate()) {
-                                                vm.animalName = nameCtrl.text;
-                                                Get.to(()=> const AnimalActivity());
-                                              }
-
-                                            }, btnText: AppStrings.next),
-                                      ],
-                                  )
-                                ),
-                                Visibility(
-                                  visible: vm.isLoading,
-                                  child: const Loader(),
                                 )
-                              ],
-                            ),
+                              ),
+                              Visibility(
+                                visible: vm.isLoading,
+                                child: const Loader(),
+                              )
+                            ],
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                  //place the custom expandable object here
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: ModalExpandableCustom(
-                        dataStream: _dataStreamController.stream,
-                        collapsedHeight: 0.15.sh,
-                        expandedHeight: 0.5.sh,
-                        onBackPressed: (){
-                          setState(() {
-                            animalName = null;
-                          });
-                        },
-                        contentBuilder: (data, isExpanded) {
-                          return BadgeTriviaAndDescription(
-                            isExpanded: isExpanded,
-                            trivia: data['trivia'],
-                            description: data['description'],
-                            errorMessage: data['message'],
-                          );
-                        }),
-                  ),
-                ],
-              ),
+                      ),
+                    )
+                  ],
+                ),
+                //place the custom expandable object here
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: ModalExpandableCustom(
+                      dataStream: _dataStreamController.stream,
+                      collapsedHeight: 0.15.sh,
+                      expandedHeight: 0.5.sh,
+                      onBackPressed: (){
+                        setState(() {
+                          animalName = null;
+                        });
+                      },
+                      contentBuilder: (data, isExpanded) {
+                        return BadgeTriviaAndDescription(
+                          isExpanded: isExpanded,
+                          trivia: data['trivia'],
+                          description: data['description'],
+                          errorMessage: data['message'],
+                        );
+                      }),
+                ),
+              ],
             ),
           ),
         );

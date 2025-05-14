@@ -247,4 +247,10 @@ class AuthProvider extends BaseProvider {
     userName = null;
     notifyListeners();
   }
+
+  clearData() {
+    userModel = null;
+    authModel = null;
+    notifyListeners();
+  }
 }

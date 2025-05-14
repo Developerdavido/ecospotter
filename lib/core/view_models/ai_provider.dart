@@ -27,6 +27,7 @@ class AIVm extends BaseProvider {
         trivia = TriviaModel.fromJson(geminiResponse!);
       }
     } on DioException catch(e) {
+      dialog.showSnackBar("Error fetching questions", "$e");
       setUiState(UiState.done);
 
     }
@@ -46,6 +47,7 @@ class AIVm extends BaseProvider {
       }
       return descMap;
     } on DioException catch(e) {
+      dialog.showSnackBar("Error fetching animal description", "$e");
       setUiState(UiState.done);
       return descMap;
     }

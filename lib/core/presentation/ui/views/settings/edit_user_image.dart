@@ -36,19 +36,19 @@ class _EditUserImageState extends State<EditUserImage> {
       builder: (context, authVm, _) {
         return SafeArea(
           child: Scaffold(
-            backgroundColor: AppColors.mainPrimaryColor,
+            backgroundColor: AppColors.primaryColorWhiteBackground,
             body: CustomScrollView(
               slivers: [
                 const SliverAppBar(
                     floating: false,
                     pinned: true,
-                    backgroundColor: AppColors.mainPrimaryColor,
+                    backgroundColor: AppColors.primaryColorWhiteBackground,
                     elevation: 0,
                     surfaceTintColor: Colors.transparent,
                     leading:  DefaultBackButton(
-                      iconColor: AppColors.white,
+                      iconColor: AppColors.blackOA,
                       icon: CupertinoIcons.back,
-                      btnColor: AppColors.mainPrimaryColor,
+                      btnColor: AppColors.primaryColorWhiteBackground,
                     )
                 ),
                 SliverToBoxAdapter(
@@ -69,7 +69,7 @@ class _EditUserImageState extends State<EditUserImage> {
                                 data: AppStrings.avatarTitle,
                                 fontFamily: "Geist",
                                 fontWeight: FontWeight.w900,
-                                textColor: AppColors.lime,
+                                textColor: AppColors.mainPrimaryColor,
                                 fontSize: 20.sp,
                                 letterSpacing: -0.41,
                                 lineHeight: 1.33,
@@ -80,7 +80,7 @@ class _EditUserImageState extends State<EditUserImage> {
                                 data: AppStrings.avatarMessage,
                                 fontFamily: "Geist",
                                 fontWeight: FontWeight.w400,
-                                textColor: AppColors.white,
+                                textColor: AppColors.blackOA,
                                 fontSize: 16.sp,
                                 letterSpacing: -0.41,
                                 lineHeight: 1.33,
@@ -117,7 +117,7 @@ class _EditUserImageState extends State<EditUserImage> {
                                 data: AppStrings.captureAvatar,
                                 fontFamily: "Geist",
                                 fontWeight: FontWeight.w400,
-                                textColor: AppColors.green,
+                                textColor: AppColors.blackOA,
                                 fontSize: 12.sp,
                                 letterSpacing: -0.41,
                                 lineHeight: 1.33,
@@ -125,8 +125,8 @@ class _EditUserImageState extends State<EditUserImage> {
                               ),
                               Gap(44.h),
                               DefaultButton(
-                                  btnColor: AppColors.green5C,
-                                  btnTextColor: AppColors.mainBlack,
+                                  btnColor: AppColors.mainPrimaryColor,
+                                  btnTextColor: AppColors.white,
                                   onBtnTap: (){
                                     authVm.updateAvatar(authVm.userModel!.id, imageUrl!);
                                   }, btnText: AppStrings.submit),

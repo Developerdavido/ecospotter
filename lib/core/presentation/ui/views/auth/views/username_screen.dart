@@ -26,129 +26,84 @@ class ChooseUsername extends StatefulWidget {
 
 class _ChooseUsernameState extends State<ChooseUsername> {
   final TextEditingController username = TextEditingController();
+  AuthProvider? authProvider;
+  final FocusScopeNode _focusNode = FocusScopeNode();
+
+  _makeApiCallToCheckUsername(String userName) async {
+    await authProvider?.isUsernamePresent(userName);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    authProvider = context.read<AuthProvider>();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Consumer<AuthProvider>(builder: (context, auth, _) {
-        return Scaffold(
-          backgroundColor: AppColors.primaryColorWhiteBackground,
-          body: CustomScrollView(
-            slivers: [
-              const SliverAppBar(
-                  floating: false,
-                  pinned: true,
-                  backgroundColor: AppColors.primaryColorWhiteBackground,
-                  elevation: 0,
-                  surfaceTintColor: Colors.transparent,
-                  leading: DefaultBackButton(
-                    iconColor: AppColors.blackOA,
-                    icon: CupertinoIcons.back,
-                    btnColor: AppColors.primaryColorWhiteBackground,
-                  )),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0.w),
-                  child: Stack(
-                    children: [
-                      Column(
-                        children: [
-                          Gap(20.h),
-                          DefaultText(
-                            data: AppStrings.usernameTitle,
-                            fontFamily: "Geist",
-                            fontWeight: FontWeight.w900,
-                            textColor: AppColors.mainPrimaryColor,
-                            fontSize: 20.sp,
-                            letterSpacing: -0.41,
-                            lineHeight: 1.33,
-                            textAlign: TextAlign.center,
-                          )
-                              .animate(delay: 100.ms)
-                              .slide(
-                                begin: const Offset(0, -0.3),
-                                end: const Offset(0, 0), // End at center
-                                duration: 600.ms,
-                                curve: Curves.easeOutBack,
-                              )
-                              .fade(begin: 0, end: 1, duration: 600.ms),
-                          Gap(4.h),
-                          DefaultText(
-                            data: AppStrings.usernameMessage,
-                            fontFamily: "Geist",
-                            fontWeight: FontWeight.w400,
-                            textColor: AppColors.blackOA,
-                            fontSize: 16.sp,
-                            letterSpacing: -0.41,
-                            lineHeight: 1.33,
-                            textAlign: TextAlign.center,
-                          )
-                              .animate()
-                              .slide(
-                                begin: const Offset(0, -0.3),
-                                end: const Offset(0, 0), // End at center
-                                duration: 600.ms,
-                                curve: Curves.easeOutBack,
-                              )
-                              .fade(begin: 0, end: 1, duration: 600.ms),
-                          Gap(0.1.sh),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: InputField(
-                                  controller: username,
-                                  title: "What username suits you?",
-                                  hintText: "Enter response here",
-                                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                                  onEditingComplete: () async {
-                                    var value = username.text;
-                                    await auth.isUsernamePresent(value);
-                                  },
-                                  validator: (value) {
-                                    if (value == null) {
-                                      return "Username input field must not be empty";
-                                    }
-                                    return null;
-                                  },
-                                )
-                                    .animate()
-                                    .slide(
-                                      begin: const Offset(0, 0.3),
-                                      end: const Offset(0, 0), // End at center
-                                      duration: 600.ms,
-                                      curve: Curves.easeOutBack,
-                                    )
-                                    .fade(begin: 0, end: 1, duration: 500.ms),
-                              ),
-                              auth.gettingUsername ? Gap(8.w) : Container(),
-                              Visibility(
-                                visible: auth.gettingUsername,
-                                child: SizedBox(
-                                  height: 20.w,
-                                  width: 20.w,
-                                  child: const CircularProgressIndicator(
-                                    color: AppColors.lime,
-                                    strokeWidth: 1.5,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          Gap(6.h),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: DefaultText(
-                              data: username.text.isEmpty
-                                  ? ""
-                                  : auth.found
-                                      ? "The username @${username.text} is available"
-                                      : "The username @${username.text} has been taken",
+      child: GestureDetector(
+        onTap: (){
+          if(_focusNode.hasPrimaryFocus){
+          _focusNode.unfocus();
+          }
+          if(username != null || username.text.isNotEmpty){
+            _makeApiCallToCheckUsername(username.text);
+          }
+        },
+        child: Consumer<AuthProvider>(builder: (context, auth, _) {
+          return Scaffold(
+            backgroundColor: AppColors.primaryColorWhiteBackground,
+            body: CustomScrollView(
+              slivers: [
+                const SliverAppBar(
+                    floating: false,
+                    pinned: true,
+                    backgroundColor: AppColors.primaryColorWhiteBackground,
+                    elevation: 0,
+                    surfaceTintColor: Colors.transparent,
+                    leading: DefaultBackButton(
+                      iconColor: AppColors.blackOA,
+                      icon: CupertinoIcons.back,
+                      btnColor: AppColors.primaryColorWhiteBackground,
+                    )),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0.w),
+                    child: Stack(
+                      children: [
+                        Column(
+                          children: [
+                            Gap(20.h),
+                            DefaultText(
+                              data: AppStrings.usernameTitle,
                               fontFamily: "Geist",
-                              fontWeight: FontWeight.w500,
-                              textColor: auth.found ? AppColors.lime : AppColors.red,
-                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w900,
+                              textColor: AppColors.mainPrimaryColor,
+                              fontSize: 20.sp,
                               letterSpacing: -0.41,
                               lineHeight: 1.33,
-                              textAlign: TextAlign.left,
+                              textAlign: TextAlign.center,
+                            )
+                                .animate(delay: 100.ms)
+                                .slide(
+                                  begin: const Offset(0, -0.3),
+                                  end: const Offset(0, 0), // End at center
+                                  duration: 600.ms,
+                                  curve: Curves.easeOutBack,
+                                )
+                                .fade(begin: 0, end: 1, duration: 600.ms),
+                            Gap(4.h),
+                            DefaultText(
+                              data: AppStrings.usernameMessage,
+                              fontFamily: "Geist",
+                              fontWeight: FontWeight.w400,
+                              textColor: AppColors.blackOA,
+                              fontSize: 16.sp,
+                              letterSpacing: -0.41,
+                              lineHeight: 1.33,
+                              textAlign: TextAlign.center,
                             )
                                 .animate()
                                 .slide(
@@ -158,27 +113,100 @@ class _ChooseUsernameState extends State<ChooseUsername> {
                                   curve: Curves.easeOutBack,
                                 )
                                 .fade(begin: 0, end: 1, duration: 600.ms),
-                          ),
-                          Gap(40.h),
-                          DefaultButton(
-                              isNull: auth.found == false,
-                              btnColor: AppColors.mainPrimaryColor,
-                              btnTextColor: AppColors.white,
-                              onBtnTap: () {
-                                auth.userName = username.text;
-                                Get.to(() => const AddProfessionScreen());
-                              },
-                              btnText: AppStrings.next),
-                        ],
-                      ),
-                    ],
+                            Gap(0.1.sh),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: InputField(
+                                    controller: username,
+                                    title: "What username suits you?",
+                                    hintText: "Enter response here",
+                                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                                    onEditingComplete: () async {
+                                      var value = username.text;
+                                      if(!_focusNode.hasPrimaryFocus){
+                                        _focusNode.unfocus();
+                                      }
+                                      _makeApiCallToCheckUsername(value);
+
+                                    },
+                                    validator: (value) {
+                                      if (value == null) {
+                                        return "Username input field must not be empty";
+                                      }
+                                      return null;
+                                    },
+                                  )
+                                      .animate()
+                                      .slide(
+                                        begin: const Offset(0, 0.3),
+                                        end: const Offset(0, 0), // End at center
+                                        duration: 600.ms,
+                                        curve: Curves.easeOutBack,
+                                      )
+                                      .fade(begin: 0, end: 1, duration: 500.ms),
+                                ),
+                                auth.gettingUsername ? Gap(8.w) : Container(),
+                                Visibility(
+                                  visible: auth.gettingUsername,
+                                  child: SizedBox(
+                                    height: 20.w,
+                                    width: 20.w,
+                                    child: const CircularProgressIndicator(
+                                      color: AppColors.lime,
+                                      strokeWidth: 1.5,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            Gap(6.h),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: DefaultText(
+                                data: username.text.isEmpty
+                                    ? ""
+                                    : auth.found
+                                        ? "The username @${username.text} is available"
+                                        : "The username @${username.text} has been taken",
+                                fontFamily: "Geist",
+                                fontWeight: FontWeight.w500,
+                                textColor: auth.found ? AppColors.lime : AppColors.red,
+                                fontSize: 14.sp,
+                                letterSpacing: -0.41,
+                                lineHeight: 1.33,
+                                textAlign: TextAlign.left,
+                              )
+                                  .animate()
+                                  .slide(
+                                    begin: const Offset(0, -0.3),
+                                    end: const Offset(0, 0), // End at center
+                                    duration: 600.ms,
+                                    curve: Curves.easeOutBack,
+                                  )
+                                  .fade(begin: 0, end: 1, duration: 600.ms),
+                            ),
+                            Gap(40.h),
+                            DefaultButton(
+                                isNull: auth.found == false,
+                                btnColor: AppColors.mainPrimaryColor,
+                                btnTextColor: AppColors.white,
+                                onBtnTap: () {
+                                  auth.userName = username.text;
+                                  Get.to(() => const AddProfessionScreen());
+                                },
+                                btnText: AppStrings.next),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              )
-            ],
-          ),
-        );
-      }),
+                )
+              ],
+            ),
+          );
+        }),
+      ),
     );
   }
 }

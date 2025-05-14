@@ -102,7 +102,7 @@ class _CurrentImageCampaignState extends State<CurrentImageCampaign> {
                             height: 0.6.sh,
                             hintText: "Select campaign",
                             labelText: chosenCampaign,
-                            items: campVm.campaigns.map((e) => e.title).toList(),
+                            items: campVm.campaigns.where((campaign) => campaign.type.toLowerCase() != 'trivia').map((e) => e.title).toList(),
                             onChanged: (campaign) {
                               setState(() {
                                 chosenCampaign = campaign;

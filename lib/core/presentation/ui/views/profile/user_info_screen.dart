@@ -101,13 +101,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               //Get.to(() => const BookmarkedEvents());
                             }),
                         Gap(22.h),
-                        // UserProfileElement(
-                        //     iconData: Icons.history_rounded,
-                        //     title: "Tickets History",
-                        //     callback: () {
-                        //       //Get.to(()=> const UserTickets());
-                        //     }),
-                        // Gap(22.h),
                         UserProfileElement(
                             iconData: Icons.help_outline,
                             title: "Help and support",
@@ -120,6 +113,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             onBtnTap: () async {
                               bool clearedCache = await CacheHelper.instance.clearCache();
                               if (clearedCache) {
+                                authVm.clearData();
                                 if (mounted) {
                                   resetAllProviders(context);
                                 }
