@@ -21,6 +21,7 @@ import 'package:provider/provider.dart';
 import '../../../../../config/locator.dart';
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_strings.dart';
+import '../../../../../constants/media.dart';
 import '../../../../../utils/utils.dart';
 import '../../shared_widgets/custom_button.dart';
 import '../../shared_widgets/default_back_button.dart';
@@ -111,16 +112,30 @@ class _CaptureFormState extends State<CaptureForm> {
                 CustomScrollView(
                   slivers: [
                     SliverAppBar(
-                        floating: false,
-                        pinned: true,
-                        backgroundColor: AppColors.primaryColorWhiteBackground,
-                        elevation: 0,
-                        surfaceTintColor: Colors.transparent,
-                        leading:  widget.isHome ? null : const DefaultBackButton(
-                          iconColor: AppColors.blackOA,
-                          icon: CupertinoIcons.back,
-                          btnColor: AppColors.primaryColorWhiteBackground,
-                        )
+                      floating: false,
+                      pinned: true,
+                      backgroundColor: AppColors.primaryColorWhiteBackground,
+                      elevation: 0,
+                      surfaceTintColor: Colors.transparent,
+                      leading:  widget.isHome ? null : const DefaultBackButton(
+                        iconColor: AppColors.blackOA,
+                        icon: CupertinoIcons.back,
+                        btnColor: AppColors.primaryColorWhiteBackground,
+                      ),
+                      actions: [if(animalName != null && imageFile != null) Padding(
+                        padding: EdgeInsets.all(8.0.w),
+                        child:DefaultBackButton(
+                          onBackTap: () async {
+                            //var name = nameCtrl.text.trim();
+                            Map<String,dynamic>? nameDesc = await aiVm.getAnimalDescription(animalName!.trim());
+                            _dataStreamController.add(nameDesc);
+                          },
+                          asset: Media.ai,
+                          icon: Icons.info_outline,
+                          btnColor: AppColors.white,
+                          iconColor: AppColors.mainPrimaryColor,
+                        ),
+                      ),],
                     ),
                     SliverToBoxAdapter(
                       child: Padding(
@@ -201,7 +216,9 @@ class _CaptureFormState extends State<CaptureForm> {
                                       InputField(
                                         controller: nameCtrl,
                                         onChanged: (value) {
-                                          animalName = value;
+                                          setState(() {
+                                            animalName = value;
+                                          });
                                         },
                                         title: "What is the common name of the animal sighted?",
                                         hintText: "Enter response here",
@@ -209,7 +226,7 @@ class _CaptureFormState extends State<CaptureForm> {
                                           if(!_focusNode.hasPrimaryFocus) {
                                             _focusNode.unfocus();
                                           }
-                                          makeTheApiCall();
+                                          //makeTheApiCall();
                                         },
 
                                         validator: (value) {
@@ -239,7 +256,7 @@ class _CaptureFormState extends State<CaptureForm> {
                                 )
                               ),
                               Visibility(
-                                visible: vm.isLoading,
+                                visible: vm.isLoading || aiVm.isLoading,
                                 child: const Loader(),
                               )
                             ],
