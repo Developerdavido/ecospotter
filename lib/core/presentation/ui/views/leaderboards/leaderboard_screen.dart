@@ -100,6 +100,8 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                         leaderboardVm!.leaderboards.isEmpty
                     ? Center(
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             DefaultText(
                               data: leaderboardVm?.loadingError ??

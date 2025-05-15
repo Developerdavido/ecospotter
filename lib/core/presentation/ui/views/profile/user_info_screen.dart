@@ -75,8 +75,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     ),
                     Gap(12.h),
                     //this will show a list of the user earned badges
-                    BuildBadgeWidget(userId: authVm.userModel!.id,),
-                    Gap(12.h),
+                    //BuildBadgeWidget(userId: authVm.userModel!.id,),
+                    //Gap(12.h),
                     Expanded(
                         child: Column(
                       children: AnimateList(interval: 20.ms, effects: [

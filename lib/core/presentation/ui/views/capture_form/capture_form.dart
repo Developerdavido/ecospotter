@@ -122,20 +122,22 @@ class _CaptureFormState extends State<CaptureForm> {
                         icon: CupertinoIcons.back,
                         btnColor: AppColors.primaryColorWhiteBackground,
                       ),
-                      actions: [if(animalName != null && imageFile != null) Padding(
-                        padding: EdgeInsets.all(8.0.w),
-                        child:DefaultBackButton(
-                          onBackTap: () async {
-                            //var name = nameCtrl.text.trim();
-                            Map<String,dynamic>? nameDesc = await aiVm.getAnimalDescription(animalName!.trim());
-                            _dataStreamController.add(nameDesc);
-                          },
-                          asset: Media.ai,
-                          icon: Icons.info_outline,
-                          btnColor: AppColors.white,
-                          iconColor: AppColors.mainPrimaryColor,
-                        ),
-                      ),],
+                      // actions: [
+                      //   if(animalName != null && imageFile != null) Padding(
+                      //   padding: EdgeInsets.all(8.0.w),
+                      //   child:DefaultBackButton(
+                      //     onBackTap: () async {
+                      //       //var name = nameCtrl.text.trim();
+                      //       Map<String,dynamic>? nameDesc = await aiVm.getAnimalDescription(animalName!.trim());
+                      //       _dataStreamController.add(nameDesc);
+                      //     },
+                      //     asset: Media.ai,
+                      //     icon: Icons.info_outline,
+                      //     btnColor: AppColors.white,
+                      //     iconColor: AppColors.mainPrimaryColor,
+                      //   ),
+                      // ),
+                      // ],
                     ),
                     SliverToBoxAdapter(
                       child: Padding(
@@ -267,28 +269,28 @@ class _CaptureFormState extends State<CaptureForm> {
                   ],
                 ),
                 //place the custom expandable object here
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: ModalExpandableCustom(
-                      dataStream: _dataStreamController.stream,
-                      collapsedHeight: 0.15.sh,
-                      expandedHeight: 0.5.sh,
-                      onBackPressed: (){
-                        setState(() {
-                          animalName = null;
-                        });
-                      },
-                      contentBuilder: (data, isExpanded) {
-                        return BadgeTriviaAndDescription(
-                          isExpanded: isExpanded,
-                          trivia: data['trivia'],
-                          description: data['description'],
-                          errorMessage: data['message'],
-                        );
-                      }),
-                ),
+                // Positioned(
+                //   bottom: 0,
+                //   left: 0,
+                //   right: 0,
+                //   child: ModalExpandableCustom(
+                //       dataStream: _dataStreamController.stream,
+                //       collapsedHeight: 0.15.sh,
+                //       expandedHeight: 0.5.sh,
+                //       onBackPressed: (){
+                //         setState(() {
+                //           animalName = null;
+                //         });
+                //       },
+                //       contentBuilder: (data, isExpanded) {
+                //         return BadgeTriviaAndDescription(
+                //           isExpanded: isExpanded,
+                //           trivia: data['trivia'],
+                //           description: data['description'],
+                //           errorMessage: data['message'],
+                //         );
+                //       }),
+                // ),
               ],
             ),
           ),

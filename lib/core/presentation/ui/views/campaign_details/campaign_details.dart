@@ -178,28 +178,28 @@ class _CampaignDetailsState extends State<CampaignDetails> {
                 ],
               ),
               //this is the custom expandable widget
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: ModalExpandableCustom(
-                    dataStream: _dataStreamController.stream,
-                    collapsedHeight: 0.15.sh,
-                    expandedHeight: 0.5.sh,
-                    onBackPressed: () {
-                      setState(() {
-                        _clearData();
-                      });
-                    },
-                    contentBuilder: (data, isExpanded) {
-                      return BadgeTriviaAndDescription(
-                        isExpanded: isExpanded,
-                        trivia: data['trivia'],
-                        description: data['description'],
-                        errorMessage: data['message'],
-                      );
-                    }),
-              ),
+              // Positioned(
+              //   bottom: 0,
+              //   left: 0,
+              //   right: 0,
+              //   child: ModalExpandableCustom(
+              //       dataStream: _dataStreamController.stream,
+              //       collapsedHeight: 0.15.sh,
+              //       expandedHeight: 0.5.sh,
+              //       onBackPressed: () {
+              //         setState(() {
+              //           _clearData();
+              //         });
+              //       },
+              //       contentBuilder: (data, isExpanded) {
+              //         return BadgeTriviaAndDescription(
+              //           isExpanded: isExpanded,
+              //           trivia: data['trivia'],
+              //           description: data['description'],
+              //           errorMessage: data['message'],
+              //         );
+              //       }),
+              // ),
             ],
           ),
         ),

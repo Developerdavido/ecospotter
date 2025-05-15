@@ -172,18 +172,18 @@ class CampaignDetailsAppBar extends StatelessWidget {
         ),
       ),
       // Action icons - stay visible
-      actions: [
-        Padding(
-          padding: EdgeInsets.all(8.0.w),
-          child:DefaultBackButton(
-            onBackTap: onInfoTap,
-            asset: Media.ai,
-            icon: Icons.info_outline,
-            btnColor: AppColors.white,
-            iconColor: AppColors.mainPrimaryColor,
-          ),
-        ),
-      ],
+      // actions: [
+      //   Padding(
+      //     padding: EdgeInsets.all(8.0.w),
+      //     child:DefaultBackButton(
+      //       onBackTap: onInfoTap,
+      //       asset: Media.ai,
+      //       icon: Icons.info_outline,
+      //       btnColor: AppColors.white,
+      //       iconColor: AppColors.mainPrimaryColor,
+      //     ),
+      //   ),
+      // ],
     );
   }
 }
