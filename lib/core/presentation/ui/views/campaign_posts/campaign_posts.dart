@@ -76,14 +76,14 @@ class _CampaignPostsState extends State<CampaignPosts> {
                                   "No posts available for this campaign",
                               fontWeight: FontWeight.w500,
                               fontSize: 18.sp,
-                              textColor: AppColors.white,
+                              textColor: AppColors.blackOA,
                               letterSpacing: -0.42,
                               lineHeight: 1.2,
                               textAlign: TextAlign.center,
                             ),
                             DefaultButton(
                                 btnColor: Colors.transparent,
-                                btnTextColor: AppColors.white,
+                                btnTextColor: AppColors.mainPrimaryColor,
                                 onBtnTap: () {
                                   captureVm?.onRefresh(campaignVm!.currentCampaign!.id);
                                 },
